@@ -1,0 +1,20 @@
+@font-face {
+   font-family: 'EncodeSansNormal-900-Black';
+   font-display: swap;
+   src: url('EncodeSansNormal-900-Black/font.ttf');
+}
+@font-face {
+   font-family: 'Open Sans 700';
+   font-display: swap;
+   src: url('Open Sans 700/font.ttf');
+}
+@font-face {
+   font-family: 'Open Sans regular';
+   font-display: swap;
+   src: url('Open Sans regular/font.ttf');
+}
+@font-face {
+   font-family: 'Fontfabric - UniSansBook';
+   font-display: swap;
+   src: url('Fontfabric - UniSansBook/font.ttf');
+}
