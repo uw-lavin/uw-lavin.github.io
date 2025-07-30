@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bookmania:wght@400;600;800&display=swap');
+
+/* Custom styles for the Lavin site */
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Encode Sans', sans-serif;
+}
+
+
+
+/* FullCalendar custom styles */
+.fc {
+  font-family: inherit !important;
+}
+
+.fc-toolbar-title {
+  font-weight: bold !important;
+  color: #000 !important;
+}
+
+.fc-button {
+  background-color: #3B82F6 !important;
+  border-color: #3B82F6 !important;
+}
+
+.fc-button:hover {
+  background-color: #2563EB !important;
+  border-color: #2563EB !important;
+}
+
+.fc-button:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5) !important;
+}
+
+@layer utilities {
+  .scroll-banner {
+    animation: scroll 30s linear infinite;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(-20%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+}
+
+@keyframes fade-slide {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.animate-fade-slide {
+  animation: fade-slide 0.4s ease-out;
+}
