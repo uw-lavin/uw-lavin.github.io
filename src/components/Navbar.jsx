@@ -7,7 +7,6 @@ const navLinks = [
   { name: 'About', path: '/about' },
   { name: 'Recruitment', path: '/recruitment' },
   { name: 'Events', path: '/events' },
-  { name: 'Community & Impact', path: '/members' },
   { name: 'Leadership', path: '/executive-board' },
   { name: 'Join Us', path: '/sponsors' },
   { name: 'Gallery', path: '/gallery' },

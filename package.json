@@ -14,7 +14,7 @@
     "@fullcalendar/react": "^6.1.18",
     "@headlessui/react": "^2.2.4",
     "date-fns": "^4.1.0",
-    "framer-motion": "^12.23.6",
+    "framer-motion": "^12.23.12",
     "gsap": "^3.13.0",
     "ical": "^0.8.0",
     "ical.js": "^2.2.0",

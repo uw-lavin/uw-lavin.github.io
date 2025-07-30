@@ -89,10 +89,8 @@ export default function Gallery() {
         </div>
       </section>
 
-      <div className="h-[2px] w-full bg-gradient-to-r from-husky-purple/0 via-husky-purple/40 to-husky-purple/0 my-16" />
-
       {/* ---------- Section 2: Recent Event Circular Gallery ---------- */}
-      <section className="bg-white px-6image.png md:px-12 py-20">
+      <section className="bg-white px-6image.png md:px-12 py-5">
         <div className="w-full">
           <motion.div 
             variants={fadeUp} 
@@ -100,12 +98,6 @@ export default function Gallery() {
             whileInView="visible" 
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-encode text-husky-purple mb-6 text-center">
-              Boat Formal 2025
-            </h2>
-            <p className="text-lg text-neutral-700 mb-12 text-center font-open">
-              Check out the highlights from our latest event!
-            </p>
             
             <div style={{ height: '600px', position: 'relative' }}>
               <CircularGallery 
@@ -114,7 +106,7 @@ export default function Gallery() {
                 textColor="#545050"
                 borderRadius={0.05}
                 font="bold 24px Figtree"
-                scrollSpeed={0.1}
+                scrollSpeed={0.5}
                 scrollEase={0.08}
               />
             </div>
@@ -122,10 +114,8 @@ export default function Gallery() {
         </div>
       </section>
 
-      <div className="h-[2px] w-full bg-gradient-to-r from-husky-purple/0 via-husky-purple/40 to-husky-purple/0 my-16" />
-
       {/* ---------- Section 3: Photo Gallery ---------- */}
-      <section className="bg-white px-4 md:px-8 py-20">
+      <section className="bg-white px-4 md:px-8 py-5">
         <div className="w-full">
           <motion.div 
             variants={fadeUp} 
