@@ -154,38 +154,6 @@ export default function Members() {
           </motion.div>
         </div>
       </section>
-
-      <SectionDivider />
-
-      {/* ---------- Section 4: Executive Board ---------- */}
-      <section className="bg-white px-6 md:px-12 py-20">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            variants={fadeUp} 
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-encode text-husky-purple mb-6 text-center">
-              Executive Board
-            </h2>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {executiveBoard.map((member, index) => (
-                <div 
-                  key={index} 
-                  className="bg-white rounded-lg p-6 shadow-lg border border-gray-100 hover:scale-105 hover:shadow-lg transition-transform duration-200"
-                >
-                  <div className="w-16 h-16 bg-neutral-200 rounded-full mb-4"></div>
-                  <h3 className="text-xl font-bold text-husky-purple mb-1">{member.name}</h3>
-                  <p className="text-spirit-gold font-semibold mb-2">{member.role}</p>
-                  <p className="text-neutral-600 text-sm font-open">{member.major} '{member.year}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 } 
