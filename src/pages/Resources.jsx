@@ -21,30 +21,6 @@ export default function Resources() {
     },
   };
 
-  useEffect(() => {
-    const storedAuth = localStorage.getItem('lavinAuth');
-    if (storedAuth === 'true') {
-      setIsAuthenticated(true);
-    }
-  }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (password === correctPassword) {
-      setIsAuthenticated(true);
-      localStorage.setItem('lavinAuth', 'true');
-      setError('');
-    } else {
-      setError('Incorrect password. Please try again.');
-    }
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem('lavinAuth');
-    setPassword('');
-  };
-
   const resources = [
     {
       title: 'Pitch Deck Templates',
@@ -83,6 +59,30 @@ export default function Resources() {
       link: '#'
     }
   ];
+
+  useEffect(() => {
+    const storedAuth = localStorage.getItem('lavinAuth');
+    if (storedAuth === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password === correctPassword) {
+      setIsAuthenticated(true);
+      localStorage.setItem('lavinAuth', 'true');
+      setError('');
+    } else {
+      setError('Incorrect password. Please try again.');
+    }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('lavinAuth');
+    setPassword('');
+  };
 
   if (!isAuthenticated) {
     return (

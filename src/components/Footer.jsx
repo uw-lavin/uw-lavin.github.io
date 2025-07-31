@@ -31,7 +31,7 @@ export default function Footer() {
 
           {/* Email */}
           <a
-            href="mailto:lavin@uw.edu"
+            href="mailto:lavin.entrepreneurship@gmail.com"
             className="text-gray-600 hover:text-blue-500 transition-colors duration-200"
             aria-label="Email us"
           >

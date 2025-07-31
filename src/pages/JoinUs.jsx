@@ -257,7 +257,7 @@ export default function JoinUs() {
               </div>
               
               <p className="text-center">
-                Ready to get involved? Email us at <strong>hello@lavin.org</strong> and we'll get things moving!
+                Ready to get involved? Email us at <strong>lavin.entrepreneurship@gmail.com</strong> and we'll get things moving!
               </p>
             </div>
           </motion.div>
@@ -300,7 +300,7 @@ export default function JoinUs() {
               
               <p>
                 If your company is interested in learning more about our corporate sponsorship packages and process, 
-                reach out to <strong>hello@lavin.org</strong> so we can get you a prospectus and schedule a meeting 
+                reach out to <strong>lavin.entrepreneurship@gmail.com</strong> so we can get you a prospectus and schedule a meeting 
                 with our sponsorship team!
               </p>
               
