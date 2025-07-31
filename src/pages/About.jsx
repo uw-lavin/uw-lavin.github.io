@@ -20,7 +20,7 @@ export default function About() {
       {/* ---------- Section 1: Hero / Overview ---------- */}
       <section className="relative bg-web-gold px-6 md:px-12 py-20">
         {/* subtle decorative circle */}
-        <div className="pointer-events-none absolute -top-20 -right-20 h-80 w-80 rounded-full bg-accent-lavender/40 blur-3xl" />
+        <div className="pointer-events-none absolute -top-20 -right-10 md:-right-20 h-60 w-60 md:h-80 md:w-80 rounded-full bg-accent-lavender/40 blur-3xl" />
 
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           {/* Text block */}
@@ -284,7 +284,7 @@ export default function About() {
         </div>
 
         {/* Bottom decorative blob */}
-        <div className="pointer-events-none absolute -bottom-20 -left-24 h-72 w-72 rounded-full bg-accent-teal/30 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-20 -left-12 md:-left-24 h-60 w-60 md:h-72 md:w-72 rounded-full bg-accent-teal/30 blur-3xl" />
       </section>
     </div>
   );

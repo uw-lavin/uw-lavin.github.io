@@ -36,7 +36,7 @@ export default function Recruitment() {
       {/* ---------- Section 1: Hero / Overview ---------- */}
       <section className="relative bg-web-gold px-6 md:px-12 py-20">
         {/* subtle decorative circle */}
-        <div className="pointer-events-none absolute -top-20 -right-20 h-80 w-80 rounded-full bg-accent-lavender/40 blur-3xl" />
+        <div className="pointer-events-none absolute -top-20 -right-10 md:-right-20 h-60 w-60 md:h-80 md:w-80 rounded-full bg-accent-lavender/40 blur-3xl" />
 
         <div className="max-w-7xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
