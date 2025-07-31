@@ -90,7 +90,7 @@ export default function Gallery() {
       </section>
 
       {/* ---------- Section 2: Recent Event Circular Gallery ---------- */}
-      <section className="bg-white px-6image.png md:px-12 py-5">
+      {/*<section className="bg-white px-6image.png md:px-12 py-5">
         <div className="w-full">
           <motion.div 
             variants={fadeUp} 
@@ -112,7 +112,7 @@ export default function Gallery() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section>*/}
 
       {/* ---------- Section 3: Photo Gallery ---------- */}
       <section className="bg-white px-4 md:px-8 py-5">
