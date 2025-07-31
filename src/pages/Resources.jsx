@@ -125,16 +125,17 @@ export default function Resources() {
               initial="hidden" 
               whileInView="visible" 
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-encode text-husky-purple mb-6"
+              className="text-4xl md:text-5xl font-black text-husky-purple mb-4 font-encode"
             >
               Resources
             </motion.h1>
+            <span className="block h-1 w-16 bg-spirit-gold mb-6" />
             <motion.p 
               variants={fadeUp} 
               initial="hidden" 
               whileInView="visible" 
               viewport={{ once: true }}
-              className="text-lg md:text-xl text-neutral-700 leading-relaxed font-open"
+              className="text-lg md:text-xl text-neutral-800 leading-relaxed font-open"
             >
               Member-only resources, tools, and connections to help you succeed.
             </motion.p>
@@ -198,14 +199,17 @@ export default function Resources() {
           <section className="bg-web-gold px-6 md:px-12 py-20">
             <div className="max-w-7xl mx-auto">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-                <motion.h1 
-                  variants={fadeUp} 
-                  initial="hidden" 
-                  animate="visible"
-                  className="text-4xl md:text-5xl font-encode text-husky-purple"
-                >
-                  Internal Resources
-                </motion.h1>
+                <div>
+                  <motion.h1 
+                    variants={fadeUp} 
+                    initial="hidden" 
+                    animate="visible"
+                    className="text-4xl md:text-5xl font-black text-husky-purple mb-4 font-encode"
+                  >
+                    Internal Resources
+                  </motion.h1>
+                  <span className="block h-1 w-16 bg-spirit-gold mb-6" />
+                </div>
                 <motion.button
                   variants={fadeUp} 
                   initial="hidden" 

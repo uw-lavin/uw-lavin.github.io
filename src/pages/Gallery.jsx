@@ -73,16 +73,17 @@ export default function Gallery() {
             initial="hidden" 
             whileInView="visible" 
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-encode text-husky-purple mb-6"
+            className="text-4xl md:text-5xl font-black text-husky-purple mb-4 font-encode"
           >
             Gallery
           </motion.h1>
+          <span className="block h-1 w-16 bg-spirit-gold mb-6" />
           <motion.p 
             variants={fadeUp} 
             initial="hidden" 
             whileInView="visible" 
             viewport={{ once: true }}
-            className="text-neutral-700 mb-8 text-lg md:text-xl font-open leading-relaxed"
+            className="text-neutral-800 mb-8 text-lg md:text-xl font-open leading-relaxed"
           >
             Capturing moments from Lavin events, activities, and community memories.
           </motion.p>

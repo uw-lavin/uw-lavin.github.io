@@ -151,16 +151,17 @@ export default function ExecutiveBoard() {
             initial="hidden" 
             whileInView="visible" 
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-encode text-husky-purple mb-6"
+            className="text-4xl md:text-5xl font-black text-husky-purple mb-4 font-encode"
           >
             2025 - 2026 Lavin Executive Board
           </motion.h1>
+          <span className="block h-1 w-16 bg-spirit-gold mb-6" />
           <motion.p 
             variants={fadeUp} 
             initial="hidden" 
             whileInView="visible" 
             viewport={{ once: true }}
-            className="text-neutral-700 mb-8 text-lg md:text-xl font-open leading-relaxed"
+            className="text-neutral-800 mb-8 text-lg md:text-xl font-open leading-relaxed"
           >
             Meet the student leaders who drive innovation and community within Lavin.
           </motion.p>

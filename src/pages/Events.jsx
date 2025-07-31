@@ -16,16 +16,17 @@ export default function Events() {
             initial="hidden" 
             whileInView="visible" 
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-encode text-husky-purple mb-6"
+            className="text-4xl md:text-5xl font-black text-husky-purple mb-4 font-encode"
           >
             Events
           </motion.h1>
+          <span className="block h-1 w-16 bg-spirit-gold mb-6" />
           <motion.p 
             variants={fadeUp} 
             initial="hidden" 
             whileInView="visible" 
             viewport={{ once: true }}
-            className="text-lg md:text-xl text-neutral-700 leading-relaxed font-open"
+            className="text-lg md:text-xl text-neutral-800 leading-relaxed font-open"
           >
             All our upcoming lectures, workshops, and socials—pulled straight from the official Lavin calendar.
           </motion.p>
