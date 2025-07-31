@@ -61,7 +61,7 @@ export default function Home() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="text-white uppercase font-black leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[10rem]"
+            className="text-white uppercase font-black leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl break-words"
           >
             Lavin
             <br/>

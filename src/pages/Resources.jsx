@@ -21,42 +21,72 @@ export default function Resources() {
     },
   };
 
-  const resources = [
+  const resourceSections = [
     {
-      title: 'Pitch Deck Templates',
-      description: 'Professional templates for investor presentations',
-      icon: '📊',
-      link: '#'
+      title: 'Quick Access',
+      description: 'Essential community and directory resources',
+      resources: [
+        {
+          title: 'Lavin Discord',
+          description: 'Join the real-time Lavin community.',
+          type: 'Discord',
+          link: 'https://discord.gg/fWusFMEy75'
+        },
+        {
+          title: 'Lavin Student Directory',
+          description: 'View and search all current Lavin students.',
+          type: 'Spreadsheet',
+          link: 'https://docs.google.com/spreadsheets/d/1WK1MvijOVlLwIMZHEsW_FXyqJi5y54JU/edit?gid=1927637468#gid=1927637468'
+        },
+        {
+          title: 'Lavin Families',
+          description: 'Access family assignments and information.',
+          type: 'Spreadsheet',
+          link: 'https://docs.google.com/spreadsheets/d/1CvEpgK_zHIjsaAuLaEtakGgFhkM0ck3szX4icXVePTA/edit?gid=0#gid=0'
+        }
+      ]
     },
     {
-      title: 'Business Model Canvas',
-      description: 'Interactive canvas for business planning',
-      icon: '🎯',
-      link: '#'
+      title: 'Operational & Community Infrastructure',
+      description: 'Process guides and community management tools',
+      resources: [
+        {
+          title: 'Coffee Chat Instructions',
+          description: 'Learn how to schedule and conduct coffee chats.',
+          type: 'Document',
+          link: 'https://docs.google.com/document/d/1cX-6ZTXVq8PDj9o_BoDGal-nzk_NIjWiwyfiLPQhjzc/edit?tab=t.0'
+        },
+        {
+          title: 'Family Reimbursement Process',
+          description: 'Submit and track family activity reimbursements.',
+          type: 'Document',
+          link: 'https://docs.google.com/document/d/1qF01jpaTeIIQIyslS7OUV7j_qqHPSFG_-REJtpzlKZc/edit?tab=t.0'
+        }
+      ]
     },
     {
-      title: 'Mentor Directory',
-      description: 'Connect with industry professionals',
-      icon: '👥',
-      link: '#'
-    },
-    {
-      title: 'Funding Resources',
-      description: 'Grants, competitions, and investment opportunities',
-      icon: '💰',
-      link: '#'
-    },
-    {
-      title: 'Legal Templates',
-      description: 'Founder agreements, NDAs, and contracts',
-      icon: '⚖️',
-      link: '#'
-    },
-    {
-      title: 'Technical Resources',
-      description: 'Development tools and cloud credits',
-      icon: '💻',
-      link: '#'
+      title: 'Academic & Career Workflows',
+      description: 'Forms and processes for academic and career advancement',
+      resources: [
+        {
+          title: 'Resume Book Instructions',
+          description: 'Submit your resume for the Lavin resume book.',
+          type: 'Document',
+          link: 'https://docs.google.com/document/d/1fdOya-sW4nII43ALl_uL9y2QGkwP3ly4Dk1Q6bne43k/edit?tab=t.0'
+        },
+        {
+          title: 'Entrepreneurship Minor Request',
+          description: 'Apply for the entrepreneurship minor program.',
+          type: 'Form',
+          link: 'https://docs.google.com/forms/d/e/1FAIpQLSeQL_ZlB_X2sy6IgTsZrVNSrfxAxwA3eP4JGn8qjfhhxbE5aQ/viewform'
+        },
+        {
+          title: 'Creating-A-Company Prereq Skip',
+          description: 'Request to skip prerequisites for the Creating-A-Company class.',
+          type: 'Form',
+          link: 'https://docs.google.com/forms/d/e/1FAIpQLSfmyQPpXIVG_t-XpWwepAOSQ6ReDAHGIX6d3WFbZOo0GU4A3w/viewform'
+        }
+      ]
     }
   ];
 
@@ -171,17 +201,15 @@ export default function Resources() {
                 <motion.h1 
                   variants={fadeUp} 
                   initial="hidden" 
-                  whileInView="visible" 
-                  viewport={{ once: true }}
+                  animate="visible"
                   className="text-4xl md:text-5xl font-encode text-husky-purple"
                 >
-                  Resources
+                  Internal Resources
                 </motion.h1>
                 <motion.button
                   variants={fadeUp} 
                   initial="hidden" 
-                  whileInView="visible" 
-                  viewport={{ once: true }}
+                  animate="visible"
                   onClick={handleLogout}
                   className="text-husky-purple hover:text-spirit-purple font-semibold font-open"
                 >
@@ -192,51 +220,69 @@ export default function Resources() {
               <motion.p 
                 variants={fadeUp} 
                 initial="hidden" 
-                whileInView="visible" 
-                viewport={{ once: true }}
+                animate="visible"
                 className="text-lg md:text-xl text-neutral-700 leading-relaxed font-open"
               >
-                Welcome to the member-only resources portal. Access tools, templates, and connections.
+                Quick links to the tools, forms, and documents Lavin students rely on for community, operations, academics, and career progress.
               </motion.p>
             </div>
           </section>
 
-          <div className="h-[2px] w-full bg-gradient-to-r from-husky-purple/0 via-husky-purple/40 to-husky-purple/0 my-16" />
-
-          {/* ---------- Resources Grid Section ---------- */}
+          {/* ---------- Internal Resources Section ---------- */}
           <section className="bg-white px-6 md:px-12 py-20">
             <div className="max-w-7xl mx-auto">
-              <motion.div 
-                variants={staggerContainer} 
-                initial="hidden" 
-                whileInView="visible" 
-                viewport={{ once: true }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-              >
-                {resources.map((resource, index) => (
+              
+              <div className="space-y-16">
+                {resourceSections.map((section, sectionIndex) => (
                   <motion.div 
-                    key={index} 
-                    variants={fadeUp}
-                    className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-105"
+                    key={sectionIndex}
+                    variants={staggerContainer} 
+                    initial="hidden" 
+                    animate="visible"
+                    className="space-y-8"
                   >
-                    <div className="text-5xl mb-6">{resource.icon}</div>
-                    <h3 className="text-xl font-bold text-husky-purple mb-4 font-encode">{resource.title}</h3>
-                    <p className="text-neutral-600 mb-6 font-open leading-relaxed">{resource.description}</p>
-                    <a
-                      href={resource.link}
-                      className="text-husky-purple hover:text-spirit-purple font-semibold font-open inline-flex items-center"
-                    >
-                      Access →
-                    </a>
+                    <div className="text-center mb-8">
+                      <h3 className="text-2xl font-semibold text-husky-purple mb-2 font-encode">{section.title}</h3>
+                      <p className="text-neutral-600 font-open">{section.description}</p>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {section.resources.map((resource, index) => (
+                        <motion.div 
+                          key={index} 
+                          variants={fadeUp}
+                          className="group"
+                        >
+                          <a
+                            href={resource.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-105 h-full"
+                          >
+                            <div className="flex justify-between items-start mb-4">
+                              <h4 className="text-lg font-bold text-husky-purple font-encode">{resource.title}</h4>
+                              <span className="text-xs font-semibold px-2 py-1 rounded-full bg-husky-purple/10 text-husky-purple">
+                                {resource.type}
+                              </span>
+                            </div>
+                            <p className="text-neutral-600 mb-4 font-open leading-relaxed text-sm">
+                              {resource.description}
+                            </p>
+                            <div className="text-husky-purple font-semibold font-open text-sm group-hover:text-spirit-purple transition-colors">
+                              Open →
+                            </div>
+                          </a>
+                        </motion.div>
+                      ))}
+                    </div>
                   </motion.div>
                 ))}
-              </motion.div>
+              </div>
               
               <motion.div 
                 variants={fadeUp} 
                 initial="hidden" 
-                whileInView="visible" 
-                viewport={{ once: true }}
+                animate="visible"
                 className="mt-16 text-center"
               >
                 <p className="text-neutral-600 font-open">

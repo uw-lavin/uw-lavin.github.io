@@ -189,7 +189,7 @@ export default function About() {
             <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center p-8 rounded-lg bg-white shadow-lg border border-gray-100 hover:scale-105 hover:shadow-lg transition-transform duration-200">
                 <div className="text-5xl font-black text-husky-purple mb-2">
-                  <CountUp from={0} to={120} separator="," direction="up" duration={1} className="count-up-text" />
+                  <CountUp from={0} to={115} separator="," direction="up" duration={1} className="count-up-text" />
                 </div>
                 <div className="text-neutral-700 font-semibold">Active Members</div>
               </div>
