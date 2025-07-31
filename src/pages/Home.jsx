@@ -95,12 +95,12 @@ export default function Home() {
 
       {/* ---------- Spotlight Carousel ---------- */}
       <section className="bg-gray-50 py-16">
-        <div className="max-w-full mx-auto px-36">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="max-w-full mx-auto px-4 md:px-8 lg:px-12 xl:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Left Column: Spotlight Carousel */}
             <div>
               <SpotlightCarousel />
-              <h2 className="text-4xl md:text-7xl lg:text-6xl font-bold text-husky-purple text-center pt-40">
+              <h2 className="text-4xl md:text-7xl lg:text-6xl font-bold text-husky-purple text-center pt-20 md:pt-40">
               create. innovate. disrupt.
             </h2>
             </div>

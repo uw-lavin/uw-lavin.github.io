@@ -35,23 +35,23 @@ export default function Events() {
       <div className="h-[2px] w-full bg-gradient-to-r from-husky-purple/0 via-husky-purple/40 to-husky-purple/0 my-" />
 
       {/* ---------- Calendar Section ---------- */}
-      <section className="bg-white px-6 md:px-12 py-5">
+      <section className="bg-white px-6 md:px-12 py-8 md:py-12">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             variants={fadeUp} 
             initial="hidden" 
             whileInView="visible" 
             viewport={{ once: true }}
-            className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100"
+            className="bg-white rounded-2xl p-4 md:p-8 shadow-lg border border-gray-100"
           >
-            <div className="w-full aspect-[3/2]">
+            <div className="w-full h-[600px] md:h-[700px] lg:h-[800px]">
               <iframe 
                 src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FLos_Angeles&title=Upcoming%20Lavin%20Events&showTz=0&mode=AGENDA&showPrint=0&showTitle=0&src=Y19mMWIwMGY4OWM2MDc5NjU4MDhjZTI1NWI3NjQ1OTA2NTIzOGM5ZDNkNWRhYjkxZDY1N2U1ZDdiN2RkMWUzMzQzQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23f09300" 
                 style={{ border: 0 }} 
                 width="100%" 
                 height="100%" 
                 frameBorder="0" 
-                scrolling="no"
+                scrolling="yes"
               />
             </div>
           </motion.div>

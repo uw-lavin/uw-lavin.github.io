@@ -58,7 +58,7 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Navigation Menu */}
-      <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+      <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
         <ul className="py-4 space-y-2 border-t mt-4">
           {navLinks.map(link => (
             <li key={link.path}>

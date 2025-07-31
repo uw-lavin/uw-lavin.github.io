@@ -40,6 +40,7 @@ export default function SpotlightCarousel() {
         settings: {
           centerMode: false,
           centerPadding: "0",
+          dots: true,
         },
       },
     ],
@@ -55,16 +56,16 @@ export default function SpotlightCarousel() {
       
       <Slider {...settings}>
         {slides.map((slide, index) => (
-          <div key={index} className="px-4">
-            <div className="bg-white rounded-2xl p-8 shadow-lg text-center">
-              <div className="text-5xl mb-4">{slide.icon}</div>
-              <h3 className="text-xl font-semibold mb-2 text-husky-purple">
+          <div key={index} className="px-2 md:px-4">
+            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg text-center">
+              <div className="text-4xl md:text-5xl mb-4">{slide.icon}</div>
+              <h3 className="text-lg md:text-xl font-semibold mb-2 text-husky-purple">
                 {slide.title}
               </h3>
-              <p className="italic text-neutral-700 mb-1 font-open">
+              <p className="italic text-neutral-700 mb-1 font-open text-sm md:text-base">
                 "{slide.subtitle}"
               </p>
-              <p className="text-sm text-neutral-500 font-open">
+              <p className="text-xs md:text-sm text-neutral-500 font-open">
                 {slide.caption}
               </p>
             </div>
