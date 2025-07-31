@@ -1,5 +1,6 @@
 // About.jsx
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import LeonardLavin from '../assets/LeonardLavin.jpeg';
 import LogoMarquee from '../components/LogoMarquee';
 import RotatingTestimonial from '../components/RotatingTestimonials';
@@ -15,6 +16,8 @@ const SectionDivider = () => (
 );
 
 export default function About() {
+  const navigate = useNavigate();
+  
   return (
     <div className="w-full">
       {/* ---------- Section 1: Hero / Overview ---------- */}
@@ -65,9 +68,12 @@ export default function About() {
           </motion.div>
         </div>
         <div className="mt-8 flex justify-center">
-          <a href="/recruitment" className="px-6 py-3 bg-husky-purple text-white rounded-md font-semibold hover:bg-spirit-purple transition">
+          <button 
+            onClick={() => navigate('/recruitment')}
+            className="px-6 py-3 bg-husky-purple text-white rounded-md font-semibold hover:bg-spirit-purple transition"
+          >
             Apply to Lavin →
-          </a>
+          </button>
         </div>
       </section>
 
