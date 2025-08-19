@@ -1,5 +1,20 @@
 import { motion } from 'framer-motion';
 
+// Import profile pictures
+import ishanPic from '../assets/profilePics/ishan.jpeg';
+import krishnaPic from '../assets/profilePics/krishna.webp';
+import krishnaPic2 from '../assets/profilePics/krishna2.webp';
+import arnavPic from '../assets/profilePics/arnav.jpeg';
+import ananyaPic from '../assets/profilePics/ananya.jpeg';
+import jennyPic from '../assets/profilePics/jenny.jpeg';
+import danielPic from '../assets/profilePics/daniel.jpeg';
+import sreshtaPic from '../assets/profilePics/sreshta.jpeg';
+import riyaPic from '../assets/profilePics/riya.jpeg';
+import angelinePic from '../assets/profilePics/angeline.jpeg';
+import miraPic from '../assets/profilePics/mira.jpeg';
+import agastyaPic from '../assets/profilePics/agastya.jpeg';
+import junejaPic from '../assets/profilePics/juneja.jpeg';
+
 // Custom CSS for 3D flip animation
 const flipStyles = `
   .perspective-1000 {
@@ -25,7 +40,7 @@ const executiveBoard = [
     role: 'Co-President', 
     major: 'Computer Science', 
     year: '2025',
-    image: 'https://i.pravatar.cc/300?img=1',
+    image: ishanPic,
     accomplishments: 'Leading Lavin\'s strategic vision and executive operations, fostering innovation across all program areas',
     linkedin: 'https://www.linkedin.com/in/ishan-sinha-7b74b51aa'
   },
@@ -34,7 +49,7 @@ const executiveBoard = [
     role: 'Co-President', 
     major: 'Business', 
     year: '2025',
-    image: 'https://i.pravatar.cc/300?img=2',
+    image: krishnaPic2,
     accomplishments: 'Co-leading Lavin\'s mission to empower student entrepreneurs and build lasting community connections',
     linkedin: 'https://www.linkedin.com/in/krishnaspenjarla'
   },
@@ -43,7 +58,7 @@ const executiveBoard = [
     role: 'Co-Director of Outreach', 
     major: 'Computer Science', 
     year: '2025',
-    image: 'https://i.pravatar.cc/300?img=3',
+    image: arnavPic,
     accomplishments: 'Expanding Lavin\'s network with Seattle startups, VCs, and entrepreneurial community partners',
     linkedin: 'https://www.linkedin.com/in/arnav-palkhiwala-a8927b212'
   },
@@ -52,7 +67,7 @@ const executiveBoard = [
     role: 'Co-Director of Outreach', 
     major: 'Business', 
     year: '2025',
-    image: 'https://i.pravatar.cc/300?img=4',
+    image: ananyaPic,
     accomplishments: 'Building strategic partnerships and connecting Lavin members with industry leaders and opportunities',
     linkedin: 'https://www.linkedin.com/in/ananya-tr'
   },
@@ -61,7 +76,7 @@ const executiveBoard = [
     role: 'Co-Director of PR', 
     major: 'Communications', 
     year: '2025',
-    image: 'https://i.pravatar.cc/300?img=5',
+    image: jennyPic,
     accomplishments: 'Managing Lavin\'s public relations, media presence, and external communications strategy',
     linkedin: 'https://www.linkedin.com/in/jennypyon'
   },
@@ -70,7 +85,7 @@ const executiveBoard = [
     role: 'Co-Director of PR', 
     major: 'Computer Science', 
     year: '2025',
-    image: 'https://i.pravatar.cc/300?img=6',
+    image: danielPic,
     accomplishments: 'Co-leading public relations efforts and maintaining Lavin\'s professional brand image',
     linkedin: 'https://www.linkedin.com/in/dzhang10'
   },
@@ -79,7 +94,7 @@ const executiveBoard = [
     role: 'Co-Director of Marketing', 
     major: 'Business', 
     year: '2025',
-    image: 'https://i.pravatar.cc/300?img=7',
+    image: sreshtaPic,
     accomplishments: 'Leading Lavin\'s marketing initiatives, social media strategy, and brand development',
     linkedin: 'https://www.linkedin.com/in/sreshtaappala'
   },
@@ -88,16 +103,16 @@ const executiveBoard = [
     role: 'Co-Director of Marketing', 
     major: 'Communications', 
     year: '2025',
-    image: 'https://i.pravatar.cc/300?img=8',
+    image: riyaPic,
     accomplishments: 'Co-managing marketing campaigns and enhancing Lavin\'s digital presence and engagement',
-    linkedin: 'https://ca.linkedin.com/in/riya-dhariwal-94418a372'
+    linkedin: 'https://www.linkedin.com/in/rdhari/'
   },
   { 
     name: 'Angeline Sutandinata', 
     role: 'Co-Director of Community Development', 
     major: 'Business', 
     year: '2025',
-    image: 'https://i.pravatar.cc/300?img=9',
+    image: angelinePic,
     accomplishments: 'Fostering community engagement, member relationships, and internal program development',
     linkedin: 'https://www.linkedin.com/in/angeline-sutandinata'
   },
@@ -106,7 +121,7 @@ const executiveBoard = [
     role: 'Co-Director of Community Development', 
     major: 'Computer Science', 
     year: '2025',
-    image: 'https://i.pravatar.cc/300?img=10',
+    image: miraPic,
     accomplishments: 'Co-leading community initiatives and creating meaningful connections within the Lavin ecosystem',
     linkedin: 'https://www.linkedin.com/in/mira-evans-b75772323'
   },
@@ -115,7 +130,7 @@ const executiveBoard = [
     role: 'Director of Web Design & ENTRE 490 TA', 
     major: 'Computer Science', 
     year: '2025',
-    image: 'https://i.pravatar.cc/300?img=11',
+    image: agastyaPic,
     accomplishments: 'Teaching entrepreneurship fundamentals and leading Lavin\'s digital presence and web development',
     linkedin: 'https://www.linkedin.com/in/agastyamongia'
   },
@@ -124,7 +139,7 @@ const executiveBoard = [
     role: 'Director of Videography/Photography', 
     major: 'Communications', 
     year: '2025',
-    image: 'https://i.pravatar.cc/300?img=12',
+    image: junejaPic,
     accomplishments: 'Capturing Lavin\'s story through visual content, documenting events, and creating compelling media',
     linkedin: 'https://www.linkedin.com/in/ananya-juneja9'
   },
