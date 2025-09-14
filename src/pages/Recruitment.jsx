@@ -8,23 +8,23 @@ const fadeUp = {
 
 const timelineData = [
   {
-    date: "September 24, 2025",
-    title: "Applications Open",
-    description: "Applications for 2025 cohort open",
+    date: "September 17, 2025",
+    title: "Application Opens",
+    description: "Application opens until October 12th.",
     icon: "📝",
     status: "upcoming"
   },
   {
-    date: "October 1-7, 2025",
-    title: "First Round Interviews",
-    description: "Selected candidates invited for interviews",
+    date: "October 20-24, 2025",
+    title: "Interviews",
+    description: "Select candidates are invited to interview.",
     icon: "🎯",
     status: "upcoming"
   },
   {
-    date: "November 1, 2025",
+    date: "October 28, 2025",
     title: "Decisions Released",
-    description: "Final decisions and welcome to Lavin",
+    description: "Final decisions announced.",
     icon: "🎉",
     status: "upcoming"
   }

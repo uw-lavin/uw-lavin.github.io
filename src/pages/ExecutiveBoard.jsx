@@ -14,6 +14,7 @@ import angelinePic from '../assets/profilePics/angeline.jpeg';
 import miraPic from '../assets/profilePics/mira.jpeg';
 import agastyaPic from '../assets/profilePics/agastya.jpeg';
 import junejaPic from '../assets/profilePics/juneja.jpeg';
+import rayaPic from '../assets/profilePics/raya.jpeg';
 
 // Custom CSS for 3D flip animation
 const flipStyles = `
@@ -135,13 +136,13 @@ const executiveBoard = [
     linkedin: 'https://www.linkedin.com/in/agastyamongia'
   },
   { 
-    name: 'Ananya Juneja', 
+    name: 'Raya Rehmat', 
     role: 'Director of Videography/Photography', 
-    major: 'Communications', 
+    major: 'Business', 
     year: '2025',
-    image: junejaPic,
+    image: rayaPic,
     accomplishments: 'Capturing Lavin\'s story through visual content, documenting events, and creating compelling media',
-    linkedin: 'https://www.linkedin.com/in/ananya-juneja9'
+    linkedin: 'https://www.linkedin.com/in/raya-r-rehmat/'
   },
 ];
 

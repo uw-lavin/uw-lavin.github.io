@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import useIcsEvents from '../hooks/useIcsEvents';
 
 export default function UpcomingEvents({ events: fallbackEvents }) {
+  const navigate = useNavigate();
   const { events: icsEvents, loading } = useIcsEvents();
   
   // Use ICS events if available, otherwise fall back to prop events
@@ -84,7 +86,7 @@ export default function UpcomingEvents({ events: fallbackEvents }) {
       {/* View All Events Button */}
       <div className="mt-8 pt-6 border-t border-gray-100">
         <button 
-          onClick={() => window.location.href = '/events'}
+          onClick={() => navigate('/events')}
           className="w-full bg-web-gold text-husky-purple font-semibold py-3 px-6 rounded-lg hover:bg-yellow-500 transition-all duration-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-web-gold focus:ring-offset-2"
         >
           View All Events
