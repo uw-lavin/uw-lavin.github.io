@@ -8,7 +8,6 @@ const navLinks = [
   { name: 'Recruitment', path: '/recruitment' },
   { name: 'Events', path: '/events' },
   { name: 'Leadership', path: '/executive-board' },
-  { name: 'Join Us', path: '/sponsors' },
   { name: 'Gallery', path: '/gallery' },
   { name: 'Internal', path: '/resources' },
 ];
