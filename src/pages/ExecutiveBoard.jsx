@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import ishanPic from '../assets/profilePics/ishan.jpeg';
 import krishnaPic from '../assets/profilePics/krishna.webp';
 import krishnaPic2 from '../assets/profilePics/krishna2.webp';
+import krishnaPic3 from '../assets/profilePics/krishna3.webp';
 import arnavPic from '../assets/profilePics/arnav.jpeg';
 import ananyaPic from '../assets/profilePics/ananya.jpeg';
 import jennyPic from '../assets/profilePics/jenny.jpeg';
@@ -50,7 +51,7 @@ const executiveBoard = [
     role: 'Co-President', 
     major: 'Business', 
     year: '2025',
-    image: krishnaPic2,
+    image: krishnaPic3,
     accomplishments: 'Co-leading Lavin\'s mission to empower student entrepreneurs and build lasting community connections',
     linkedin: 'https://www.linkedin.com/in/krishnaspenjarla'
   },
