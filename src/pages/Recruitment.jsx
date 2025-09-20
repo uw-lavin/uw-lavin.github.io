@@ -191,9 +191,9 @@ export default function Recruitment() {
             <p className="text-lg text-neutral-700 mb-8 leading-relaxed font-open">
               Applications open in Fall 2025. Join the Lavin community and start your entrepreneurial journey.
             </p>
-            <button href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors" className="px-8 py-4 bg-husky-purple text-white rounded-lg text-lg font-semibold hover:bg-spirit-purple transition-colors duration-200 shadow-lg">
+            <a href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors" className="px-8 py-4 bg-husky-purple text-white rounded-lg text-lg font-semibold hover:bg-spirit-purple transition-colors duration-200 shadow-lg inline-block">
             Apply Now
-            </button>
+            </a>
           </motion.div>
         </div>
       </section>
