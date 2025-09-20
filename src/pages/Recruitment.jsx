@@ -52,7 +52,7 @@ export default function Recruitment() {
                 On your application you will be asked to write about your 'entrepreneurial' experiences, skills you have taught yourself, and what you hope to learn to further your entrepreneurial journey. We encourage you to think broadly about how being an entrepreneur can include times in your life where you take action to solve the problems you see in your world and that does not necessarily mean your actions resulted in a new business being started–though if you did start a business or non-profit, we'd love to hear about it!
               </p>
             </div>
-            <a href="https://tr.ee/vAwlBC7JQd" className="px-8 py-4 bg-husky-purple text-white rounded-lg text-lg font-semibold hover:bg-spirit-purple transition-colors duration-200 shadow-lg inline-block">
+            <a href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors" className="px-8 py-4 bg-husky-purple text-white rounded-lg text-lg font-semibold hover:bg-spirit-purple transition-colors duration-200 shadow-lg inline-block">
               Apply Now
             </a>
           </motion.div>
@@ -191,7 +191,7 @@ export default function Recruitment() {
             <p className="text-lg text-neutral-700 mb-8 leading-relaxed font-open">
               Applications open in Fall 2025. Join the Lavin community and start your entrepreneurial journey.
             </p>
-            <button href="https://tr.ee/vAwlBC7JQd" className="px-8 py-4 bg-husky-purple text-white rounded-lg text-lg font-semibold hover:bg-spirit-purple transition-colors duration-200 shadow-lg">
+            <button href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors" className="px-8 py-4 bg-husky-purple text-white rounded-lg text-lg font-semibold hover:bg-spirit-purple transition-colors duration-200 shadow-lg">
             Apply Now
             </button>
           </motion.div>
