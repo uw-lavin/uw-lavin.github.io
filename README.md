@@ -89,7 +89,7 @@ src/
 
 ## Contributing
 
-This project is maintained by the Lavin Entrepreneurship Program team. For questions or contributions, please contact the program administrators.
+This project is maintained by the Lavin Entrepreneurship Program team. For questions or contributions, please contact Agastya Mongia at agastyam@uw.edu.
 
 ## Legacy
 
