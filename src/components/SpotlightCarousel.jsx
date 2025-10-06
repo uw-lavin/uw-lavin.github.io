@@ -6,7 +6,7 @@ const slides = [
   {
     icon: "🎯",
     title: "Member Spotlight",
-    subtitle: "My favorite Lavin memory HAS to be Hell Night 2024. So much learning, and my team took 1st!",
+    subtitle: "My favorite Lavin memory HAS to be Lavin Showcase 2024. So much learning, and my team took 1st!",
     caption: "Arnav P., Class of 2027",
   },
   {
