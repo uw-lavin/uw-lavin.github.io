@@ -18,27 +18,6 @@ const staggerContainer = {
   },
 };
 
-// Events data
-const upcomingEvents = [
-  {
-    date: "May 3, 2025",
-    title: "Spring Demo Day",
-    description: "Showcase your startup ideas to investors and mentors.",
-    url: "/events#demo-day"
-  },
-  {
-    date: "June 10, 2025",
-    title: "Founder's Workshop",
-    description: "Hands-on workshop on lean startup & pitch development.",
-    url: "/events#workshop"
-  },
-  {
-    date: "July 20, 2025",
-    title: "Summer Field Trip",
-    description: "Visit Seattle's top accelerators and co‑working spaces.",
-    url: "/events#field-trip"
-  }
-];
 
 export default function Home() {
   const navigate = useNavigate();
@@ -107,7 +86,7 @@ export default function Home() {
             
             {/* Right Column: Upcoming Events */}
             <div>
-              <UpcomingEvents events={upcomingEvents} />
+              <UpcomingEvents />
             </div>
           </div>
         </div>

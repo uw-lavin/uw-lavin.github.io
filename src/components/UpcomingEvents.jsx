@@ -2,12 +2,12 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import useIcsEvents from '../hooks/useIcsEvents';
 
-export default function UpcomingEvents({ events: fallbackEvents }) {
+export default function UpcomingEvents() {
   const navigate = useNavigate();
   const { events: icsEvents, loading } = useIcsEvents();
   
-  // Use ICS events if available, otherwise fall back to prop events
-  const events = icsEvents.length > 0 ? icsEvents : fallbackEvents;
+  // Only use ICS events - no fallback to sample events
+  const events = icsEvents;
   
   // Limit to maximum 3 events
   const displayEvents = events.slice(0, 3);
