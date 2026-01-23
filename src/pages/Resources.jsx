@@ -30,37 +30,19 @@ export default function Resources() {
           title: 'Lavin Discord',
           description: 'Join the real-time Lavin community.',
           type: 'Discord',
-          link: 'https://discord.gg/fWusFMEy75'
+          link: 'https://discord.gg/ATvfzpee'
         },
         {
-          title: 'Lavin Student Directory',
+          title: 'Student Roster',
           description: 'View and search all current Lavin students.',
           type: 'Spreadsheet',
-          link: 'https://docs.google.com/spreadsheets/d/1WK1MvijOVlLwIMZHEsW_FXyqJi5y54JU/edit?gid=1927637468#gid=1927637468'
+          link: 'https://docs.google.com/spreadsheets/d/1QPm3LSoGjWDQUCDzBIVZbJkK7gF5MM_cQg_BiaGIkAs/edit?gid=0#gid=0'
         },
-        {
-          title: 'Lavin Families',
-          description: 'Access family assignments and information.',
-          type: 'Spreadsheet',
-          link: 'https://docs.google.com/spreadsheets/d/1CvEpgK_zHIjsaAuLaEtakGgFhkM0ck3szX4icXVePTA/edit?gid=0#gid=0'
-        }
-      ]
-    },
-    {
-      title: 'Operational & Community Infrastructure',
-      description: 'Process guides and community management tools',
-      resources: [
         {
           title: 'Coffee Chat Instructions',
           description: 'Learn how to schedule and conduct coffee chats.',
           type: 'Document',
           link: 'https://docs.google.com/document/d/1cX-6ZTXVq8PDj9o_BoDGal-nzk_NIjWiwyfiLPQhjzc/edit?tab=t.0'
-        },
-        {
-          title: 'Family Reimbursement Process',
-          description: 'Submit and track family activity reimbursements.',
-          type: 'Document',
-          link: 'https://docs.google.com/document/d/1qF01jpaTeIIQIyslS7OUV7j_qqHPSFG_-REJtpzlKZc/edit?tab=t.0'
         }
       ]
     },
