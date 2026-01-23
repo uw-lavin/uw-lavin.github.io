@@ -74,15 +74,6 @@ const executiveBoard = [
     linkedin: 'https://www.linkedin.com/in/ananya-tr'
   },
   { 
-    name: 'Jenny Pyon', 
-    role: 'Co-Director of PR', 
-    major: 'Communications', 
-    year: '2025',
-    image: jennyPic,
-    accomplishments: 'Managing Lavin\'s public relations, media presence, and external communications strategy',
-    linkedin: 'https://www.linkedin.com/in/jennypyon'
-  },
-  { 
     name: 'Daniel Zhang', 
     role: 'Co-Director of PR', 
     major: 'Computer Science', 
@@ -99,15 +90,6 @@ const executiveBoard = [
     image: sreshtaPic,
     accomplishments: 'Leading Lavin\'s marketing initiatives, social media strategy, and brand development',
     linkedin: 'https://www.linkedin.com/in/sreshtaappala'
-  },
-  { 
-    name: 'Riya Dhariwal', 
-    role: 'Co-Director of Marketing', 
-    major: 'Communications', 
-    year: '2025',
-    image: riyaPic,
-    accomplishments: 'Co-managing marketing campaigns and enhancing Lavin\'s digital presence and engagement',
-    linkedin: 'https://www.linkedin.com/in/rdhari/'
   },
   { 
     name: 'Angeline Sutandinata', 

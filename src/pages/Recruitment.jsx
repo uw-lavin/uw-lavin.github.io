@@ -8,21 +8,21 @@ const fadeUp = {
 
 const timelineData = [
   {
-    date: "September 17, 2025",
+    date: "September 2026",
     title: "Application Opens",
-    description: "Application opens until October 12th.",
+    description: "Application opens until early October.",
     icon: "📝",
     status: "upcoming"
   },
   {
-    date: "October 20-24, 2025",
+    date: "October 2026",
     title: "Interviews",
     description: "Select candidates are invited to interview.",
     icon: "🎯",
     status: "upcoming"
   },
   {
-    date: "October 28, 2025",
+    date: "Late October 2026",
     title: "Decisions Released",
     description: "Final decisions announced.",
     icon: "🎉",
@@ -53,7 +53,7 @@ export default function Recruitment() {
               </p>
             </div>
             <a href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors" className="px-8 py-4 bg-husky-purple text-white rounded-lg text-lg font-semibold hover:bg-spirit-purple transition-colors duration-200 shadow-lg inline-block">
-              Apply Now
+              Applications Open Fall 2026
             </a>
           </motion.div>
         </div>
@@ -189,10 +189,10 @@ export default function Recruitment() {
               Ready to Apply?
             </h2>
             <p className="text-lg text-neutral-700 mb-8 leading-relaxed font-open">
-              Applications open in Fall 2025. Join the Lavin community and start your entrepreneurial journey.
+              Applications open in Fall 2026. Join the Lavin community and start your entrepreneurial journey.
             </p>
             <a href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors" className="px-8 py-4 bg-husky-purple text-white rounded-lg text-lg font-semibold hover:bg-spirit-purple transition-colors duration-200 shadow-lg inline-block">
-            Apply Now
+            Applications Open Fall 2026
             </a>
           </motion.div>
         </div>
