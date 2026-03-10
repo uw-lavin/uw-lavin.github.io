@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 const primaryLinks = [
   { name: 'Home', path: '/' },
   { name: 'Events', path: '/events' },
-  { name: 'Recruitment', path: '/recruitment' },
   { name: 'Leadership', path: '/executive-board' },
   { name: 'Gallery', path: '/gallery' },
   { name: 'Internal', path: '/resources' },
@@ -25,7 +24,7 @@ export default function Navbar() {
 
   return (
     <header
-      className="fixed top-8 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[min(95vw,50rem)]"
+      className="fixed top-8 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[min(95vw,56rem)]"
       role="banner"
     >
       <nav
@@ -35,8 +34,8 @@ export default function Navbar() {
           ${scrolled ? 'bg-white/90 shadow-xl backdrop-blur-lg' : 'bg-white/80 shadow-md backdrop-blur-lg'}
         `}
       >
-        {/* Desktop: single pill with all primary links */}
-        <ul className="hidden md:flex items-center gap-0.5 py-1 px-2">
+        {/* Desktop: links + recruitment CTA */}
+        <ul className="hidden md:flex items-center gap-0.5 py-1 pl-2 pr-1">
           {primaryLinks.map((link) => (
             <li key={link.path}>
               <NavLink
@@ -50,6 +49,22 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
+
+          {/* Join Us CTA pill */}
+          <li className="ml-1">
+            <NavLink
+              to="/recruitment"
+              className={({ isActive }) =>
+                `px-4 py-2 text-sm font-semibold rounded-full border transition-all duration-200 whitespace-nowrap
+                ${isActive
+                  ? 'bg-black/10 border-black/40 text-black'
+                  : 'border-black/40 text-black/80 hover:bg-black/8 hover:border-black/60 hover:text-black'
+                }`
+              }
+            >
+              Join Us
+            </NavLink>
+          </li>
         </ul>
 
         {/* Mobile: hamburger */}
@@ -79,7 +94,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile dropdown: flat list of all links */}
+      {/* Mobile dropdown */}
       <div
         className={`
           md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[min(90vw,20rem)]
@@ -104,6 +119,19 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
+          {/* Join Us as a standout item at the bottom */}
+          <li className="mt-1 pt-1 border-t border-black/8">
+            <NavLink
+              to="/recruitment"
+              onClick={() => setIsMenuOpen(false)}
+              className={({ isActive }) =>
+                `block py-2.5 px-4 rounded-xl text-sm font-semibold transition-colors border
+                ${isActive ? 'bg-black/10 border-black/30 text-black' : 'border-black/30 text-black/80 hover:bg-black/5'}`
+              }
+            >
+              Join Us
+            </NavLink>
+          </li>
         </ul>
       </div>
     </header>

@@ -118,7 +118,7 @@ export default function ExecutiveBoard() {
     <div className="w-full">
       <style dangerouslySetInnerHTML={{ __html: flipStyles }} />
       {/* ---------- Section 1: Hero Header ---------- */}
-      <section className="bg-slate-50 px-6 md:px-12 pt-10 pb-10 md:pt-12 md:pb-12">
+      <section className="bg-slate-50 px-6 md:px-12 pt-28 pb-10 md:pt-32 md:pb-12">
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
           <motion.h1
             variants={fadeUp}

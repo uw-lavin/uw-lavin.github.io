@@ -10,7 +10,7 @@ export default function Events() {
     <div className="w-full bg-[#f8f7f4] min-h-screen font-sans text-[#0f0f0f]">
 
       {/* ---------- Header / Masthead ---------- */}
-      <section className="px-6 md:px-12 pt-24 pb-12 w-full border-b border-black/10">
+      <section className="px-6 md:px-12 pt-28 md:pt-32 pb-12 w-full border-b border-black/10">
         <div className="max-w-7xl mx-auto flex flex-col w-full">
           <motion.div
             initial={{ opacity: 0 }}

@@ -222,13 +222,13 @@ export default function Home() {
                 className="hidden md:flex absolute left-0 top-0 bottom-0 w-1/2 items-center pointer-events-none pl-8 lg:pl-16"
               >
                 <div className="flex flex-col gap-2">
-                  <div className="text-[10px] font-mono tracking-[0.25em] uppercase text-black/25">
+                  <div className="text-[10px] font-mono tracking-[0.25em] uppercase text-black/50">
                     FOUNDED BY
                   </div>
-                  <div className="font-serif text-3xl lg:text-4xl font-black text-[#0f0f0f] opacity-[0.07] tracking-tight leading-tight select-none">
+                  <div className="font-serif text-3xl lg:text-4xl font-black text-[#0f0f0f] opacity-[0.18] tracking-tight leading-tight select-none">
                     Leonard<br />Lavin
                   </div>
-                  <div className="text-[10px] font-mono tracking-[0.2em] uppercase text-black/20 mt-1">
+                  <div className="text-[10px] font-mono tracking-[0.2em] uppercase text-black/40 mt-1">
                     1996 — SEATTLE
                   </div>
                 </div>
