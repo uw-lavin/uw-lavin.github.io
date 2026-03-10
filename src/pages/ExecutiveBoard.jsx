@@ -98,7 +98,7 @@ const executiveBoard = [
   },
   {
     name: 'Agastya Mongia',
-    role: 'Director of Web Design & ENTRE 490 TA',
+    role: 'Director of Web Design + ENTRE 490 TA',
     major: 'Computer Science',
     year: '2025',
     image: agastyaPic,
