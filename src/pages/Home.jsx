@@ -1,98 +1,380 @@
-// src/pages/Home.jsx
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import titleboatImage from '../assets/titleboat25.jpg';
-import SpotlightCarousel from '../components/SpotlightCarousel';
-import UpcomingEvents from '../components/UpcomingEvents';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 },
-  },
-};
-
+import LeonardLavin from '../assets/LeonardLavin.jpeg';
+import LogoMarquee from '../components/ui/LogoMarquee';
+import RotatingTestimonial from '../components/ui/RotatingTestimonials';
+import CountUp from '../components/ui/CountUp';
+import InfoCard from '../components/ui/InfoCard';
+import StatCard from '../components/ui/StatCard';
+import { fadeUp } from '../lib/animations';
 
 export default function Home() {
   const navigate = useNavigate();
+  const heroRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   return (
-    <div className="w-full">
-
-      {/* ---------- Hero Section ---------- */}
-      <section
-        className="relative h-[90vh] bg-cover bg-center"
-        style={{ backgroundImage: `url(${titleboatImage})` }}
+    <div className="w-full bg-slate-50">
+      {/* ---------- HERO (fades out as user scrolls) ---------- */}
+      <motion.section
+        ref={heroRef}
+        style={{ opacity: heroOpacity }}
+        className="relative h-[100svh] w-full overflow-hidden pointer-events-auto bg-[#f8f7f4]"
       >
-        {/* Darker overlay to make text pop */}
-        <div className="absolute inset-0 bg-black/60" />
+        {/* SVG Noise Grain Overlay */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none mix-blend-overlay" xmlns="http://www.w3.org/2000/svg">
+          <filter id="noiseFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+        </svg>
 
-        {/* Text + buttons */}
-        <div className="relative z-10 h-full flex flex-col justify-start pt-24 px-6 md:px-12">
-          {/* Title */}
-          <motion.h1
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            className="text-white uppercase font-black leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl break-words"
-          >
-            Lavin
-            <br/>
-            Entrepreneurship
-            <br/>
-            Program
-          </motion.h1>
+        {/* Content Wrapper */}
+        <div className="relative z-10 w-full h-full flex flex-col justify-between px-6 md:px-12 py-8 md:py-12">
 
-          {/* CTA buttons – responsive positioning */}
+          {/* Top Header Label & Rule */}
+          <div className="w-full">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1, transition: { duration: 0.8, delay: 0 } }
+              }}
+              className="text-[9px] md:text-[11px] font-mono tracking-[0.3em] uppercase text-[#0f0f0f]"
+            >
+              <span className="font-bold">LAVIN ENTREPRENEURSHIP PROGRAM</span> — UW SEATTLE — EST. 1996
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { scaleX: 0, originX: 0 },
+                visible: { scaleX: 1, transition: { duration: 0.8, delay: 0.2, ease: "easeOut" } }
+              }}
+              className="mt-4 w-full h-[1px] bg-black/20"
+            />
+          </div>
+
+          {/* Main Manifesto Text */}
+          <div className="flex-1 flex flex-col justify-center items-start w-full">
+            <div className="font-serif font-black leading-[0.95] md:leading-[0.9] tracking-tighter text-[#0f0f0f] text-[19vw] sm:text-[17vw] md:text-[16vw] lg:text-[15vw]">
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { y: 40, opacity: 0 },
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: 0.4, ease: [0.33, 1, 0.68, 1] } }
+                }}
+              >
+                CREATE.
+              </motion.div>
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { y: 40, opacity: 0 },
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: 0.6, ease: [0.33, 1, 0.68, 1] } }
+                }}
+                className="ml-[4vw]"
+              >
+                INNOVATE<span className="text-[#3b2c5a]">.</span>
+              </motion.div>
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { y: 40, opacity: 0 },
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: 0.8, ease: [0.33, 1, 0.68, 1] } }
+                }}
+              >
+                DISRUPT<span className="text-[#a69041]">.</span>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Bottom Area: CTAs + Subtitle */}
+          <div className="w-full flex flex-col-reverse md:flex-row justify-between items-start md:items-end gap-6 mb-4 md:mb-0">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1, transition: { duration: 0.8, delay: 1.1 } }
+              }}
+              className="flex flex-row gap-3 md:gap-4 w-full md:w-auto"
+            >
+              <button
+                onClick={() => navigate('/recruitment')}
+                className="flex-1 md:flex-none rounded-full px-6 md:px-8 py-3 bg-[#0f0f0f] text-white font-sans text-sm font-semibold hover:bg-black/80 transition-colors"
+              >
+                join.
+              </button>
+              <button
+                onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+                className="flex-1 md:flex-none rounded-full px-6 md:px-8 py-3 border border-[#0f0f0f]/30 text-[#0f0f0f] font-sans text-sm font-semibold hover:bg-[#0f0f0f]/5 hover:border-[#0f0f0f] transition-all"
+              >
+                events.
+              </button>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1, transition: { duration: 0.8, delay: 1.0 } }
+              }}
+              className="font-serif italic text-base md:text-lg text-[#555] text-left md:text-right"
+            >
+              Seattle's most ambitious student founders.
+            </motion.div>
+          </div>
+
+          {/* Vertical Foster Text */}
+          <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2 opacity-25 pointer-events-none">
+            <div className="text-[11px] font-mono tracking-[0.3em] uppercase text-black" style={{ writingMode: 'vertical-rl' }}>
+              FOSTER SCHOOL OF BUSINESS
+            </div>
+          </div>
+
+        </div>
+      </motion.section >
+
+      {/* ---------- ABOUT (normal flow, starts immediately) ---------- */}
+      < section
+        id="about"
+        className="w-full bg-[#f8f7f4] scroll-mt-28 md:scroll-mt-32 font-sans"
+      >
+        {/* 1. Intro Text */}
+        < div className="py-24 md:py-32 text-center w-full px-6" >
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-black tracking-tight mb-8 md:whitespace-nowrap">
+              not just another business club
+            </h2>
+            <span className="block h-[2px] w-16 bg-black/15 mx-auto mb-10" />
+            <p className="text-xl md:text-2xl text-black/90 font-sans mb-10 tracking-wide font-medium">
+              Welcome to Lavin. UW's most exclusive founder community.
+            </p>
+            <p className="text-base md:text-lg text-black/60 font-sans leading-relaxed max-w-3xl mx-auto">
+              The Lavin Entrepreneurship Program is a highly-competitive program for undergraduate entrepreneurs
+              from all majors and disciplines across campus. Only the brightest, most passionate and driven students
+              are accepted each year. By combining curriculum with hands-on learning, the UW Buerk Center for
+              Entrepreneurship gives Lavin students (Laviners) the experience, skills and know-how to succeed in
+              their future business ventures.
+            </p>
+          </motion.div>
+        </div >
+
+        {/* 2. Stats - Editorial Layout */}
+        <div className="py-12 md:py-16 text-black w-full font-serif overflow-hidden">
+          <div className="container-x w-full flex flex-col gap-y-4 md:gap-y-10">
+
+            {/* Stat 1: HUNDREDS (Left aligned) */}
+            <div className="w-full relative flex flex-col justify-start overflow-visible py-4 md:py-6 group">
+              <div className="w-full md:w-1/2 border-l-4 border-gray-900 pl-6 md:pl-8 z-10">
+                <div className="text-[14vw] md:text-[10vw] font-serif font-black leading-[0.85] tracking-tight text-gray-900 flex flex-nowrap pb-2 whitespace-nowrap">
+                  {"HUNDREDS".split("").map((letter, i) => (
+                    <motion.span
+                      key={i}
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-10%" }}
+                      transition={{ duration: 0.6, delay: i * 0.05, ease: "easeOut" }}
+                    >
+                      {letter}
+                    </motion.span>
+                  ))}
+                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                >
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-sans mt-4 text-black/90 tracking-tight">
+                    of student founders
+                  </h3>
+                  <p className="mt-2 text-base md:text-lg text-black/50 font-sans tracking-wide uppercase font-semibold">
+                    the brightest of uw
+                  </p>
+                </motion.div>
+              </div>
+
+              {/* Removed Timeline per user feedback */}
+            </div>
+
+            {/* Stat 2: 30 Years (Right aligned) */}
+            <div className="w-full relative flex flex-col justify-end overflow-visible py-4 md:py-6 mt-8 md:mt-0">
+              {/* Ghost Context (Left side) - Leonard Lavin tribute */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 1, delay: 0.8 }}
+                className="hidden md:flex absolute left-0 top-0 bottom-0 w-1/2 items-center pointer-events-none pl-8 lg:pl-16"
+              >
+                <div className="flex flex-col gap-2">
+                  <div className="text-[10px] font-mono tracking-[0.25em] uppercase text-black/25">
+                    FOUNDED BY
+                  </div>
+                  <div className="font-serif text-3xl lg:text-4xl font-black text-[#0f0f0f] opacity-[0.07] tracking-tight leading-tight select-none">
+                    Leonard<br />Lavin
+                  </div>
+                  <div className="text-[10px] font-mono tracking-[0.2em] uppercase text-black/20 mt-1">
+                    1996 — SEATTLE
+                  </div>
+                </div>
+              </motion.div>
+
+              <div className="w-full md:w-1/2 border-r-4 border-[#3b2c5a] pr-6 md:pr-8 text-right flex flex-col items-end z-10 ml-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-10%" }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="text-[14vw] md:text-[11vw] lg:text-[10vw] font-serif font-black leading-[0.85] tracking-tighter text-[#3b2c5a] pb-2"
+                >
+                  <CountUp from={0} to={30} direction="up" duration={2} />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                >
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-sans mt-4 text-black/90 tracking-tight">
+                    years of legacy
+                  </h3>
+                  <p className="mt-2 text-base md:text-lg text-black/50 font-sans tracking-wide">
+                    building since '96
+                  </p>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Stat 3: 2 YC Backed (Left aligned) */}
+            <div className="w-full relative flex flex-col justify-start overflow-visible py-4 md:py-6 mt-8 md:mt-0">
+              <div className="w-full md:w-1/2 border-l-4 border-[#a69041] pl-6 md:pl-8 z-10">
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-10%" }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="text-[14vw] md:text-[11vw] lg:text-[10vw] font-serif font-black leading-[0.85] tracking-tighter text-[#a69041] pb-2"
+                >
+                  <CountUp from={0} to={2} direction="up" duration={1.5} />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                >
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-sans mt-4 text-black/90 tracking-tight">
+                    YC-Backed Companies
+                  </h3>
+                  <p className="mt-2 text-base md:text-lg text-black/50 font-sans tracking-wide max-w-lg mb-6">
+                    check out our startup successes
+                  </p>
+                </motion.div>
+              </div>
+
+              {/* Added Context (Right side) - YC Links */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 1, delay: 0.8 }}
+                className="hidden md:flex absolute right-0 top-0 bottom-0 w-1/2 items-center pl-16 xl:pl-32"
+              >
+                {/* YC Links */}
+                <div className="flex flex-col gap-3 relative z-20 w-fit pointer-events-auto">
+                  <a href="https://vly.ai/" target="_blank" rel="noreferrer" className="group flex items-center gap-3">
+                    <span className="text-2xl md:text-3xl lg:text-4xl font-serif font-black text-black/80 border-b border-[#a69041]/30 group-hover:text-[#a69041] group-hover:border-[#a69041] transition-colors pb-1">vly.ai</span>
+                    <span className="text-[#a69041] font-sans font-bold text-sm tracking-widest uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">W24 &rarr;</span>
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* 3. Impact on UW and Seattle */}
+        < div className="py-24 md:py-32 bg-white" >
+          <div className="container-x">
+            <motion.h2
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="text-3xl md:text-5xl font-serif font-bold text-black tracking-tight mb-4 text-center lowercase"
+            >
+              Lavin&apos;s impact on UW and Seattle
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="text-lg text-black/60 font-sans text-center mb-16 max-w-2xl mx-auto"
+            >
+              The Lavin Entrepreneurship Program at UW serves as a bridge between academic learning and real-world
+              entrepreneurship. We provide students with the resources, mentorship, and community needed to turn
+              innovative ideas into successful ventures.
+            </motion.p>
+
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid md:grid-cols-3 gap-6"
+            >
+              <InfoCard title="Alumni at Top Companies" text="Lavin graduates have joined Stripe, Meta, Amazon, and Y Combinator startups after graduation." />
+              <InfoCard title="Ventures Started at UW" text="Lavin students have founded startups like EcoTech, PulseNotes, and PocketPlan that continue to grow in Seattle." />
+              <InfoCard title="Collaborations with UW & Seattle" text="Lavin works closely with UW CoMotion, Foster School, and local accelerators like Techstars and Madrona Venture Labs." />
+            </motion.div>
+          </div>
+        </div >
+
+        {/* 4. Marquee */}
+        < div className="pt-8 pb-8 md:pt-12 md:pb-12 bg-white border-t border-black/10" >
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <LogoMarquee />
+          </motion.div>
+        </div >
+
+        {/* 5. Video Section */}
+        < div className="w-full py-16 md:py-24 bg-[#f8f7f4] border-t border-black/10" >
           <motion.div
             variants={fadeUp}
             initial="hidden"
-            animate="visible"
-            className="absolute bottom-8 md:bottom-40 right-4 md:right-72 flex flex-col sm:flex-row gap-3 md:gap-4"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="w-full max-w-6xl mx-auto px-6 md:px-12"
           >
-            <button 
-              onClick={() => navigate('/recruitment')}
-              className="bg-web-gold hover:bg-yellow-500 text-husky-purple font-bold py-4 px-12  rounded-lg transition-transform transform hover:scale-105 shadow-lg text-base md:text-xl"
-            >
-              Join Lavin
-            </button>
-            <button 
-              onClick={() => navigate('/about')}
-              className="border-2 border-white text-white hover:bg-yellow-500 hover:border-yellow-500 hover:text-husky-purple font-bold py-4 px-12 rounded-lg transition-transform transform hover:scale-105 text-base md:text-xl"
-            >
-              Learn More
-            </button>
+            <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-lg bg-black">
+              <iframe
+                className="w-full h-full"
+                src="https://player.vimeo.com/video/936471424?autoplay=1&loop=1"
+                frameBorder={0}
+                allowFullScreen
+                title="Lavin Program Video"
+              />
+            </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* ---------- Spotlight Carousel ---------- */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-full mx-auto px-4 md:px-8 lg:px-12 xl:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* Left Column: Spotlight Carousel */}
-            <div>
-              <SpotlightCarousel />
-              <h2 className="text-4xl md:text-7xl lg:text-6xl font-bold text-husky-purple text-center pt-20 md:pt-40">
-              create. innovate. disrupt.
-            </h2>
-            </div>
-            
-            {/* Right Column: Upcoming Events */}
-            <div>
-              <UpcomingEvents />
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-    </div>
+        </div >
+      </section >
+    </div >
   );
 }
+
+

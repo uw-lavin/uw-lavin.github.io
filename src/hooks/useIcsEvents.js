@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import ical from 'ical';
 
-const LAVIN_ICS_URL = 'https://calendar.google.com/calendar/ical/c_f1b00f89c607965808ce255b76459065238c9d3d5dab91d657e5d7b7dd1e3343%40group.calendar.google.com/public/basic.ics';
+const LAVIN_ICS_URL = import.meta.env.VITE_GOOGLE_ICS_URL;
 
 // Cache for events data - reduced TTL for accuracy
 const CACHE_KEY = 'lavin_events_cache';
@@ -22,10 +22,10 @@ function getCachedEvents() {
   try {
     const cached = localStorage.getItem(CACHE_KEY);
     if (!cached) return null;
-    
+
     const { data, timestamp } = JSON.parse(cached);
     const now = Date.now();
-    
+
     if (now - timestamp < CACHE_TTL) {
       // Convert date strings back to Date objects
       return data.map(ev => ({
@@ -34,7 +34,7 @@ function getCachedEvents() {
         end: ev.end ? new Date(ev.end) : null,
       }));
     }
-    
+
     localStorage.removeItem(CACHE_KEY);
     return null;
   } catch {
@@ -60,14 +60,14 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 async function fetchWithRetry(url, signal, retryCount = 0) {
   // Try direct fetch first
   try {
-    const res = await fetch(url, { 
+    const res = await fetch(url, {
       signal,
       cache: 'no-cache',
       headers: {
         'Accept': 'text/calendar',
       }
     });
-    
+
     if (res.ok) {
       return await res.text();
     }
@@ -75,16 +75,16 @@ async function fetchWithRetry(url, signal, retryCount = 0) {
   } catch (directError) {
     // If direct fails, try proxies
     if (directError.name === 'AbortError') throw directError;
-    
+
     // Try each proxy option
     for (let i = 0; i < PROXY_OPTIONS.length; i++) {
       try {
         const proxyUrl = PROXY_OPTIONS[i] + encodeURIComponent(url);
-        const res = await fetch(proxyUrl, { 
+        const res = await fetch(proxyUrl, {
           signal,
           cache: 'no-cache'
         });
-        
+
         if (res.ok) {
           return await res.text();
         }
@@ -94,7 +94,7 @@ async function fetchWithRetry(url, signal, retryCount = 0) {
         continue;
       }
     }
-    
+
     // If all proxies failed and we have retries left, retry
     if (retryCount < MAX_RETRIES) {
       const delay = RETRY_DELAY * Math.pow(2, retryCount); // Exponential backoff
@@ -102,7 +102,7 @@ async function fetchWithRetry(url, signal, retryCount = 0) {
       await sleep(delay);
       return fetchWithRetry(url, signal, retryCount + 1);
     }
-    
+
     throw new Error('All fetch attempts failed');
   }
 }
@@ -135,7 +135,7 @@ export default function useIcsEvents() {
         console.log('Fetching fresh events from Google Calendar...');
         const icsText = await fetchWithRetry(LAVIN_ICS_URL, signal);
         console.log('ICS file fetched, length:', icsText.length);
-        
+
         // Parse the ICS into an object of VEVENTs
         const data = ical.parseICS(icsText);
 
@@ -150,7 +150,7 @@ export default function useIcsEvents() {
             // Ensure start and end are Date objects
             const start = ev.start instanceof Date ? ev.start : new Date(ev.start);
             const end = ev.end instanceof Date ? ev.end : (ev.end ? new Date(ev.end) : null);
-            
+
             return {
               title: ev.summary,
               description: ev.description,
@@ -164,8 +164,8 @@ export default function useIcsEvents() {
         console.log('Total VEVENTs found:', allVevents.length);
         console.log('Current date/time:', now.toISOString());
         if (allVevents.length > 0) {
-          console.log('First 5 events with dates:', allVevents.slice(0, 5).map(e => ({ 
-            title: e.title.substring(0, 50), 
+          console.log('First 5 events with dates:', allVevents.slice(0, 5).map(e => ({
+            title: e.title.substring(0, 50),
             start: e.start.toISOString(),
             startLocal: e.start.toLocaleString()
           })));
@@ -179,21 +179,21 @@ export default function useIcsEvents() {
               console.log('Event missing start date:', ev.title);
               return false;
             }
-            
+
             // Use end time if available, otherwise use start time
             const eventEndTime = ev.end || ev.start;
-            
+
             // Compare dates at midnight (ignore time of day for "today" comparison)
             const eventDate = new Date(eventEndTime);
             eventDate.setHours(0, 0, 0, 0);
-            
+
             // Event is upcoming if it ends today or in the future
             const isUpcoming = eventDate >= now;
-            
+
             if (!isUpcoming) {
               console.log(`Event filtered (past): "${ev.title.substring(0, 40)}" | End: ${eventDate.toISOString()} | Now: ${now.toISOString()}`);
             }
-            
+
             return isUpcoming;
           })
           // Sort by start date
@@ -201,8 +201,8 @@ export default function useIcsEvents() {
 
         console.log('Future events after filtering:', vevents.length);
         if (vevents.length > 0) {
-          console.log('Upcoming events to display:', vevents.slice(0, 5).map(e => ({ 
-            title: e.title.substring(0, 50), 
+          console.log('Upcoming events to display:', vevents.slice(0, 5).map(e => ({
+            title: e.title.substring(0, 50),
             start: e.start.toISOString(),
             startLocal: e.start.toLocaleString()
           })));
@@ -216,13 +216,13 @@ export default function useIcsEvents() {
         setLoading(false);
       } catch (err) {
         if (signal.aborted) return;
-        
+
         console.error('Error fetching ICS:', err);
         console.error('Error details:', {
           message: err.message,
           name: err.name,
         });
-        
+
         // If we have cached events, keep showing them even if fetch failed
         if (!cachedEvents || cachedEvents.length === 0) {
           setEvents([]);

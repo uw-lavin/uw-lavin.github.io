@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import useIcsEvents from '../hooks/useIcsEvents';
+import useIcsEvents from '../../hooks/useIcsEvents';
+import { formatDate, formatTime } from '../../lib/date';
 
 export default function UpcomingEvents() {
   const navigate = useNavigate();
   const { events: icsEvents, loading } = useIcsEvents();
-  
+
   // Only use ICS events - no fallback to sample events
   const events = icsEvents;
-  
+
   // Limit to maximum 3 events
   const displayEvents = events.slice(0, 3);
 
@@ -85,7 +86,7 @@ export default function UpcomingEvents() {
 
       {/* View All Events Button */}
       <div className="mt-8 pt-6 border-t border-gray-100">
-        <button 
+        <button
           onClick={() => navigate('/events')}
           className="w-full bg-web-gold text-husky-purple font-semibold py-3 px-6 rounded-lg hover:bg-yellow-500 transition-all duration-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-web-gold focus:ring-offset-2"
         >
@@ -94,47 +95,4 @@ export default function UpcomingEvents() {
       </div>
     </div>
   );
-}
-
-function formatDate(date) {
-  if (!date) return '';
-  
-  const dateObj = typeof date === 'string' ? new Date(date) : date;
-  return new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric'
-  }).format(dateObj);
-}
-
-function formatTime(start, end) {
-  if (!start) return null;
-  
-  const startDate = new Date(start);
-  const endDate = end ? new Date(end) : null;
-  
-  // Check if it's an all-day event
-  const isAllDay = startDate.getHours() === 0 && startDate.getMinutes() === 0;
-  
-  if (isAllDay) {
-    return 'All Day';
-  }
-  
-  // Format time range
-  const startTime = startDate.toLocaleTimeString('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true
-  });
-  
-  if (endDate) {
-    const endTime = endDate.toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true
-    });
-    return `${startTime} - ${endTime}`;
-  }
-  
-  return startTime;
 }

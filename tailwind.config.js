@@ -26,7 +26,10 @@ export default {
         'accent-lavender': '#c5b4e3',
       },
       fontFamily: {
+        sans: ['"Open Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         slab: ['"Roboto Slab"', 'serif'],
+        // Bookmania as primary display serif; use font-display or .display / .h2
+        display: ['Bookmania', 'ui-serif', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
       }
     },
   },

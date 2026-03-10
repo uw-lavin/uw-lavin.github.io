@@ -1,5 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bookmania:wght@400;600;800&display=swap');
+
+/* Bookmania – local display serif (not on Google Fonts) */
+@font-face {
+  font-family: 'Bookmania';
+  src: url('./assets/Bookmania/Bookmania-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bookmania';
+  src: url('./assets/Bookmania/Bookmania-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bookmania';
+  src: url('./assets/Bookmania/Bookmania-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bookmania';
+  src: url('./assets/Bookmania/Bookmania-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -15,11 +44,53 @@ html {
   overflow-x: hidden;
 }
 
-h1, h2, h3 {
-  font-family: 'Encode Sans', sans-serif;
+/* Headings inherit normally; use .display / .h2 or font-display for Bookmania */
+
+/* ========== Global design system (Framer-like editorial) ========== */
+@layer components {
+  /* Layout / background */
+  .page {
+    @apply min-h-screen;
+    background-color: #f7f8fa;
+    color: #111;
+  }
+  .container-x {
+    @apply mx-auto max-w-7xl px-4 md:px-8 lg:px-12;
+  }
+  .section-y {
+    @apply py-16 md:py-24;
+  }
+
+  /* Typography */
+  .display {
+    @apply font-display leading-[0.95] tracking-tight lg:tracking-normal text-5xl md:text-7xl lg:text-8xl;
+  }
+  .h2 {
+    @apply font-display text-3xl md:text-4xl leading-tight;
+  }
+  .body {
+    @apply font-sans text-base md:text-lg leading-relaxed text-black/70;
+  }
+  .kicker {
+    @apply text-xs uppercase tracking-wider text-black/60;
+  }
+
+  /* Surfaces */
+  .card {
+    @apply rounded-3xl border border-black/5 bg-white/80 shadow-sm backdrop-blur-md;
+  }
+  .sheet {
+    @apply rounded-t-[56px] bg-[#f7f8fa] shadow-[0_-8px_40px_rgba(0,0,0,0.06)] lg:rounded-t-[72px];
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply rounded-full bg-black px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 ease-out hover:-translate-y-[2px] hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+  }
+  .btn-secondary {
+    @apply rounded-full border border-black/10 bg-white/90 px-8 py-3 font-semibold text-black shadow-sm transition-all duration-300 ease-out hover:-translate-y-[2px] hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+  }
 }
-
-
 
 /* FullCalendar custom styles */
 .fc {

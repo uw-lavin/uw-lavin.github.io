@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { fadeUp } from '../lib/animations';
 
 export default function Resources() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -8,10 +9,7 @@ export default function Resources() {
 
   const correctPassword = 'lavin2024';
 
-  const fadeUp = {
-    hidden: { opacity: 0, y: 24 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
+
 
   const staggerContainer = {
     hidden: { opacity: 0 },
@@ -100,50 +98,49 @@ export default function Resources() {
     return (
       <div className="w-full">
         {/* ---------- Hero Section ---------- */}
-        <section className="bg-web-gold px-6 md:px-12 py-20">
-          <div className="max-w-7xl mx-auto">
-            <motion.h1 
-              variants={fadeUp} 
-              initial="hidden" 
-              whileInView="visible" 
+        <section className="bg-slate-50 px-6 md:px-12 pt-10 pb-10 md:pt-12 md:pb-12">
+          <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
+            <motion.h1
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-black text-husky-purple mb-4 font-encode"
+              className="text-black font-serif font-black leading-[0.9] text-5xl md:text-7xl lg:text-[7.5rem] tracking-tighter drop-shadow-sm mb-4 md:mb-6 lowercase"
             >
-              Resources
+              resources
             </motion.h1>
-            <span className="block h-1 w-16 bg-spirit-gold mb-6" />
-            <motion.p 
-              variants={fadeUp} 
-              initial="hidden" 
-              whileInView="visible" 
+            <motion.p
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              className="text-lg md:text-xl text-neutral-800 leading-relaxed font-open"
+              className="text-lg md:text-xl text-black/80 font-sans leading-relaxed max-w-2xl"
             >
               Member-only resources, tools, and connections to help you succeed.
             </motion.p>
           </div>
         </section>
 
-        <div className="h-[2px] w-full bg-gradient-to-r from-husky-purple/0 via-husky-purple/40 to-husky-purple/0 my-16" />
+        <div className="w-full border-t border-black/10" />
 
         {/* ---------- Login Section ---------- */}
-        <section className="bg-white px-6 md:px-12 py-20">
-          <div className="max-w-md mx-auto">
-            <motion.div 
-              variants={fadeUp} 
-              initial="hidden" 
-              whileInView="visible" 
+        <section className="bg-white px-6 md:px-12 py-24">
+          <div className="max-w-sm mx-auto">
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100"
+              className="bg-transparent border border-black/10 p-10"
             >
-              <h2 className="text-2xl font-bold text-husky-purple mb-6 font-encode">Member Access</h2>
-              <p className="text-neutral-700 mb-6 font-open">
+              <h2 className="text-2xl md:text-3xl font-serif font-bold tracking-tight text-black mb-4 lowercase text-center">member access</h2>
+              <p className="text-black/60 mb-8 font-sans text-center text-sm">
                 Enter the password to access member-only resources and tools.
               </p>
-              
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-neutral-700 mb-2 font-open">
+                  <label htmlFor="password" className="block text-sm tracking-widest uppercase font-bold text-black/40 mb-2 font-sans">
                     Password
                   </label>
                   <input
@@ -151,19 +148,19 @@ export default function Resources() {
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-husky-purple focus:border-transparent font-open"
+                    className="w-full px-4 py-3 border border-black/20 focus:outline-none focus:ring-0 focus:border-black font-sans bg-slate-50 transition-colors"
                     placeholder="Enter password"
                     required
                   />
                 </div>
-                
+
                 {error && (
                   <p className="text-red-600 text-sm font-open">{error}</p>
                 )}
-                
+
                 <button
                   type="submit"
-                  className="w-full bg-husky-purple text-white py-3 px-6 rounded-lg font-semibold hover:bg-spirit-purple transition-colors duration-200 font-open"
+                  className="w-full bg-black text-white hover:bg-black/80 py-3 px-6 font-serif font-bold text-lg lowercase tracking-wide transition-all duration-200"
                 >
                   Access Resources
                 </button>
@@ -175,108 +172,109 @@ export default function Resources() {
     );
   }
 
-      return (
-        <div className="w-full">
-          {/* ---------- Hero Section ---------- */}
-          <section className="bg-web-gold px-6 md:px-12 py-20">
-            <div className="max-w-7xl mx-auto">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-                <div>
-                  <motion.h1 
-                    variants={fadeUp} 
-                    initial="hidden" 
-                    animate="visible"
-                    className="text-4xl md:text-5xl font-black text-husky-purple mb-4 font-encode"
-                  >
-                    Internal Resources
-                  </motion.h1>
-                  <span className="block h-1 w-16 bg-spirit-gold mb-6" />
-                </div>
-                <motion.button
-                  variants={fadeUp} 
-                  initial="hidden" 
-                  animate="visible"
-                  onClick={handleLogout}
-                  className="text-husky-purple hover:text-spirit-purple font-semibold font-open"
-                >
-                  Logout
-                </motion.button>
-              </div>
-              
-              <motion.p 
-                variants={fadeUp} 
-                initial="hidden" 
-                animate="visible"
-                className="text-lg md:text-xl text-neutral-700 leading-relaxed font-open"
-              >
-                Quick links to the tools, forms, and documents Lavin students rely on for community, operations, academics, and career progress.
-              </motion.p>
-            </div>
-          </section>
+  return (
+    <div className="w-full">
+      {/* ---------- Hero Section ---------- */}
+      <section className="bg-slate-50 px-6 md:px-12 pt-10 pb-10 md:pt-12 md:pb-12 relative">
+        <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
+          <div className="absolute top-8 right-8 z-20">
+            <motion.button
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              onClick={handleLogout}
+              className="text-black/40 hover:text-black font-sans uppercase tracking-widest text-xs font-bold transition-colors"
+            >
+              Logout
+            </motion.button>
+          </div>
 
-          {/* ---------- Internal Resources Section ---------- */}
-          <section className="bg-white px-6 md:px-12 py-20">
-            <div className="max-w-7xl mx-auto">
-              
-              <div className="space-y-16">
-                {resourceSections.map((section, sectionIndex) => (
-                  <motion.div 
-                    key={sectionIndex}
-                    variants={staggerContainer} 
-                    initial="hidden" 
-                    animate="visible"
-                    className="space-y-8"
-                  >
-                    <div className="text-center mb-8">
-                      <h3 className="text-2xl font-semibold text-husky-purple mb-2 font-encode">{section.title}</h3>
-                      <p className="text-neutral-600 font-open">{section.description}</p>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {section.resources.map((resource, index) => (
-                        <motion.div 
-                          key={index} 
-                          variants={fadeUp}
-                          className="group"
-                        >
-                          <a
-                            href={resource.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-105 h-full"
-                          >
-                            <div className="flex justify-between items-start mb-4">
-                              <h4 className="text-lg font-bold text-husky-purple font-encode">{resource.title}</h4>
-                              <span className="text-xs font-semibold px-2 py-1 rounded-full bg-husky-purple/10 text-husky-purple">
-                                {resource.type}
-                              </span>
-                            </div>
-                            <p className="text-neutral-600 mb-4 font-open leading-relaxed text-sm">
-                              {resource.description}
-                            </p>
-                            <div className="text-husky-purple font-semibold font-open text-sm group-hover:text-spirit-purple transition-colors">
-                              Open →
-                            </div>
-                          </a>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-              
-              <motion.div 
-                variants={fadeUp} 
-                initial="hidden" 
-                animate="visible"
-                className="mt-16 text-center"
-              >
-                <p className="text-neutral-600 font-open">
-                  Need help accessing any resources? Contact the Lavin team.
-                </p>
-              </motion.div>
-            </div>
-          </section>
+          <motion.h1
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            className="text-black font-serif font-black leading-[0.9] text-5xl md:text-7xl lg:text-[7.5rem] tracking-tighter drop-shadow-sm mb-4 md:mb-6 lowercase"
+          >
+            internal resources
+          </motion.h1>
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            className="text-lg md:text-xl text-black/80 font-sans leading-relaxed max-w-2xl"
+          >
+            Quick links to the tools, forms, and documents Lavin students rely on for community, operations, academics, and career progress.
+          </motion.p>
         </div>
-      );
+      </section>
+
+      <div className="w-full border-t border-black/10" />
+
+      {/* ---------- Internal Resources Section ---------- */}
+      <section className="bg-white px-6 md:px-12 py-24">
+        <div className="max-w-6xl mx-auto">
+
+          <div className="space-y-24">
+            {resourceSections.map((section, sectionIndex) => (
+              <motion.div
+                key={sectionIndex}
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+                className="space-y-10"
+              >
+                <div className="text-left border-l-4 border-gray-900 pl-6 py-2">
+                  <h3 className="text-3xl md:text-4xl font-serif font-bold text-black tracking-tight lowercase mb-2">{section.title}</h3>
+                  <p className="text-black/60 font-sans">{section.description}</p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {section.resources.map((resource, index) => (
+                    <motion.div
+                      key={index}
+                      variants={fadeUp}
+                      className="group"
+                    >
+                      <a
+                        href={resource.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block bg-slate-50 p-8 border border-black/10 hover:border-black/30 transition-all duration-300 h-full flex flex-col justify-between"
+                      >
+                        <div>
+                          <div className="flex justify-between items-start mb-6">
+                            <span className="text-[10px] tracking-widest uppercase font-bold px-2 py-1 bg-black/5 text-black">
+                              {resource.type}
+                            </span>
+                          </div>
+                          <h4 className="text-2xl font-serif font-bold text-black lowercase tracking-tight mb-4">{resource.title}</h4>
+                          <p className="text-black/60 mb-6 font-sans leading-relaxed text-sm">
+                            {resource.description}
+                          </p>
+                        </div>
+                        <div className="text-black uppercase tracking-widest font-bold font-sans text-xs group-hover:text-black/60 transition-colors pt-6 border-t border-black/10">
+                          Open →
+                        </div>
+                      </a>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            className="mt-20 text-center pt-10 border-t border-black/10"
+          >
+            <p className="text-black/60 font-sans italic text-sm">
+              Need help accessing any resources? Contact the Lavin team.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
 } 

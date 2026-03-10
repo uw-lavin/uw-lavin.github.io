@@ -1,77 +1,193 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import boat24Image from '../assets/boat24.png';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
-const timelineData = [
-  {
-    date: "September 2026",
-    title: "Application Opens",
-    description: "Application opens until early October.",
-    icon: "📝",
-    status: "upcoming"
-  },
-  {
-    date: "October 2026",
-    title: "Interviews",
-    description: "Select candidates are invited to interview.",
-    icon: "🎯",
-    status: "upcoming"
-  },
-  {
-    date: "Late October 2026",
-    title: "Decisions Released",
-    description: "Final decisions announced.",
-    icon: "🎉",
-    status: "upcoming"
-  }
-];
+import { fadeUp } from '../lib/animations';
 
 export default function Recruitment() {
+  const timelineRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start center", "end center"]
+  });
+
+  // The line fills as we scroll through
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
-    <div className="w-full">
-      {/* ---------- Section 1: Hero / Overview ---------- */}
-      <section className="relative bg-web-gold px-6 md:px-12 py-20">
-        <div className="max-w-7xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <h1 className="text-4xl md:text-5xl font-black text-husky-purple mb-4 font-encode">
-              Step into Entrepreneurship
-            </h1>
-            <span className="block h-1 w-16 bg-spirit-gold mb-6" />
-            <div className="space-y-6 text-lg md:text-xl text-neutral-800 mb-8 leading-relaxed font-open">
-              <p>
-                The Lavin Entrepreneurship Program is competitive. We look for the most driven, passionate and creative individuals we can find. Whether you're intending to major in engineering, business, computer science, or are undecided—if you know your path is entrepreneurial, you belong in Lavin!
-              </p>
-              <p>
-                The online application for Lavin opens in mid-September, and decisions are made by early November. Any University of Washington undergraduate student (including incoming first-years) with at least three years remaining in their time at UW is eligible to apply.
-              </p>
-              <p>
-                On your application you will be asked to write about your 'entrepreneurial' experiences, skills you have taught yourself, and what you hope to learn to further your entrepreneurial journey. We encourage you to think broadly about how being an entrepreneur can include times in your life where you take action to solve the problems you see in your world and that does not necessarily mean your actions resulted in a new business being started–though if you did start a business or non-profit, we'd love to hear about it!
-              </p>
-            </div>
-            <a href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors" className="px-8 py-4 bg-husky-purple text-white rounded-lg text-lg font-semibold hover:bg-spirit-purple transition-colors duration-200 shadow-lg inline-block">
+    <div className="w-full bg-[#f8f7f4] min-h-screen font-sans">
+
+      {/* ---------- HERO SECTION ---------- */}
+      <section className="px-6 md:px-12 pt-24 pb-12 w-full border-b border-black/10">
+        <div className="max-w-7xl mx-auto flex flex-col w-full">
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.4 }}
+            transition={{ duration: 1 }}
+            className="text-[11px] font-mono tracking-[0.3em] uppercase text-black mb-6"
+          >
+            RECRUITMENT — LAVIN EP — UW SEATTLE
+          </motion.div>
+
+          <div className="flex flex-col md:flex-row items-end justify-between w-full gap-8">
+            <motion.h1
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="font-serif font-black leading-[0.8] tracking-tighter text-[#0f0f0f] text-[12vw] sm:text-[10vw] md:text-[8vw] flex-shrink-0"
+            >
+              RECRUITMENT<span className="text-[#c4622d]">.</span>
+            </motion.h1>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="font-serif italic text-base md:text-lg text-black/60 pb-2 md:pb-4 md:text-right max-w-[200px]"
+            >
+              competitive.<br className="hidden md:block" /> cohort-based.<br className="hidden md:block" /> life-changing.
+            </motion.div>
+          </div>
+
+          <div className="mt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-12 w-full">
+            <a
+              href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors"
+              className="rounded-full px-7 py-3 bg-[#0f0f0f] text-white font-sans text-sm font-semibold hover:bg-black/80 transition-colors whitespace-nowrap"
+            >
               Applications Open Fall 2026
             </a>
-          </motion.div>
+            <p className="text-[14px] text-[#555] italic font-serif md:text-right max-w-sm">
+              Open to all UW undergrads with 3+ years remaining. No business experience required.
+            </p>
+          </div>
+
         </div>
       </section>
 
-      <div className="h-[2px] w-full bg-gradient-to-r from-husky-purple/0 via-husky-purple/40 to-husky-purple/0 my-16" />
+      {/* ---------- APPLICATION TIMELINE ---------- */}
+      <section ref={timelineRef} className="px-6 md:px-12 py-32 relative w-full overflow-hidden">
+        <div className="max-w-5xl mx-auto w-full">
 
-      {/* ---------- Section 2: Application Timeline ---------- */}
-      <section className="bg-[#fdf9f3] px-6 md:px-12 py-20 relative">
-        <div className="max-w-7xl mx-auto">
+          <div className="mb-24">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 0.4 }}
+              viewport={{ once: true }}
+              className="text-[11px] font-mono tracking-[0.3em] uppercase text-black mb-4"
+            >
+              APPLICATION PROCESS — FALL 2026
+            </motion.div>
+            <motion.h2
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="text-[8vw] md:text-6xl lg:text-7xl font-serif font-black tracking-tighter text-[#0f0f0f] leading-[0.8] lowercase"
+            >
+              TIMELINE
+            </motion.h2>
+          </div>
+
+          <div className="relative w-full max-w-3xl mx-auto my-16">
+            {/* Background Line */}
+            <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[1px] bg-[#e0ddd8] md:-translate-x-1/2"></div>
+
+            {/* Foreground Fill Line */}
+            <motion.div
+              className="absolute left-[20px] md:left-1/2 top-0 w-[2px] bg-[#0d6e5e] origin-top md:-translate-x-1/2"
+              style={{ height: lineHeight }}
+            ></motion.div>
+
+            {/* Nodes */}
+            <div className="relative z-10 w-full flex flex-col gap-24 py-10 pl-12 md:pl-0">
+              <TimelineNode
+                date="SEPTEMBER 2026"
+                title="application opens"
+                desc="Applications open until early October."
+                align="left"
+              />
+              <TimelineNode
+                date="OCTOBER 2026"
+                title="interviews"
+                desc="Select candidates are invited to interview."
+                align="right"
+              />
+              <TimelineNode
+                date="LATE OCTOBER 2026"
+                title="decisions released"
+                desc="Final decisions announced."
+                align="left"
+              />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ---------- PHOTO SPREAD ---------- */}
+      <section className="w-full relative">
+        <div className="w-full h-[30vh] md:h-[40vh] relative overflow-hidden">
+          <img
+            src={boat24Image}
+            alt="Lavin Cohort"
+            className="w-full h-full object-cover grayscale"
+          />
+          <div className="absolute bottom-4 left-6 md:left-12">
+            <span className="text-[10px] md:text-[11px] font-mono tracking-[0.3em] uppercase text-white/90 drop-shadow-sm mix-blend-difference">
+              LAVIN COHORT — SEATTLE
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- PROGRAM COMMITMENTS ---------- */}
+      <section className="px-6 md:px-12 py-24 md:py-32 w-full border-b border-black/10">
+        <div className="max-w-6xl mx-auto w-full">
           <motion.h2
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-3xl font-bold text-husky-purple mb-4 font-encode text-center"
+            className="text-[8vw] md:text-6xl lg:text-7xl font-serif font-black tracking-tighter text-[#0f0f0f] leading-[0.8] lowercase mb-16"
           >
-            Application Timeline
+            commitments
+          </motion.h2>
+
+          <div className="w-full flex flex-col border-t border-black/10">
+            <CommitmentRow
+              title="welcome retreat"
+              desc="Two-day kickoff with guest speakers, team challenges, and a Seattle entrepreneur dinner."
+            />
+            <CommitmentRow
+              title="entre 490b"
+              desc="Weekly Winter-quarter class (2 credits, C/NC) on fundamentals like pitching, design thinking, and lean startup."
+            />
+            <CommitmentRow
+              title="field trips & lunches"
+              desc="Quarterly small-group visits to local startups, VCs, and innovation hubs—network, ask questions, learn on the go."
+            />
+            <CommitmentRow
+              title="community events"
+              desc="Quarterly all-student meetings plus socials, workshops, and lightning talks to build your cohort bonds."
+            />
+            <CommitmentRow
+              title="career support"
+              desc="Scholarship-backed placements at early-stage startups, plus early access to the UW Buerk Center's job and internship fairs."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- READY TO APPLY ---------- */}
+      <section className="px-6 md:px-12 py-32 relative overflow-hidden bg-white">
+        <div className="max-w-7xl mx-auto w-full flex flex-col items-start relative z-10">
+          <motion.h2
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl lg:text-6xl font-serif font-black tracking-tighter text-[#0f0f0f] leading-[0.85] lowercase mb-6"
+          >
+            ready to<br />apply?
           </motion.h2>
 
           <motion.p
@@ -79,161 +195,97 @@ export default function Recruitment() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-lg text-neutral-700 mb-16 leading-relaxed font-open text-center"
+            className="text-[18px] md:text-[20px] text-[#555] italic font-serif mb-12"
           >
-            Our application process is designed to identify the most passionate and driven student entrepreneurs.
+            Applications open in Fall 2026. Join the Lavin community.
           </motion.p>
 
-          <motion.div
+          <motion.a
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="relative"
+            href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors"
+            className="rounded-full px-8 py-4 bg-[#0f0f0f] text-white font-sans text-sm md:text-base font-semibold hover:bg-black/80 transition-colors"
           >
-            {/* Timeline Container */}
-            <div className="flex flex-col md:flex-row items-center justify-between relative">
-              {/* Timeline Steps */}
-              {timelineData.map((step, index) => (
-                <TimelineStep
-                  key={index}
-                  step={step}
-                  index={index}
-                  isLast={index === timelineData.length - 1}
-                />
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <div className="h-[2px] w-full bg-gradient-to-r from-husky-purple/0 via-husky-purple/40 to-husky-purple/0 my-16" />
-
-      {/* ---------- Section 3: Lavin Requirements ---------- */}
-      <section className="bg-white px-6 md:px-12 py-20 relative">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-3xl font-bold text-husky-purple mb-12 font-encode text-center"
-          >
-            Program Commitments
-          </motion.h2>
-
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-12 items-center"
-          >
-            {/* Left: Program Description */}
-            <div className="space-y-6">
-              <div className="space-y-6 text-lg text-neutral-700">
-                <p>
-                  Lavin is a competitive, cohort‑based program combining a 16‑credit Entrepreneurship curriculum with hands‑on activities and career support. Students commit to:
-                </p>
-                
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="font-semibold text-purple-700 mb-2">Welcome Retreat</h4>
-                    <p>Two‑day kickoff with guest speakers, team challenges, and a Seattle entrepreneur dinner.</p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-purple-700 mb-2">Startup Skills Course (ENTRE 490B)</h4>
-                    <p>Weekly Winter‑quarter class (2 credits, C/NC) on fundamentals like pitching, design thinking, and lean startup.</p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-purple-700 mb-2">Field Trips & Lunches</h4>
-                    <p>Quarterly small‑group visits to local startups, VCs, and innovation hubs—network, ask questions, learn on the go.</p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-purple-700 mb-2">Community Events</h4>
-                    <p>Quarterly all‑student meetings plus socials, workshops, and lightning talks to build your cohort bonds.</p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-purple-700 mb-2">Internships & Career Support</h4>
-                    <p>Scholarship‑backed placements at early‑stage startups, plus early access to the UW Buerk Center's job and internship fairs.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Image */}
-            <div className="flex justify-center items-center">
-              <div className="rounded-lg overflow-hidden w-full">
-                <img 
-                  src={boat24Image}
-                  alt="Lavin program activities" 
-                  className="w-full h-auto object-cover rounded-lg shadow-lg"
-                />
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <div className="h-[2px] w-full bg-gradient-to-r from-husky-purple/0 via-husky-purple/40 to-husky-purple/0 my-16" />
-
-      {/* ---------- Section 4: Apply Now ---------- */}
-      <section className="bg-[#fdf9f3] px-6 md:px-12 py-20 relative">
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <h2 className="text-3xl font-bold text-husky-purple mb-4 font-encode">
-              Ready to Apply?
-            </h2>
-            <p className="text-lg text-neutral-700 mb-8 leading-relaxed font-open">
-              Applications open in Fall 2026. Join the Lavin community and start your entrepreneurial journey.
-            </p>
-            <a href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors" className="px-8 py-4 bg-husky-purple text-white rounded-lg text-lg font-semibold hover:bg-spirit-purple transition-colors duration-200 shadow-lg inline-block">
             Applications Open Fall 2026
-            </a>
-          </motion.div>
+          </motion.a>
         </div>
+
+        {/* Rotated watermark Right side */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="hidden lg:flex absolute right-12 top-0 bottom-0 items-center justify-center pointer-events-none"
+        >
+          <div className="text-[12vw] xl:text-[15vw] leading-none font-serif font-thin text-[#0f0f0f] opacity-[0.03] tracking-tighter whitespace-nowrap rotate-90 origin-center select-none uppercase pointer-events-none">
+            FALL 2026 APPLICATIONS
+          </div>
+        </motion.div>
       </section>
+
     </div>
   );
 }
 
 /* ---------- Helper Components ---------- */
 
-function TimelineStep({ step, index, isLast }) {
+function TimelineNode({ date, title, desc, align }) {
+  const isLeft = align === 'left';
   return (
-    <div className="flex flex-col items-center md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-8 relative z-10">
-      {/* Icon Circle */}
-      <div className="flex flex-col items-center">
-        <div className="w-16 h-16 bg-white border-4 border-husky-purple rounded-full flex items-center justify-center shadow-lg">
-          <span className="text-2xl">{step.icon}</span>
-        </div>
-        {/* Connection line for mobile */}
-        {!isLast && (
-          <div className="md:hidden w-0.5 h-8 bg-husky-purple/30 mt-2" />
-        )}
-      </div>
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-20%" }}
+      className={`relative flex w-full items-center md:flex-row flex-col-reverse ${isLeft ? 'md:justify-start' : 'md:justify-end'}`}
+    >
+      {/* Node Circle */}
+      <motion.div
+        variants={{
+          hidden: { scale: 0, backgroundColor: '#e0ddd8' },
+          visible: { scale: 1, backgroundColor: '#0d6e5e', transition: { type: "spring", delay: 0.1 } }
+        }}
+        className="absolute left-[-24px] md:left-1/2 w-4 h-4 rounded-full border-[3px] border-[#f8f7f4] md:-translate-x-1/2 z-20"
+      />
 
       {/* Content */}
-      <div className="text-center md:text-left max-w-xs">
-        {/* Date Badge */}
-        <div className="inline-block bg-husky-purple text-white px-3 py-1 rounded-full text-sm font-semibold mb-2">
-          {step.date}
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, x: isLeft ? -20 : 20 },
+          visible: { opacity: 1, x: 0, transition: { duration: 0.6, delay: 0.2, ease: "easeOut" } }
+        }}
+        className={`w-full md:w-1/2 flex flex-col pt-1 md:pt-0 ${isLeft ? 'md:pr-16 md:text-right md:items-end' : 'md:pl-16 text-left items-start'}`}
+      >
+        <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-black/40 mb-2">
+          {date}
         </div>
-        
-        {/* Title */}
-        <h3 className="font-bold text-lg text-husky-purple mb-2">
-          {step.title}
+        <h3 className="font-serif font-bold text-[1.5rem] md:text-[1.8rem] tracking-tight text-[#0f0f0f] mb-2 leading-tight lowercase">
+          {title}
         </h3>
-        
-        {/* Description */}
-        <p className="text-sm text-neutral-600 leading-relaxed">
-          {step.description}
+        <p className="text-[14px] md:text-[15px] font-sans text-[#555]">
+          {desc}
         </p>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
-} 
+}
+
+function CommitmentRow({ title, desc }) {
+  return (
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="w-full border-b border-black/10 py-6 md:py-10 flex flex-col md:flex-row items-baseline justify-between gap-4 md:gap-12"
+    >
+      <div className="md:w-1/4 flex-shrink-0">
+        <h4 className="font-serif font-bold text-xl md:text-2xl text-[#0f0f0f] lowercase tracking-tight">{title}</h4>
+      </div>
+      <div className="md:w-3/4 flex-grow">
+        <p className="text-base md:text-[17px] text-[#555] font-sans leading-relaxed">{desc}</p>
+      </div>
+    </motion.div>
+  );
+}

@@ -1,7 +1,7 @@
-// src/pages/Gallery.jsx
 import { motion } from 'framer-motion';
 import Masonry from 'react-masonry-css';
-import CircularGallery from '../components/CircularGallery';
+import CircularGallery from '../components/visuals/CircularGallery';
+import { fadeUp } from '../lib/animations';
 
 // Import gallery images
 import img1 from '../assets/Gallery Images/_dsc3882jpg_52913072518_o.jpg';
@@ -50,10 +50,7 @@ const recentEventImages = [
   { image: img15 },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
+
 
 export default function Gallery() {
   const breakpointCols = {
@@ -66,29 +63,21 @@ export default function Gallery() {
   return (
     <div className="w-full">
       {/* ---------- Section 1: Hero Header ---------- */}
-      <section className="bg-web-gold px-6 md:px-12 py-20">
-        <div className="max-w-7xl mx-auto">
-          <motion.h1 
-            variants={fadeUp} 
-            initial="hidden" 
-            whileInView="visible" 
+      <section className="bg-slate-50 px-6 md:px-12 pt-10 pb-10 md:pt-12 md:pb-12">
+        <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
+          <motion.h1
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-black text-husky-purple mb-4 font-encode"
+            className="text-black font-serif font-black leading-[0.9] text-5xl md:text-7xl lg:text-[7.5rem] tracking-tighter drop-shadow-sm mb-4 md:mb-6 lowercase"
           >
-            Gallery
+            gallery
           </motion.h1>
-          <span className="block h-1 w-16 bg-spirit-gold mb-6" />
-          <motion.p 
-            variants={fadeUp} 
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: true }}
-            className="text-neutral-800 mb-8 text-lg md:text-xl font-open leading-relaxed"
-          >
-            Capturing moments from Lavin events, activities, and community memories.
-          </motion.p>
         </div>
       </section>
+
+      <div className="w-full border-t border-black/10" />
 
       {/* ---------- Section 2: Recent Event Circular Gallery ---------- */}
       {/*<section className="bg-white px-6image.png md:px-12 py-5">
@@ -118,10 +107,10 @@ export default function Gallery() {
       {/* ---------- Section 3: Photo Gallery ---------- */}
       <section className="bg-white px-4 md:px-8 py-5">
         <div className="w-full">
-          <motion.div 
-            variants={fadeUp} 
-            initial="hidden" 
-            whileInView="visible" 
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
           >
             <Masonry

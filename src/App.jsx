@@ -2,11 +2,11 @@ import {
   HashRouter as Router,
   Routes,
   Route,
+  useLocation,
 } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 import Home from './pages/Home';
-import About from './pages/About';
 import Recruitment from './pages/Recruitment';
 
 import ExecutiveBoard from './pages/ExecutiveBoard';
@@ -18,14 +18,15 @@ import { useScrollToTop } from './hooks/useScrollToTop';
 
 function AppContent() {
   useScrollToTop();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="page flex flex-col">
       <Navbar />
-      <main className="flex-1">
+      <main className={`flex-1 ${isHome ? '' : 'pt-28 md:pt-32'}`}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/recruitment" element={<Recruitment />} />
 
           <Route path="/executive-board" element={<ExecutiveBoard />} />
