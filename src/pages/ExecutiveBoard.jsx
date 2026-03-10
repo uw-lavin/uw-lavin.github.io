@@ -71,7 +71,7 @@ const executiveBoard = [
   },
   {
     name: 'Sreshta Appalabattula',
-    role: 'Co-Director of Marketing',
+    role: 'Director of Marketing',
     major: 'Business',
     year: '2025',
     image: sreshtaPic,

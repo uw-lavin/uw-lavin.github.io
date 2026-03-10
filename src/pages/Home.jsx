@@ -270,7 +270,7 @@ export default function Home() {
                   transition={{ duration: 0.8, ease: "easeOut" }}
                   className="text-[14vw] md:text-[11vw] lg:text-[10vw] font-serif font-black leading-[0.85] tracking-tighter text-[#a69041] pb-2"
                 >
-                  <CountUp from={0} to={2} direction="up" duration={1.5} />
+                  <CountUp from={0} to={10} direction="up" duration={1.5} />+
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -279,10 +279,10 @@ export default function Home() {
                   transition={{ duration: 0.8, delay: 0.5 }}
                 >
                   <h3 className="text-2xl md:text-3xl lg:text-4xl font-sans mt-4 text-black/90 tracking-tight">
-                    YC-Backed Companies
+                    Alumni Startups
                   </h3>
                   <p className="mt-2 text-base md:text-lg text-black/50 font-sans tracking-wide max-w-lg mb-6">
-                    check out our startup successes
+                    companies built by Lavin founders
                   </p>
                 </motion.div>
               </div>
@@ -295,11 +295,14 @@ export default function Home() {
                 transition={{ duration: 1, delay: 0.8 }}
                 className="hidden md:flex absolute right-0 top-0 bottom-0 w-1/2 items-center pl-16 xl:pl-32"
               >
-                {/* YC Links */}
-                <div className="flex flex-col gap-3 relative z-20 w-fit pointer-events-auto">
+                <div className="flex flex-col gap-5 relative z-20 w-fit pointer-events-auto">
                   <a href="https://vly.ai/" target="_blank" rel="noreferrer" className="group flex items-center gap-3">
                     <span className="text-2xl md:text-3xl lg:text-4xl font-serif font-black text-black/80 border-b border-[#a69041]/30 group-hover:text-[#a69041] group-hover:border-[#a69041] transition-colors pb-1">vly.ai</span>
-                    <span className="text-[#a69041] font-sans font-bold text-sm tracking-widest uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">W24 &rarr;</span>
+                    <span className="text-[#a69041] font-sans font-bold text-sm tracking-widest uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">YC W24 &rarr;</span>
+                  </a>
+                  <a href="https://toastedseattle.com/" target="_blank" rel="noreferrer" className="group flex items-center gap-3">
+                    <span className="text-2xl md:text-3xl lg:text-4xl font-serif font-black text-black/80 border-b border-[#a69041]/30 group-hover:text-[#a69041] group-hover:border-[#a69041] transition-colors pb-1">toasted seattle</span>
+                    <span className="text-[#a69041] font-sans font-bold text-sm tracking-widest uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">&rarr;</span>
                   </a>
                 </div>
               </motion.div>
