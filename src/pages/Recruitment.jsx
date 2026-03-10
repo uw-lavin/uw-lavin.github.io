@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import boat24Image from '../assets/boat24.png';
+import boat24Image from '../assets/boat24new.jpg';
 import { fadeUp } from '../lib/animations';
 
 export default function Recruitment() {
@@ -129,7 +129,8 @@ export default function Recruitment() {
           <img
             src={boat24Image}
             alt="Lavin Cohort"
-            className="w-full h-full object-cover grayscale"
+            className="w-full h-full object-cover"
+            style={{ filter: 'grayscale(1) contrast(1.25) brightness(0.92)' }}
           />
           <div className="absolute bottom-4 left-6 md:left-12">
             <span className="text-[10px] md:text-[11px] font-mono tracking-[0.3em] uppercase text-white/90 drop-shadow-sm mix-blend-difference">
