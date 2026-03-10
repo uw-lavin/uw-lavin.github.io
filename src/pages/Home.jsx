@@ -49,7 +49,8 @@ export default function Home() {
               }}
               className="text-[9px] md:text-[11px] font-mono tracking-[0.3em] uppercase text-[#0f0f0f]"
             >
-              <span className="font-bold">LAVIN ENTREPRENEURSHIP PROGRAM</span> — UW SEATTLE — EST. 1996
+              <span className="md:hidden font-bold">LAVIN EP</span><span className="md:hidden"> — UW SEATTLE — 1996</span>
+              <span className="hidden md:inline font-bold">LAVIN ENTREPRENEURSHIP PROGRAM</span><span className="hidden md:inline"> — UW SEATTLE — EST. 1996</span>
             </motion.div>
             <motion.div
               initial="hidden"
@@ -64,7 +65,7 @@ export default function Home() {
 
           {/* Main Manifesto Text */}
           <div className="flex-1 flex flex-col justify-center items-start w-full">
-            <div className="font-serif font-black leading-[0.95] md:leading-[0.9] tracking-tighter text-[#0f0f0f] text-[19vw] sm:text-[17vw] md:text-[16vw] lg:text-[15vw]">
+            <div className="font-serif font-black leading-[0.92] tracking-tighter text-[#0f0f0f] text-[16vw] sm:text-[15vw] md:text-[16vw] lg:text-[15vw] overflow-hidden">
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -82,7 +83,7 @@ export default function Home() {
                   hidden: { y: 40, opacity: 0 },
                   visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: 0.6, ease: [0.33, 1, 0.68, 1] } }
                 }}
-                className="ml-[4vw]"
+                className="md:ml-[4vw]"
               >
                 INNOVATE<span className="text-[#3b2c5a]">.</span>
               </motion.div>
@@ -117,7 +118,7 @@ export default function Home() {
                 join.
               </button>
               <button
-                onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => navigate('/events')}
                 className="flex-1 md:flex-none rounded-full px-6 md:px-8 py-3 border border-[#0f0f0f]/30 text-[#0f0f0f] font-sans text-sm font-semibold hover:bg-[#0f0f0f]/5 hover:border-[#0f0f0f] transition-all"
               >
                 events.
