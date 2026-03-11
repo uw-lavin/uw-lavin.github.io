@@ -72,7 +72,7 @@ export default function Gallery() {
             viewport={{ once: true }}
             className="text-black font-serif font-black leading-[0.9] text-5xl md:text-7xl lg:text-[7.5rem] tracking-tighter drop-shadow-sm mb-4 md:mb-6 lowercase"
           >
-            gallery
+            memories
           </motion.h1>
         </div>
       </section>

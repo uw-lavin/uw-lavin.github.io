@@ -26,7 +26,7 @@ export default function Recruitment() {
             transition={{ duration: 1 }}
             className="text-[11px] font-mono tracking-[0.3em] uppercase text-black mb-6"
           >
-            RECRUITMENT — LAVIN EP — UW SEATTLE
+            RECRUITMENT — UW SEATTLE
           </motion.div>
 
           <div className="flex flex-col md:flex-row items-end justify-between w-full gap-8">

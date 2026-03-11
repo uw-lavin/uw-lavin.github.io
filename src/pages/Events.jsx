@@ -18,7 +18,7 @@ export default function Events() {
             transition={{ duration: 1 }}
             className="text-[11px] font-mono tracking-[0.3em] uppercase text-black mb-6"
           >
-            UPCOMING EVENTS — LAVIN EP
+            UPCOMING EVENTS
           </motion.div>
 
           <div className="flex flex-col md:flex-row items-end justify-between w-full gap-8">
@@ -40,10 +40,10 @@ export default function Events() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* ---------- Events List Section ---------- */}
-      <section className="w-full">
+      < section className="w-full" >
         <div className="max-w-7xl mx-auto flex flex-col px-6 md:px-12 py-12 md:py-24">
 
           {/* Event 1: Showcase (March 12) */}
@@ -52,27 +52,32 @@ export default function Events() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-10%" }}
-            className="group relative flex flex-row w-full border-b border-[#e0ddd8] py-8 transition-all duration-300 hover:pl-4 border-l-[3px] border-l-transparent hover:border-l-[#3b2c5a]"
+            className="group relative flex flex-col md:flex-row w-full border-b border-[#e0ddd8] py-8 transition-all duration-200 hover:pl-4 border-l-[3px] border-l-transparent hover:border-l-[#3b2c5a]"
           >
             {/* Date Column */}
-            <div className="w-[100px] md:w-[150px] flex flex-col items-start pt-2 shrink-0">
-              <span className="text-[15vw] md:text-7xl lg:text-[5.5rem] font-serif font-black tracking-tighter leading-[0.85] text-[#0f0f0f] group-hover:text-[#3b2c5a] transition-colors duration-300">
-                12
+            <div className="w-[120px] sm:w-[160px] md:w-[240px] lg:w-[320px] md:pr-8 lg:pr-12 flex items-start shrink-0 md:border-r border-[#e0ddd8] pt-2">
+              <span className="text-xs md:text-base font-mono tracking-[0.2em] font-semibold uppercase text-black mt-[0.8em] md:mt-[1.2em] mr-2">
+                MAR
               </span>
-              <span className="text-[10px] md:text-xs font-mono tracking-wider text-black mt-4 border border-black/20 rounded-full px-3 py-1 bg-transparent">
-                17:30
+              <span className="text-[14vw] md:text-7xl lg:text-[5.5rem] font-serif font-black tracking-tighter leading-[0.85] text-[#0f0f0f] group-hover:text-[#3b2c5a] transition-colors duration-200">
+                12
               </span>
             </div>
 
             {/* Content Column */}
-            <div className="flex-1 flex flex-col items-start pl-6 md:pl-10 md:border-l border-black/10 min-w-0 pb-2">
-              <div className="text-[10px] md:text-[11px] font-mono tracking-[0.15em] uppercase text-black/50 mb-3 break-words w-full">
-                INTELLECTUAL HOUSE, U-DISTRICT
-              </div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.2rem] font-serif font-bold tracking-tight mb-4 text-[#0f0f0f] break-words w-full">
+            <div className="flex-1 flex flex-col items-start md:pl-10 min-w-0 pb-2 mt-4 md:mt-0 relative w-full">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2rem] font-serif font-bold tracking-tight mb-2 text-[#0f0f0f] break-words w-full">
                 Lavin 2025 Cohort Final Showcase
               </h3>
-              <p className="text-[14px] md:text-[15px] text-[#555] italic leading-relaxed max-w-2xl font-serif w-full">
+
+              {/* Metadata Row */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between w-full mb-4">
+                <div className="text-[14px] md:text-[15px] font-bold font-mono tracking-wider uppercase text-black">
+                  5:30 PM &nbsp;&middot;&nbsp; Intellectual House, U-District
+                </div>
+              </div>
+
+              <p className="text-base md:text-lg text-[#555] italic leading-relaxed max-w-2xl font-serif w-full">
                 Come grab your cash before judging starts at 6! First come first serve!
               </p>
             </div>
@@ -84,27 +89,32 @@ export default function Events() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-10%" }}
-            className="group relative flex flex-row w-full border-b border-[#e0ddd8] py-8 transition-all duration-300 hover:pl-4 border-l-[3px] border-l-transparent hover:border-l-[#3b2c5a]"
+            className="group relative flex flex-col md:flex-row w-full border-b border-[#e0ddd8] py-8 transition-all duration-200 hover:pl-4 border-l-[3px] border-l-transparent hover:border-l-[#3b2c5a]"
           >
             {/* Date Column */}
-            <div className="w-[100px] md:w-[150px] flex flex-col items-start pt-2 shrink-0">
-              <span className="text-[15vw] md:text-7xl lg:text-[5.5rem] font-serif font-black tracking-tighter leading-[0.85] text-[#0f0f0f] group-hover:text-[#3b2c5a] transition-colors duration-300">
-                07
+            <div className="w-[120px] sm:w-[160px] md:w-[240px] lg:w-[320px] md:pr-8 lg:pr-12 flex items-start shrink-0 md:border-r border-[#e0ddd8] pt-2">
+              <span className="text-xs md:text-base font-mono tracking-[0.2em] font-semibold uppercase text-black mt-[0.8em] md:mt-[1.2em] mr-2">
+                APR
               </span>
-              <span className="text-[10px] md:text-xs font-mono tracking-wider text-black mt-4 border border-black/20 rounded-full px-3 py-1 bg-transparent">
-                17:30
+              <span className="text-[14vw] md:text-7xl lg:text-[5.5rem] font-serif font-black tracking-tighter leading-[0.85] text-[#0f0f0f] group-hover:text-[#3b2c5a] transition-colors duration-200">
+                7
               </span>
             </div>
 
             {/* Content Column */}
-            <div className="flex-1 flex flex-col items-start pl-6 md:pl-10 md:border-l border-black/10 min-w-0 pb-2">
-              <div className="text-[10px] md:text-[11px] font-mono tracking-[0.15em] uppercase text-black/50 mb-3 break-words w-full">
-                ANTHONY'S FORUM, DEMPSEY HALL
-              </div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.2rem] font-serif font-bold tracking-tight mb-4 text-[#0f0f0f] break-words w-full">
+            <div className="flex-1 flex flex-col items-start md:pl-10 min-w-0 pb-2 mt-4 md:mt-0 relative w-full">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2rem] font-serif font-bold tracking-tight mb-2 text-[#0f0f0f] break-words w-full">
                 Spring ASM
               </h3>
-              <p className="text-[14px] md:text-[15px] text-[#555] italic leading-relaxed max-w-2xl font-serif w-full">
+
+              {/* Metadata Row */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between w-full mb-4">
+                <div className="text-[14px] md:text-[15px] font-bold font-mono tracking-wider uppercase text-black">
+                  5:30 PM &nbsp;&middot;&nbsp; Anthony's Forum, Dempsey Hall
+                </div>
+              </div>
+
+              <p className="text-base md:text-lg text-[#555] italic leading-relaxed max-w-2xl font-serif w-full">
                 Join us for the required quarterly All Student Meeting.
               </p>
             </div>
@@ -116,30 +126,37 @@ export default function Events() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-10%" }}
-            className="group relative flex flex-row w-full border-b border-[#e0ddd8] py-8 transition-all duration-300 hover:pl-4 border-l-[3px] border-l-transparent hover:border-l-[#3b2c5a]"
+            className="group relative flex flex-col md:flex-row w-full border-b border-[#e0ddd8] py-8 transition-all duration-200 hover:pl-4 border-l-[3px] border-l-transparent hover:border-l-[#3b2c5a]"
           >
             {/* Date Column */}
-            <div className="w-[100px] md:w-[150px] flex flex-col items-start pt-2 shrink-0">
-              <span className="text-6xl md:text-7xl lg:text-[5.5rem] font-serif font-black tracking-tighter leading-[0.85] text-[#0f0f0f] group-hover:text-[#3b2c5a] transition-colors duration-300 flex items-center break-words max-w-full">
-                13&mdash;14
-              </span>
-              <span className="text-[10px] md:text-xs font-mono tracking-wider text-black mt-4 border border-black/20 rounded-full px-3 py-1 bg-transparent uppercase">
-                All Wknd
-              </span>
+            <div className="w-[120px] sm:w-[160px] md:w-[240px] lg:w-[320px] md:pr-8 lg:pr-12 flex flex-col items-start pt-2 shrink-0 md:border-r border-[#e0ddd8]">
+              <div className="flex items-start">
+                <span className="text-xs md:text-base font-mono tracking-[0.2em] font-semibold uppercase text-black mt-[0.6em] md:mt-[0.9em] mr-1">
+                  APR
+                </span>
+                <span className="text-[11vw] sm:text-6xl md:text-[3rem] lg:text-[4.5rem] xl:text-7xl font-serif font-black tracking-tighter leading-[0.85] text-[#0f0f0f] group-hover:text-[#3b2c5a] transition-colors duration-200 whitespace-nowrap">
+                  13&ndash;14
+                </span>
+              </div>
             </div>
 
             {/* Content Column */}
-            <div className="flex-1 flex flex-col items-start pl-6 md:pl-10 md:border-l border-black/10 min-w-0 pb-2">
-              <div className="text-[10px] md:text-[11px] font-mono tracking-[0.15em] uppercase text-black/60 mb-3 break-words w-full">
-                ESEC &times; Lavin &times; Claude
+            <div className="flex-1 flex flex-col items-start md:pl-10 min-w-0 pb-2 mt-4 md:mt-0 relative w-full">
+              <div className="text-[10px] font-mono tracking-[0.1em] text-black/50 mb-2 break-words w-full">
+                ESEC &times; LAVIN &times; CLAUDE
               </div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.2rem] font-serif font-bold tracking-tight mb-3 text-[#0f0f0f] break-words w-full">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2rem] font-serif font-bold tracking-tight mb-2 text-[#0f0f0f] break-words w-full">
                 Zero to One Startupathon
               </h3>
-              <div className="text-[10px] md:text-[11px] font-mono tracking-[0.15em] uppercase text-black/50 mb-3 break-words w-full">
-                HUB LYCEUM, UPPER CAMPUS
+
+              {/* Metadata Row */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between w-full mb-4">
+                <div className="text-[14px] md:text-[15px] font-bold font-mono tracking-wider uppercase text-black">
+                  ALL WKND &nbsp;&middot;&nbsp; HUB Lyceum, Upper Campus
+                </div>
               </div>
-              <p className="text-[14px] md:text-[15px] text-[#555] italic leading-relaxed max-w-2xl font-serif w-full">
+
+              <p className="text-base md:text-lg text-[#555] italic leading-relaxed max-w-2xl font-serif w-full">
                 This is where UW's most ambitious students stop thinking about a startup and start building it.
               </p>
             </div>
@@ -151,27 +168,32 @@ export default function Events() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-10%" }}
-            className="group relative flex flex-row w-full border-b border-[#e0ddd8] py-8 transition-all duration-300 hover:pl-4 border-l-[3px] border-l-transparent hover:border-l-[#3b2c5a]"
+            className="group relative flex flex-col md:flex-row w-full border-b border-[#e0ddd8] py-8 transition-all duration-200 hover:pl-4 border-l-[3px] border-l-transparent hover:border-l-[#3b2c5a]"
           >
             {/* Date Column */}
-            <div className="w-[100px] md:w-[150px] flex flex-col items-start pt-2 shrink-0">
-              <span className="text-[15vw] md:text-7xl lg:text-[5.5rem] font-serif font-black tracking-tighter leading-[0.85] text-[#0f0f0f] group-hover:text-[#3b2c5a] transition-colors duration-300">
-                21
+            <div className="w-[120px] sm:w-[160px] md:w-[240px] lg:w-[320px] md:pr-8 lg:pr-12 flex items-start shrink-0 md:border-r border-[#e0ddd8] pt-2">
+              <span className="text-xs md:text-base font-mono tracking-[0.2em] font-semibold uppercase text-black mt-[0.8em] md:mt-[1.2em] mr-2">
+                APR
               </span>
-              <span className="text-[10px] md:text-xs font-mono tracking-wider text-black mt-4 border border-black/20 rounded-full px-3 py-1 bg-transparent">
-                TBD
+              <span className="text-[14vw] md:text-7xl lg:text-[5.5rem] font-serif font-black tracking-tighter leading-[0.85] text-[#0f0f0f] group-hover:text-[#3b2c5a] transition-colors duration-200">
+                21
               </span>
             </div>
 
             {/* Content Column */}
-            <div className="flex-1 flex flex-col items-start pl-6 md:pl-10 md:border-l border-black/10 min-w-0 pb-2">
-              <div className="text-[10px] md:text-[11px] font-mono tracking-[0.15em] uppercase text-black/50 mb-3 break-words w-full">
-                HUB LYCEUM, UPPER CAMPUS
-              </div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.2rem] font-serif font-bold tracking-tight mb-4 text-[#0f0f0f] break-words w-full">
+            <div className="flex-1 flex flex-col items-start md:pl-10 min-w-0 pb-2 mt-4 md:mt-0 relative w-full">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2rem] font-serif font-bold tracking-tight mb-2 text-[#0f0f0f] break-words w-full">
                 Engineering Startup Career Fair
               </h3>
-              <p className="text-[14px] md:text-[15px] text-[#555] italic leading-relaxed max-w-2xl font-serif w-full">
+
+              {/* Metadata Row */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between w-full mb-4">
+                <div className="text-[14px] md:text-[15px] font-bold font-mono tracking-wider uppercase text-black">
+                  TBD &nbsp;&middot;&nbsp; HUB Lyceum, Upper Campus
+                </div>
+              </div>
+
+              <p className="text-base md:text-lg text-[#555] italic leading-relaxed max-w-2xl font-serif w-full">
                 Connect with the fastest growing engineering startups in Seattle.
               </p>
             </div>

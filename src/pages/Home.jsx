@@ -36,10 +36,10 @@ export default function Home() {
         </svg>
 
         {/* Content Wrapper */}
-        <div className="relative z-10 w-full h-full flex flex-col justify-between px-6 md:px-12 py-8 md:py-12">
+        <div className="relative z-10 w-full h-full flex flex-col justify-between px-6 md:px-12 pt-[80px] md:pt-12 pb-8 md:pb-12">
 
           {/* Top Header Label & Rule */}
-          <div className="w-full">
+          <div className="w-full hidden md:block">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -49,8 +49,8 @@ export default function Home() {
               }}
               className="text-[9px] md:text-[11px] font-mono tracking-[0.3em] uppercase text-[#0f0f0f]"
             >
-              <span className="md:hidden font-bold">LAVIN EP</span><span className="md:hidden"> — UW SEATTLE — 1996</span>
-              <span className="hidden md:inline font-bold">LAVIN ENTREPRENEURSHIP PROGRAM</span><span className="hidden md:inline"> — UW SEATTLE — EST. 1996</span>
+              <span className="md:hidden font-bold">LAVIN</span><span className="md:hidden"> — UW SEATTLE — 1996</span>
+              <span className="hidden md:inline font-bold">LAVIN ENTREPRENEURSHIP PROGRAM</span><span className="hidden md:inline"> — UW SEATTLE</span>
             </motion.div>
             <motion.div
               initial="hidden"
@@ -65,7 +65,7 @@ export default function Home() {
 
           {/* Main Manifesto Text */}
           <div className="flex-1 flex flex-col justify-center items-start w-full">
-            <div className="font-serif font-black leading-[0.92] tracking-tighter text-[#0f0f0f] text-[16vw] sm:text-[15vw] md:text-[16vw] lg:text-[15vw] overflow-hidden">
+            <div className="font-serif font-black leading-[0.95] md:leading-[1.0] tracking-tighter text-[#0f0f0f] text-[16vw] sm:text-[15vw] md:text-[16vw] lg:text-[15vw] overflow-hidden">
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -134,7 +134,7 @@ export default function Home() {
               }}
               className="font-serif italic text-base md:text-lg text-[#555] text-left md:text-right"
             >
-              Seattle's most ambitious student founders.
+              AN ENDOWED BUERK CENTER PROGRAM
             </motion.div>
           </div>
 
@@ -161,10 +161,10 @@ export default function Home() {
             </h2>
             <span className="block h-[2px] w-16 bg-black/15 mx-auto mb-10" />
             <p className="text-xl md:text-2xl text-black/90 font-sans mb-10 tracking-wide font-medium">
-              Welcome to Lavin. UW's most exclusive founder community.
+              Welcome to Lavin. UW's premier founder community.
             </p>
             <p className="text-base md:text-lg text-black/60 font-sans leading-relaxed max-w-3xl mx-auto">
-              The Lavin Entrepreneurship Program is a highly-competitive program for undergraduate entrepreneurs
+              The Lavin Entrepreneurship Program is a highly-competitive, endowed program for undergraduate entrepreneurs
               from all majors and disciplines across campus. Only the brightest, most passionate and driven students
               are accepted each year. By combining curriculum with hands-on learning, the UW Buerk Center for
               Entrepreneurship gives Lavin students (Laviners) the experience, skills and know-how to succeed in
