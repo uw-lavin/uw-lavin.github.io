@@ -3,7 +3,7 @@ import Lenis from "lenis";
 
 export const ScrollStackItem = ({ children, itemClassName = "" }) => (
   <div
-    className={`scroll-stack-card relative w-full h-80 my-8 p-12 rounded-[40px] shadow-[0_0_30px_rgba(0,0,0,0.1)] box-border origin-top will-change-transform ${itemClassName}`.trim()}
+    className={`scroll-stack-card relative w-full h-80 my-8 p-12 shadow-[0_0_30px_rgba(0,0,0,0.1)] box-border origin-top will-change-transform ${itemClassName}`.trim()}
     style={{
       backfaceVisibility: 'hidden',
       transformStyle: 'preserve-3d',
@@ -85,7 +85,7 @@ const ScrollStack = ({
             topCardIndex = j;
           }
         }
-        
+
         if (i < topCardIndex) {
           const depthInStack = topCardIndex - i;
           blur = Math.max(0, depthInStack * blurAmount);
@@ -94,7 +94,7 @@ const ScrollStack = ({
 
       let translateY = 0;
       const isPinned = scrollTop >= pinStart && scrollTop <= pinEnd;
-      
+
       if (isPinned) {
         translateY = scrollTop - cardTop + stackPositionPx + (itemStackDistance * i);
       } else if (scrollTop > pinEnd) {
@@ -109,7 +109,7 @@ const ScrollStack = ({
       };
 
       const lastTransform = lastTransformsRef.current.get(i);
-      const hasChanged = !lastTransform || 
+      const hasChanged = !lastTransform ||
         Math.abs(lastTransform.translateY - newTransform.translateY) > 0.1 ||
         Math.abs(lastTransform.scale - newTransform.scale) > 0.001 ||
         Math.abs(lastTransform.rotation - newTransform.rotation) > 0.1 ||
@@ -121,7 +121,7 @@ const ScrollStack = ({
 
         card.style.transform = transform;
         card.style.filter = filter;
-        
+
         lastTransformsRef.current.set(i, newTransform);
       }
 
@@ -240,7 +240,7 @@ const ScrollStack = ({
     <div
       className={`relative w-full h-full overflow-y-auto overflow-x-visible ${className}`.trim()}
       ref={scrollerRef}
-      style={{ 
+      style={{
         overscrollBehavior: 'contain',
         WebkitOverflowScrolling: 'touch',
         scrollBehavior: 'smooth',

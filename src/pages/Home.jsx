@@ -113,13 +113,13 @@ export default function Home() {
             >
               <button
                 onClick={() => navigate('/recruitment')}
-                className="flex-1 md:flex-none rounded-full px-6 md:px-8 py-3 bg-[#0f0f0f] text-white font-sans text-sm font-semibold hover:bg-black/80 transition-colors"
+                className="flex-1 md:flex-none px-6 md:px-8 py-3 bg-[#0f0f0f] text-white font-sans text-sm font-semibold hover:bg-black/80 transition-colors"
               >
                 join.
               </button>
               <button
                 onClick={() => navigate('/events')}
-                className="flex-1 md:flex-none rounded-full px-6 md:px-8 py-3 border border-[#0f0f0f]/30 text-[#0f0f0f] font-sans text-sm font-semibold hover:bg-[#0f0f0f]/5 hover:border-[#0f0f0f] transition-all"
+                className="flex-1 md:flex-none px-6 md:px-8 py-3 border border-[#0f0f0f]/30 text-[#0f0f0f] font-sans text-sm font-semibold hover:bg-[#0f0f0f]/5 hover:border-[#0f0f0f] transition-all"
               >
                 events.
               </button>
@@ -132,7 +132,7 @@ export default function Home() {
                 hidden: { opacity: 0 },
                 visible: { opacity: 1, transition: { duration: 0.8, delay: 1.0 } }
               }}
-              className="font-serif italic text-base md:text-lg text-[#555] text-left md:text-right"
+              className="font-serif italic text-base md:text-lg text-[#0f0f0f] text-left md:text-right"
             >
               AN ENDOWED BUERK CENTER PROGRAM
             </motion.div>
@@ -154,24 +154,45 @@ export default function Home() {
         className="w-full bg-[#f8f7f4] scroll-mt-28 md:scroll-mt-32 font-sans"
       >
         {/* 1. Intro Text */}
-        < div className="py-24 md:py-32 text-center w-full px-6" >
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-black tracking-tight mb-8 md:whitespace-nowrap">
-              not just another business club
-            </h2>
-            <span className="block h-[2px] w-16 bg-black/15 mx-auto mb-10" />
-            <p className="text-xl md:text-2xl text-black/90 font-sans mb-10 tracking-wide font-medium">
-              Welcome to Lavin. UW's premier founder community.
-            </p>
-            <p className="text-base md:text-lg text-black/60 font-sans leading-relaxed max-w-3xl mx-auto">
-              The Lavin Entrepreneurship Program is a highly-competitive, endowed program for undergraduate entrepreneurs
-              from all majors and disciplines across campus. Only the brightest, most passionate and driven students
-              are accepted each year. By combining curriculum with hands-on learning, the UW Buerk Center for
-              Entrepreneurship gives Lavin students (Laviners) the experience, skills and know-how to succeed in
-              their future business ventures.
-            </p>
-          </motion.div>
-        </div >
+        <div className="w-full px-6 md:px-12 py-[10vh] md:py-[15vh]">
+
+
+
+          {/* Main Description Text - Massive & Centered */}
+          <div className="w-full text-center flex flex-col items-center justify-center gap-y-1 sm:gap-y-2 lg:gap-y-4">
+            <motion.div className="overflow-hidden pb-4" initial="hidden" whileInView="visible" viewport={{ once: true }}>
+              <motion.div variants={{ hidden: { y: "110%" }, visible: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 } } }}>
+                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
+                  The Lavin Entrepreneurship Program
+                </span>
+              </motion.div>
+            </motion.div>
+
+            <motion.div className="overflow-hidden pb-4" initial="hidden" whileInView="visible" viewport={{ once: true }}>
+              <motion.div variants={{ hidden: { y: "110%" }, visible: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.25 } } }}>
+                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
+                  is a highly-competitive, endowed program
+                </span>
+              </motion.div>
+            </motion.div>
+
+            <motion.div className="overflow-hidden pb-4" initial="hidden" whileInView="visible" viewport={{ once: true }}>
+              <motion.div variants={{ hidden: { y: "110%" }, visible: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 } } }}>
+                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
+                  for undergraduate entrepreneurs from all
+                </span>
+              </motion.div>
+            </motion.div>
+
+            <motion.div className="overflow-hidden pb-4" initial="hidden" whileInView="visible" viewport={{ once: true }}>
+              <motion.div variants={{ hidden: { y: "110%" }, visible: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.55 } } }}>
+                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
+                  majors and disciplines across campus.
+                </span>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
 
         {/* 2. Stats - Editorial Layout */}
         <div className="py-12 md:py-16 text-black w-full font-serif overflow-hidden">
@@ -222,13 +243,13 @@ export default function Home() {
                 className="hidden md:flex absolute left-0 top-0 bottom-0 w-1/2 items-center pointer-events-none pl-8 lg:pl-16"
               >
                 <div className="flex flex-col gap-2">
-                  <div className="text-[10px] font-mono tracking-[0.25em] uppercase text-black/50">
+                  <div className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#0f0f0f] font-bold">
                     FOUNDED BY
                   </div>
-                  <div className="font-serif text-3xl lg:text-4xl font-black text-[#0f0f0f] opacity-[0.18] tracking-tight leading-tight select-none">
+                  <div className="font-serif text-3xl lg:text-4xl font-black text-[#0f0f0f] tracking-tight leading-tight select-none">
                     Leonard<br />Lavin
                   </div>
-                  <div className="text-[10px] font-mono tracking-[0.2em] uppercase text-black/40 mt-1">
+                  <div className="text-[10px] font-mono tracking-[0.2em] uppercase text-[#0f0f0f] mt-1 font-bold">
                     1996 — SEATTLE
                   </div>
                 </div>
@@ -357,7 +378,7 @@ export default function Home() {
         </div >
 
         {/* 5. Video Section */}
-        < div className="w-full py-16 md:py-24 bg-[#f8f7f4] border-t border-black/10" >
+        {/* <div className="w-full py-16 md:py-24 bg-[#f8f7f4] border-t border-black/10">
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -375,9 +396,9 @@ export default function Home() {
               />
             </div>
           </motion.div>
-        </div >
-      </section >
-    </div >
+        </div> */}
+      </section>
+    </div>
   );
 }
 

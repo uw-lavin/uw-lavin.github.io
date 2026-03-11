@@ -15,7 +15,7 @@ export default function UpcomingEvents() {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+      <div className="bg-white p-8 shadow-lg border border-gray-100">
         <h2 className="text-2xl md:text-3xl font-encode text-husky-purple mb-6">
           Upcoming Events
         </h2>
@@ -28,7 +28,7 @@ export default function UpcomingEvents() {
 
   if (!events || events.length === 0) {
     return (
-      <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+      <div className="bg-white p-8 shadow-lg border border-gray-100">
         <h2 className="text-2xl md:text-3xl font-encode text-husky-purple mb-6">
           Upcoming Events
         </h2>
@@ -40,7 +40,7 @@ export default function UpcomingEvents() {
   }
 
   return (
-    <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+    <div className="bg-white p-8 shadow-lg border border-gray-100">
       <h2 className="text-2xl md:text-3xl font-encode text-husky-purple mb-8">
         Upcoming Events
       </h2>
@@ -53,7 +53,7 @@ export default function UpcomingEvents() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0, transition: { delay: index * 0.1 } }}
           >
-            <div className="border-l-4 border-web-gold pl-6 py-4 hover:bg-gray-50 rounded-r-lg transition-all duration-200 group-hover:border-husky-purple">
+            <div className="border-l-4 border-web-gold pl-6 py-4 hover:bg-gray-50 transition-all duration-200 group-hover:border-husky-purple">
               <div className="space-y-3">
                 <h3 className="font-semibold text-lg text-neutral-800 leading-tight">
                   {event.title}
@@ -88,7 +88,7 @@ export default function UpcomingEvents() {
       <div className="mt-8 pt-6 border-t border-gray-100">
         <button
           onClick={() => navigate('/events')}
-          className="w-full bg-web-gold text-husky-purple font-semibold py-3 px-6 rounded-lg hover:bg-yellow-500 transition-all duration-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-web-gold focus:ring-offset-2"
+          className="w-full bg-web-gold text-husky-purple font-semibold py-3 px-6 hover:bg-yellow-500 transition-all duration-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-web-gold focus:ring-offset-2"
         >
           View All Events
         </button>

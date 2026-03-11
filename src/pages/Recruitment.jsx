@@ -51,11 +51,11 @@ export default function Recruitment() {
           <div className="mt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-12 w-full">
             <a
               href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors"
-              className="rounded-full px-7 py-3 bg-[#0f0f0f] text-white font-sans text-sm font-semibold hover:bg-black/80 transition-colors whitespace-nowrap"
+              className="px-7 py-3 bg-[#0f0f0f] text-white font-sans text-sm font-semibold hover:bg-black/80 transition-colors whitespace-nowrap"
             >
               Applications Open Fall 2026
             </a>
-            <p className="text-[14px] text-[#555] italic font-serif md:text-right max-w-sm">
+            <p className="text-[14px] text-[#0f0f0f] italic font-serif md:text-right max-w-sm">
               Open to all UW undergrads with 3+ years remaining. No business experience required.
             </p>
           </div>
@@ -196,7 +196,7 @@ export default function Recruitment() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-[18px] md:text-[20px] text-[#555] italic font-serif mb-12"
+            className="text-[18px] md:text-[20px] text-[#0f0f0f] italic font-serif mb-12"
           >
             Applications open in Fall 2026. Join the Lavin community.
           </motion.p>
@@ -207,7 +207,7 @@ export default function Recruitment() {
             whileInView="visible"
             viewport={{ once: true }}
             href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors"
-            className="rounded-full px-8 py-4 bg-[#0f0f0f] text-white font-sans text-sm md:text-base font-semibold hover:bg-black/80 transition-colors"
+            className="px-8 py-4 bg-[#0f0f0f] text-white font-sans text-sm md:text-base font-semibold hover:bg-black/80 transition-colors"
           >
             Applications Open Fall 2026
           </motion.a>
@@ -264,7 +264,7 @@ function TimelineNode({ date, title, desc, align }) {
         <h3 className="font-serif font-bold text-[1.5rem] md:text-[1.8rem] tracking-tight text-[#0f0f0f] mb-2 leading-tight lowercase">
           {title}
         </h3>
-        <p className="text-[14px] md:text-[15px] font-sans text-[#555]">
+        <p className="text-[14px] md:text-[15px] font-sans text-[#0f0f0f]">
           {desc}
         </p>
       </motion.div>
@@ -285,7 +285,7 @@ function CommitmentRow({ title, desc }) {
         <h4 className="font-serif font-bold text-xl md:text-2xl text-[#0f0f0f] lowercase tracking-tight">{title}</h4>
       </div>
       <div className="md:w-3/4 flex-grow">
-        <p className="text-base md:text-[17px] text-[#555] font-sans leading-relaxed">{desc}</p>
+        <p className="text-base md:text-[17px] text-[#0f0f0f] font-sans leading-relaxed">{desc}</p>
       </div>
     </motion.div>
   );

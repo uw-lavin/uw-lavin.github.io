@@ -73,7 +73,7 @@ export const RECRUITMENT_TABS_DATA = [
                     On your application you will be asked to write about your 'entrepreneurial' experiences, skills you have taught yourself, and what you hope to learn to further your entrepreneurial journey. We encourage you to think broadly about how being an entrepreneur can include times in your life where you take action to solve the problems you see in your world and that does not necessarily mean your actions resulted in a new business being started–though if you did start a business or non-profit, we'd love to hear about it!
                 </p>
 
-                <div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-700">
+                <div className="bg-purple-50 p-4 border-l-4 border-purple-700">
                     <p className="font-semibold text-purple-700 mb-2">Questions?</p>
                     <p>Contact the Buerk Center at <a href="mailto:uwbuerk@uw.edu" className="text-purple-700 hover:underline">uwbuerk@uw.edu</a> or <a href="tel:206.616.0734" className="text-purple-700 hover:underline">206.616.0734</a>.</p>
                 </div>

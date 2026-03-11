@@ -134,7 +134,7 @@ export default function Resources() {
               className="bg-transparent border border-black/10 p-10"
             >
               <h2 className="text-2xl md:text-3xl font-serif font-bold tracking-tight text-black mb-4 lowercase text-center">member access</h2>
-              <p className="text-black/60 mb-8 font-sans text-center text-sm">
+              <p className="text-[#0f0f0f] mb-8 font-sans text-center text-sm">
                 Enter the password to access member-only resources and tools.
               </p>
 
@@ -225,7 +225,7 @@ export default function Resources() {
               >
                 <div className="text-left border-l-4 border-gray-900 pl-6 py-2">
                   <h3 className="text-3xl md:text-4xl font-serif font-bold text-black tracking-tight lowercase mb-2">{section.title}</h3>
-                  <p className="text-black/60 font-sans">{section.description}</p>
+                  <p className="text-[#0f0f0f] font-sans">{section.description}</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -248,7 +248,7 @@ export default function Resources() {
                             </span>
                           </div>
                           <h4 className="text-2xl font-serif font-bold text-black lowercase tracking-tight mb-4">{resource.title}</h4>
-                          <p className="text-black/60 mb-6 font-sans leading-relaxed text-sm">
+                          <p className="text-[#0f0f0f] mb-6 font-sans leading-relaxed text-sm">
                             {resource.description}
                           </p>
                         </div>
@@ -269,7 +269,7 @@ export default function Resources() {
             animate="visible"
             className="mt-20 text-center pt-10 border-t border-black/10"
           >
-            <p className="text-black/60 font-sans italic text-sm">
+            <p className="text-[#0f0f0f] font-sans italic text-sm">
               Need help accessing any resources? Contact the Lavin team.
             </p>
           </motion.div>

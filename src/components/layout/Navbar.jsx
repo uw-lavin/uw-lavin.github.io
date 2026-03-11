@@ -10,7 +10,7 @@ const primaryLinks = [
 ];
 
 const linkClass =
-  'px-4 py-2 text-sm font-medium text-black/80 transition-colors duration-200 rounded-full hover:text-black hover:bg-black/5';
+  'px-4 py-2 text-sm font-medium text-black/80 transition-colors duration-200 hover:text-black hover:bg-black/5';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -32,7 +32,7 @@ export default function Navbar() {
         {/* Main Links Pill */}
         <nav
           className={`
-            flex items-center justify-center rounded-full border border-black/10 px-2 py-1
+            flex items-center justify-center border border-black/10 px-2 py-1
             transition-all duration-300 ease-out
             ${scrolled ? 'bg-white/90 shadow-xl backdrop-blur-lg' : 'bg-white/80 shadow-md backdrop-blur-lg'}
           `}
@@ -58,7 +58,7 @@ export default function Navbar() {
         <NavLink
           to="/recruitment"
           className={({ isActive }) =>
-            `px-5 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 ease-out whitespace-nowrap shadow-md hover:shadow-lg
+            `px-5 py-2.5 text-sm font-semibold transition-all duration-300 ease-out whitespace-nowrap shadow-md hover:shadow-lg
             ${isActive
               ? 'bg-black text-white hover:bg-black/80'
               : 'bg-black text-white hover:bg-black/80 hover:-translate-y-0.5'
@@ -107,7 +107,7 @@ export default function Navbar() {
       <div
         className={`
           lg:hidden absolute top-[48px] left-1/2 -translate-x-1/2 mt-4 w-[min(90vw,20rem)]
-          rounded-2xl border border-black/10 bg-white/95 backdrop-blur-md shadow-xl
+          border border-black/10 bg-white/95 backdrop-blur-md shadow-xl
           transition-all duration-300 ease-out overflow-hidden pointer-events-auto
           ${isMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}
         `}
@@ -119,7 +119,7 @@ export default function Navbar() {
                 to={link.path}
                 onClick={() => setIsMenuOpen(false)}
                 className={({ isActive }) =>
-                  `block py-2.5 px-4 rounded-xl text-sm font-medium transition-colors ${isActive ? 'text-black bg-black/8' : 'text-black/80 hover:bg-black/5'
+                  `block py-2.5 px-4 text-sm font-medium transition-colors ${isActive ? 'text-black bg-black/8' : 'text-black/80 hover:bg-black/5'
                   }`
                 }
                 end={link.path === '/'}
@@ -134,7 +134,7 @@ export default function Navbar() {
               to="/recruitment"
               onClick={() => setIsMenuOpen(false)}
               className={({ isActive }) =>
-                `block py-2.5 px-4 rounded-xl text-sm font-semibold transition-colors border
+                `block py-2.5 px-4 text-sm font-semibold transition-colors border
                 ${isActive ? 'bg-black/10 border-black/30 text-black' : 'border-black/30 text-black/80 hover:bg-black/5'}`
               }
             >

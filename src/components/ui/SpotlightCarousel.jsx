@@ -53,11 +53,11 @@ export default function SpotlightCarousel() {
           What's happening in the Lavin community?
         </h2>
       </div>
-      
+
       <Slider {...settings}>
         {slides.map((slide, index) => (
           <div key={index} className="px-2 md:px-4">
-            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg text-center">
+            <div className="bg-white p-6 md:p-8 shadow-lg text-center">
               <div className="text-4xl md:text-5xl mb-4">{slide.icon}</div>
               <h3 className="text-lg md:text-xl font-semibold mb-2 text-husky-purple">
                 {slide.title}

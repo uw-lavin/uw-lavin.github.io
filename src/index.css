@@ -77,18 +77,18 @@ html {
 
   /* Surfaces */
   .card {
-    @apply rounded-3xl border border-black/5 bg-white/80 shadow-sm backdrop-blur-md;
+    @apply border border-black/5 bg-white/80 shadow-sm backdrop-blur-md;
   }
   .sheet {
-    @apply rounded-t-[56px] bg-[#f7f8fa] shadow-[0_-8px_40px_rgba(0,0,0,0.06)] lg:rounded-t-[72px];
+    @apply bg-[#f7f8fa] shadow-[0_-8px_40px_rgba(0,0,0,0.06)];
   }
 
   /* Buttons */
   .btn-primary {
-    @apply rounded-full bg-black px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 ease-out hover:-translate-y-[2px] hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+    @apply bg-black px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 ease-out hover:-translate-y-[2px] hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
   }
   .btn-secondary {
-    @apply rounded-full border border-black/10 bg-white/90 px-8 py-3 font-semibold text-black shadow-sm transition-all duration-300 ease-out hover:-translate-y-[2px] hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+    @apply border border-black/10 bg-white/90 px-8 py-3 font-semibold text-black shadow-sm transition-all duration-300 ease-out hover:-translate-y-[2px] hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
   }
 }
 

@@ -35,7 +35,7 @@ export default function RecruitmentTabs() {
           {RECRUITMENT_TABS_DATA.map(({ content }, idx) => (
             <Tab.Panel
               key={idx}
-              className="animate-fade-slide bg-white p-8 rounded-xl shadow-lg"
+              className="animate-fade-slide bg-white p-8 shadow-lg"
             >
               {content}
             </Tab.Panel>

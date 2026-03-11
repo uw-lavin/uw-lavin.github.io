@@ -148,7 +148,7 @@ export default function ExecutiveBoard() {
               {executiveBoard.map((member, index) => (
                 <div key={index} className="group flex flex-col">
                   {/* Image Container with Hover Effect */}
-                  <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-5 bg-[#f8f7f4]">
+                  <div className="relative w-full aspect-[4/5] overflow-hidden mb-5 bg-[#f8f7f4]">
                     <img
                       src={member.image}
                       alt={member.name}
@@ -162,7 +162,7 @@ export default function ExecutiveBoard() {
                           href={member.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center w-12 h-12 bg-white text-black rounded-full transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:scale-110 shadow-xl"
+                          className="flex items-center justify-center w-12 h-12 bg-white text-black transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:scale-110 shadow-xl"
                           title={`Connect with ${member.name} on LinkedIn`}
                         >
                           <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -178,7 +178,7 @@ export default function ExecutiveBoard() {
                     <h3 className="text-xl md:text-2xl font-serif font-bold text-[#0f0f0f] tracking-tight mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-[11px] font-mono tracking-[0.1em] uppercase text-black/50">
+                    <p className="text-[11px] font-mono tracking-[0.1em] uppercase text-[#0f0f0f]">
                       {member.role}
                     </p>
                   </div>

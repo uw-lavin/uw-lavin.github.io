@@ -79,7 +79,7 @@ export default function JoinUs() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-lg text-black/60 mb-16 font-sans text-center max-w-2xl mx-auto"
+            className="text-lg text-[#0f0f0f] mb-16 font-sans text-center max-w-2xl mx-auto"
           >
             Our sponsors provide crucial resources, mentorship, and opportunities that enable our members to
             pursue their entrepreneurial dreams.
@@ -102,7 +102,7 @@ export default function JoinUs() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-lg text-black/60 text-center font-sans tracking-tight"
+            className="text-lg text-[#0f0f0f] text-center font-sans tracking-tight"
           >
             Interested in joining our network of partners?
           </motion.p>
@@ -118,7 +118,7 @@ export default function JoinUs() {
             <h2 className="text-3xl md:text-5xl font-serif font-bold tracking-tight text-black mb-6 lowercase text-center">
               sponsor us!
             </h2>
-            <p className="text-lg text-black/60 mb-10 font-sans max-w-2xl mx-auto">
+            <p className="text-lg text-[#0f0f0f] mb-10 font-sans max-w-2xl mx-auto">
               Your support helps us create transformative experiences for student entrepreneurs.
               Whether through financial sponsorship, mentorship opportunities, or event partnerships,
               your involvement makes a real difference in the lives of aspiring entrepreneurs.
@@ -172,7 +172,7 @@ export default function JoinUs() {
 
               <div>
                 <h4 className="font-serif font-bold text-xl text-black lowercase tracking-tight mb-2">join the team.</h4>
-                <p className="text-base text-black/60">
+                <p className="text-base text-[#0f0f0f]">
                   It takes a diverse set of skills to run UW's premier entrepreneurship
                   organization: we need programmers, designers, managers, salespeople, artists, planners, and more.
                   Applications to join our executive board open each spring quarter.
@@ -225,7 +225,7 @@ export default function JoinUs() {
               <div className="space-y-8 mt-12">
                 <div>
                   <h4 className="font-serif font-bold text-xl text-black lowercase tracking-tight mb-2">mentor our members</h4>
-                  <p className="text-base text-black/60">
+                  <p className="text-base text-[#0f0f0f]">
                     Share your expertise and guide the next generation of entrepreneurs.
                     Whether it's through one-on-one mentoring, workshop facilitation, or project guidance, your insights are invaluable.
                   </p>
@@ -233,7 +233,7 @@ export default function JoinUs() {
 
                 <div>
                   <h4 className="font-serif font-bold text-xl text-black lowercase tracking-tight mb-2">connect us with your company</h4>
-                  <p className="text-base text-black/60">
+                  <p className="text-base text-[#0f0f0f]">
                     If you think your employer would like to sponsor Lavin,
                     connecting us with a member of your recruiting or university recruiting team is the first step to make that happen.
                   </p>
@@ -241,7 +241,7 @@ export default function JoinUs() {
 
                 <div>
                   <h4 className="font-serif font-bold text-xl text-black lowercase tracking-tight mb-2">speak at our events</h4>
-                  <p className="text-base text-black/60">
+                  <p className="text-base text-[#0f0f0f]">
                     If you think you or someone you know would be a standout speaker
                     at our events, we'd love to hear from you!
                   </p>
@@ -319,7 +319,7 @@ function SponsorCard({ sponsor }) {
         <h3 className="text-2xl font-serif font-bold text-black lowercase tracking-tight mb-2">{sponsor.name}</h3>
         <p className="text-sm tracking-widest uppercase font-bold text-black/40 mb-4">{sponsor.category}</p>
       </div>
-      <p className="text-black/60 text-sm font-sans leading-relaxed pt-6 border-t border-black/10">{sponsor.description}</p>
+      <p className="text-[#0f0f0f] text-sm font-sans leading-relaxed pt-6 border-t border-black/10">{sponsor.description}</p>
     </div>
   );
 } 

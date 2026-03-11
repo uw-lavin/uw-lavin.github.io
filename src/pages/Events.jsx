@@ -77,7 +77,7 @@ export default function Events() {
                 </div>
               </div>
 
-              <p className="text-base md:text-lg text-[#555] italic leading-relaxed max-w-2xl font-serif w-full">
+              <p className="text-base md:text-lg text-[#0f0f0f] italic leading-relaxed max-w-2xl font-serif w-full">
                 Come grab your cash before judging starts at 6! First come first serve!
               </p>
             </div>
@@ -114,7 +114,7 @@ export default function Events() {
                 </div>
               </div>
 
-              <p className="text-base md:text-lg text-[#555] italic leading-relaxed max-w-2xl font-serif w-full">
+              <p className="text-base md:text-lg text-[#0f0f0f] italic leading-relaxed max-w-2xl font-serif w-full">
                 Join us for the required quarterly All Student Meeting.
               </p>
             </div>
@@ -152,11 +152,11 @@ export default function Events() {
               {/* Metadata Row */}
               <div className="flex flex-col md:flex-row md:items-center justify-between w-full mb-4">
                 <div className="text-[14px] md:text-[15px] font-bold font-mono tracking-wider uppercase text-black">
-                  ALL WKND &nbsp;&middot;&nbsp; HUB Lyceum, Upper Campus
+                  ALL WKND &nbsp;&middot;&nbsp; HUB Lyceum
                 </div>
               </div>
 
-              <p className="text-base md:text-lg text-[#555] italic leading-relaxed max-w-2xl font-serif w-full">
+              <p className="text-base md:text-lg text-[#0f0f0f] italic leading-relaxed max-w-2xl font-serif w-full">
                 This is where UW's most ambitious students stop thinking about a startup and start building it.
               </p>
             </div>
@@ -189,12 +189,12 @@ export default function Events() {
               {/* Metadata Row */}
               <div className="flex flex-col md:flex-row md:items-center justify-between w-full mb-4">
                 <div className="text-[14px] md:text-[15px] font-bold font-mono tracking-wider uppercase text-black">
-                  TBD &nbsp;&middot;&nbsp; HUB Lyceum, Upper Campus
+                  4:00 PM &nbsp;&middot;&nbsp; HUB Lyceum
                 </div>
               </div>
 
-              <p className="text-base md:text-lg text-[#555] italic leading-relaxed max-w-2xl font-serif w-full">
-                Connect with the fastest growing engineering startups in Seattle.
+              <p className="text-base md:text-lg text-[#0f0f0f] italic leading-relaxed max-w-2xl font-serif w-full">
+                Exclusive career fair for Lavin and AIMS members. Connect with the fastest growing engineering startups in Seattle ACTUALLY seeking UW engineering talent.
               </p>
             </div>
           </motion.div>

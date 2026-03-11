@@ -86,7 +86,7 @@ const ChromaGrid = ({
           key={i}
           onMouseMove={handleCardMove}
           onClick={() => handleCardClick(c.url)}
-          className="group relative flex flex-col w-[280px] h-[400px] rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
+          className="group relative flex flex-col w-[280px] h-[400px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
           style={
             {
               "--card-border": c.borderColor || "transparent",
@@ -107,7 +107,7 @@ const ChromaGrid = ({
               src={c.image}
               alt={c.title}
               loading="lazy"
-              className="w-full h-full object-cover rounded-[10px]"
+              className="w-full h-full object-cover"
             />
           </div>
           <footer className="relative z-10 p-3 text-white font-sans grid grid-cols-[1fr_auto] gap-x-3 gap-y-1">

@@ -125,7 +125,7 @@ export default function Gallery() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className="mb-4 bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+                  className="mb-4 bg-white overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
                 >
                   <img
                     src={img.src}
