@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import Masonry from 'react-masonry-css';
-import CircularGallery from '../components/visuals/CircularGallery';
 import { fadeUp } from '../lib/animations';
 
 // Import gallery images
@@ -40,15 +39,6 @@ const images = [
   { src: img9, title: "Welcome Reception Fall 2023" },
 ];
 
-// Sample images for the most recent event (CircularGallery)
-const recentEventImages = [
-  { image: img10 },
-  { image: img11 },
-  { image: img12 },
-  { image: img13 },
-  { image: img14 },
-  { image: img15 },
-];
 
 
 
@@ -79,30 +69,6 @@ export default function Gallery() {
 
       <div className="w-full border-t border-black/10" />
 
-      {/* ---------- Section 2: Recent Event Circular Gallery ---------- */}
-      {/*<section className="bg-white px-6image.png md:px-12 py-5">
-        <div className="w-full">
-          <motion.div 
-            variants={fadeUp} 
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: true }}
-          >
-            
-            <div style={{ height: '600px', position: 'relative' }}>
-              <CircularGallery 
-                items={recentEventImages}
-                bend={1}
-                textColor="#545050"
-                borderRadius={0.05}
-                font="bold 24px Figtree"
-                scrollSpeed={0.5}
-                scrollEase={0.08}
-              />
-            </div>
-          </motion.div>
-        </div>
-      </section>*/}
 
       {/* ---------- Section 3: Photo Gallery ---------- */}
       <section className="bg-white px-4 md:px-8 py-5">

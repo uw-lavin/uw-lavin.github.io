@@ -1,12 +1,9 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import LeonardLavin from '../assets/LeonardLavin.jpeg';
 import LogoMarquee from '../components/ui/LogoMarquee';
-import RotatingTestimonial from '../components/ui/RotatingTestimonials';
 import CountUp from '../components/ui/CountUp';
 import InfoCard from '../components/ui/InfoCard';
-import StatCard from '../components/ui/StatCard';
 import { fadeUp } from '../lib/animations';
 
 // Alumni-founded startups, linked to their YC profiles where they have one.

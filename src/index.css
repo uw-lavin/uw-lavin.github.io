@@ -1,11 +1,11 @@
+/* Encode Sans is the Lavin logo typeface (headings + labels).
+   Open Sans is body copy. These two are the whole type system. */
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
-
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles for the Lavin site */
 body {
   font-family: 'Open Sans', sans-serif;
   overflow-x: hidden;
@@ -15,79 +15,37 @@ html {
   overflow-x: hidden;
 }
 
-/* Headings: use font-display (Encode Sans, the logo typeface) or .display / .h2 */
-
-/* ========== Global design system (Framer-like editorial) ========== */
 @layer components {
-  /* Layout / background */
+  /* Page shell, applied once in App.jsx. */
   .page {
     @apply min-h-screen;
     background-color: #f7f8fa;
     color: #111;
   }
+
+  /* Standard centred gutter. */
   .container-x {
     @apply mx-auto max-w-7xl px-4 md:px-8 lg:px-12;
   }
-  .section-y {
-    @apply py-16 md:py-24;
-  }
 
-  /* Typography */
-  .display {
-    @apply font-display leading-[0.95] tracking-tight lg:tracking-normal text-5xl md:text-7xl lg:text-8xl;
-  }
-  .h2 {
-    @apply font-display text-3xl md:text-4xl leading-tight;
-  }
+  /* Muted body paragraph. */
   .body {
     @apply font-sans text-base md:text-lg leading-relaxed text-black/70;
   }
-  .kicker {
-    @apply text-xs uppercase tracking-wider text-black/60;
-  }
 
-  /* Surfaces */
+  /* Light surface used by InfoCard. */
   .card {
     @apply border border-black/5 bg-white/80 shadow-sm backdrop-blur-md;
   }
-  .sheet {
-    @apply bg-[#f7f8fa] shadow-[0_-8px_40px_rgba(0,0,0,0.06)];
-  }
 
-  /* Buttons */
+  /* Solid dark call-to-action. */
   .btn-primary {
     @apply bg-black px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 ease-out hover:-translate-y-[2px] hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
   }
-  .btn-secondary {
-    @apply border border-black/10 bg-white/90 px-8 py-3 font-semibold text-black shadow-sm transition-all duration-300 ease-out hover:-translate-y-[2px] hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
-  }
-}
-
-/* FullCalendar custom styles */
-.fc {
-  font-family: inherit !important;
-}
-
-.fc-toolbar-title {
-  font-weight: bold !important;
-  color: #000 !important;
-}
-
-.fc-button {
-  background-color: #3B82F6 !important;
-  border-color: #3B82F6 !important;
-}
-
-.fc-button:hover {
-  background-color: #2563EB !important;
-  border-color: #2563EB !important;
-}
-
-.fc-button:focus {
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5) !important;
 }
 
 @layer utilities {
+  /* Continuous logo marquee on the home page. */
   .scroll-banner {
     animation: scroll 30s linear infinite;
   }
@@ -102,20 +60,6 @@ html {
   }
 }
 
-@keyframes fade-slide {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
-
-.animate-fade-slide {
-  animation: fade-slide 0.4s ease-out;
-}
 /* Respect users who ask the OS for less motion. */
 @media (prefers-reduced-motion: reduce) {
   *,
