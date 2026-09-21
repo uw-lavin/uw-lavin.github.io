@@ -59,12 +59,17 @@ export default function Recruitment() {
           </motion.div>
 
           <div className="mt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-12 w-full">
-            <a
-              href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors"
-              className="px-7 py-3 bg-[#0f0f0f] text-white font-sans text-sm font-semibold hover:bg-black/80 transition-colors whitespace-nowrap"
-            >
-              Apply Now
-            </a>
+            <div className="flex flex-col items-start gap-2.5">
+              <a
+                href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors"
+                className="px-7 py-3 bg-[#0f0f0f] text-white font-sans text-sm font-semibold hover:bg-black/80 transition-colors whitespace-nowrap"
+              >
+                Apply Now
+              </a>
+              <p className="text-[11px] md:text-xs font-display font-bold tracking-[0.12em] uppercase text-[#0f0f0f]/70">
+                Closes Sun, Oct 11 &middot; 11:59 PM
+              </p>
+            </div>
             <p className="text-[14px] text-[#0f0f0f] italic font-sans md:text-right max-w-sm">
               Open to all UW undergrads with 3+ years remaining. No business experience required.
             </p>
@@ -112,7 +117,7 @@ export default function Recruitment() {
               <TimelineNode
                 date="SEPTEMBER 2026 — OPEN NOW"
                 title="application open"
-                desc="The application is live. Submissions close in early October."
+                desc="The application is live. Submissions close Sunday, October 11 at 11:59 PM."
                 align="left"
               />
               <TimelineNode
@@ -208,7 +213,7 @@ export default function Recruitment() {
             viewport={{ once: true }}
             className="text-[18px] md:text-[20px] text-[#0f0f0f] italic font-sans mb-12"
           >
-            Applications are open now. Join the Lavin community.
+            Applications are open now and close Sunday, October 11 at 11:59 PM.
           </motion.p>
 
           <motion.a
