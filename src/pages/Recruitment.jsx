@@ -52,12 +52,9 @@ export default function Recruitment() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-10 inline-flex w-fit items-center gap-3 bg-spirit-gold px-5 py-3 text-sm md:text-base font-display font-black tracking-[0.18em] uppercase text-[#0f0f0f] shadow-md animate-status-pulse motion-reduce:animate-none"
+            className="mt-10 inline-flex w-fit items-center gap-2.5 bg-[#a69041] px-5 py-3 text-sm md:text-base font-display font-black tracking-[0.18em] uppercase text-[#0f0f0f]"
           >
-            <span className="relative flex h-2.5 w-2.5 shrink-0">
-              <span className="absolute inline-flex h-full w-full animate-status-ring motion-reduce:animate-none rounded-full bg-[#0f0f0f]" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#0f0f0f]" />
-            </span>
+            <span className="h-2 w-2 shrink-0 rounded-full bg-[#0f0f0f] animate-status-dot motion-reduce:animate-none" />
             Applications open now
           </motion.div>
 

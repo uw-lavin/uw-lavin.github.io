@@ -11,21 +11,15 @@ export default {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-50%)' },
         },
-        // Status marker: fast expanding ring + the chip itself breathing.
-        'status-ring': {
-          '0%': { transform: 'scale(1)', opacity: '0.9' },
-          '70%': { transform: 'scale(3.2)', opacity: '0' },
-          '100%': { transform: 'scale(3.2)', opacity: '0' },
-        },
-        'status-pulse': {
-          '0%, 100%': { transform: 'scale(1)', boxShadow: '0 0 0 0 rgba(255, 199, 0, 0.75)' },
-          '50%': { transform: 'scale(1.035)', boxShadow: '0 0 0 16px rgba(255, 199, 0, 0)' },
+        // Status marker: one slow, quiet fade on the dot. Nothing moves.
+        'status-dot': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.3' },
         },
       },
       animation: {
         marquee: 'scroll 30s linear infinite',
-        'status-ring': 'status-ring 1.1s cubic-bezier(0, 0, 0.2, 1) infinite',
-        'status-pulse': 'status-pulse 1.6s ease-in-out infinite',
+        'status-dot': 'status-dot 2.8s ease-in-out infinite',
       },
       colors: {
         'husky-purple': '#32006e',

@@ -9,6 +9,55 @@ import InfoCard from '../components/ui/InfoCard';
 import StatCard from '../components/ui/StatCard';
 import { fadeUp } from '../lib/animations';
 
+// Alumni-founded startups, linked to their YC profiles where they have one.
+const alumniStartups = [
+  {
+    name: 'vly.ai',
+    note: 'YC F24 — acquired by Freebuff',
+    href: 'https://www.ycombinator.com/companies/vly-ai-2',
+  },
+  {
+    name: 'HERA',
+    note: 'YC S26',
+    href: 'https://www.ycombinator.com/companies/manufacturingintelligence',
+  },
+  {
+    name: 'Moonshot',
+    note: 'YC S26',
+    href: 'https://www.ycombinator.com/companies/moonshot-computer',
+  },
+  {
+    name: 'toasted seattle',
+    note: null,
+    href: 'https://toastedseattle.com/',
+  },
+];
+
+function StartupLinks({ className = '' }) {
+  return (
+    <div className={`flex flex-col gap-4 w-fit ${className}`}>
+      {alumniStartups.map((co) => (
+        <a
+          key={co.name}
+          href={co.href}
+          target="_blank"
+          rel="noreferrer"
+          className="group flex flex-col items-start"
+        >
+          <span className="text-lg md:text-xl font-display font-black text-black/80 border-b border-[#a69041]/30 group-hover:text-[#a69041] group-hover:border-[#a69041] transition-colors pb-0.5">
+            {co.name}
+          </span>
+          {co.note && (
+            <span className="mt-1 text-[10px] md:text-[11px] font-display font-bold tracking-[0.12em] uppercase text-[#a69041]">
+              {co.note}
+            </span>
+          )}
+        </a>
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   const navigate = useNavigate();
   const heroRef = useRef(null);
@@ -113,12 +162,9 @@ export default function Home() {
             >
               <button
                 onClick={() => navigate('/recruitment')}
-                className="inline-flex w-fit items-center gap-3 bg-spirit-gold px-5 py-3 text-sm md:text-base font-display font-black tracking-[0.18em] uppercase text-[#0f0f0f] shadow-md hover:bg-[#e6b400] transition-colors animate-status-pulse motion-reduce:animate-none"
+                className="inline-flex w-fit items-center gap-2.5 bg-[#a69041] px-5 py-3 text-sm md:text-base font-display font-black tracking-[0.18em] uppercase text-[#0f0f0f] hover:bg-[#8f7c37] transition-colors"
               >
-                <span className="relative flex h-2.5 w-2.5 shrink-0">
-                  <span className="absolute inline-flex h-full w-full animate-status-ring motion-reduce:animate-none rounded-full bg-[#0f0f0f]" />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#0f0f0f]" />
-                </span>
+                <span className="h-2 w-2 shrink-0 rounded-full bg-[#0f0f0f] animate-status-dot motion-reduce:animate-none" />
                 Applications open now
               </button>
 
@@ -175,7 +221,7 @@ export default function Home() {
           <div className="w-full text-center flex flex-col items-center justify-center gap-y-1 sm:gap-y-2 lg:gap-y-4">
             <motion.div className="overflow-hidden pb-4" initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <motion.div variants={{ hidden: { y: "110%" }, visible: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 } } }}>
-                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
+                <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl font-display font-bold text-[#0f0f0f] leading-[1.3] tracking-tight">
                   The Lavin Entrepreneurship Program
                 </span>
               </motion.div>
@@ -183,7 +229,7 @@ export default function Home() {
 
             <motion.div className="overflow-hidden pb-4" initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <motion.div variants={{ hidden: { y: "110%" }, visible: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.25 } } }}>
-                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
+                <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl font-display font-bold text-[#0f0f0f] leading-[1.3] tracking-tight">
                   is a highly-competitive, endowed program
                 </span>
               </motion.div>
@@ -191,7 +237,7 @@ export default function Home() {
 
             <motion.div className="overflow-hidden pb-4" initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <motion.div variants={{ hidden: { y: "110%" }, visible: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 } } }}>
-                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
+                <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl font-display font-bold text-[#0f0f0f] leading-[1.3] tracking-tight">
                   for undergraduate entrepreneurs from all
                 </span>
               </motion.div>
@@ -199,7 +245,7 @@ export default function Home() {
 
             <motion.div className="overflow-hidden pb-4" initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <motion.div variants={{ hidden: { y: "110%" }, visible: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.55 } } }}>
-                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
+                <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl font-display font-bold text-[#0f0f0f] leading-[1.3] tracking-tight">
                   majors and disciplines across campus.
                 </span>
               </motion.div>
@@ -318,6 +364,8 @@ export default function Home() {
                   <p className="mt-2 text-base md:text-lg text-black/50 font-sans tracking-wide max-w-lg mb-6">
                     companies built by Lavin founders
                   </p>
+                  {/* Phone: the desktop list is absolutely positioned and hidden here. */}
+                  <StartupLinks className="md:hidden mb-2" />
                 </motion.div>
               </div>
 
@@ -329,16 +377,7 @@ export default function Home() {
                 transition={{ duration: 1, delay: 0.8 }}
                 className="hidden md:flex absolute right-0 top-0 bottom-0 w-[36%] items-center justify-end"
               >
-                <div className="flex flex-col gap-5 relative z-20 w-fit pointer-events-auto">
-                  <a href="https://vly.ai/" target="_blank" rel="noreferrer" className="group flex items-center gap-3">
-                    <span className="text-2xl md:text-3xl lg:text-4xl font-display font-black text-black/80 border-b border-[#a69041]/30 group-hover:text-[#a69041] group-hover:border-[#a69041] transition-colors pb-1">vly.ai</span>
-                    <span className="text-[#a69041] font-sans font-bold text-sm tracking-widest uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">YC W24 &rarr;</span>
-                  </a>
-                  <a href="https://toastedseattle.com/" target="_blank" rel="noreferrer" className="group flex items-center gap-3">
-                    <span className="text-2xl md:text-3xl lg:text-4xl font-display font-black text-black/80 border-b border-[#a69041]/30 group-hover:text-[#a69041] group-hover:border-[#a69041] transition-colors pb-1">toasted seattle</span>
-                    <span className="text-[#a69041] font-sans font-bold text-sm tracking-widest uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">&rarr;</span>
-                  </a>
-                </div>
+<StartupLinks className="relative z-20 pointer-events-auto" />
               </motion.div>
             </div>
 
