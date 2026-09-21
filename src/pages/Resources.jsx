@@ -98,7 +98,7 @@ export default function Resources() {
     return (
       <div className="w-full">
         {/* ---------- Hero Section ---------- */}
-        <section className="bg-slate-50 px-6 md:px-12 pt-10 pb-10 md:pt-12 md:pb-12">
+        <section className="bg-slate-50 px-6 md:px-12 pt-6 pb-8 md:pt-10 md:pb-10">
           <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
             <motion.h1
               variants={fadeUp}
@@ -175,7 +175,7 @@ export default function Resources() {
   return (
     <div className="w-full">
       {/* ---------- Hero Section ---------- */}
-      <section className="bg-slate-50 px-6 md:px-12 pt-10 pb-10 md:pt-12 md:pb-12 relative">
+      <section className="bg-slate-50 px-6 md:px-12 pt-6 pb-8 md:pt-10 md:pb-10 relative">
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
           <div className="absolute top-8 right-8 z-20">
             <motion.button

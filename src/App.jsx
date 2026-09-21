@@ -24,7 +24,7 @@ function AppContent() {
   return (
     <div className="page flex flex-col">
       <Navbar />
-      <main className={`flex-1 ${isHome ? '' : 'pt-28 md:pt-32'}`}>
+      <main className={`flex-1 ${isHome ? '' : 'pt-16 md:pt-24'}`}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/recruitment" element={<Recruitment />} />

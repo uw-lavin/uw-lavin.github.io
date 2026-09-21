@@ -17,7 +17,7 @@ export default function Recruitment() {
     <div className="w-full bg-[#f8f7f4] min-h-screen font-sans">
 
       {/* ---------- HERO SECTION ---------- */}
-      <section className="px-6 md:px-12 pt-28 md:pt-32 pb-12 w-full border-b border-black/10">
+      <section className="px-6 md:px-12 pt-6 md:pt-10 pb-10 md:pb-12 w-full border-b border-black/10">
         <div className="max-w-7xl mx-auto flex flex-col w-full">
 
           <motion.div
@@ -29,7 +29,7 @@ export default function Recruitment() {
             RECRUITMENT — UW SEATTLE
           </motion.div>
 
-          <div className="flex flex-col md:flex-row items-end justify-between w-full gap-8">
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between w-full gap-3 md:gap-8">
             <motion.h1
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -52,11 +52,11 @@ export default function Recruitment() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-10 inline-flex w-fit items-center gap-3 bg-[#00A651] px-5 py-3 text-sm md:text-base font-display font-black tracking-[0.18em] uppercase text-white shadow-md"
+            className="mt-10 inline-flex w-fit items-center gap-3 bg-spirit-gold px-5 py-3 text-sm md:text-base font-display font-black tracking-[0.18em] uppercase text-[#0f0f0f] shadow-md animate-status-pulse motion-reduce:animate-none"
           >
             <span className="relative flex h-2.5 w-2.5 shrink-0">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white" />
+              <span className="absolute inline-flex h-full w-full animate-status-ring motion-reduce:animate-none rounded-full bg-[#0f0f0f]" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#0f0f0f]" />
             </span>
             Applications open now
           </motion.div>

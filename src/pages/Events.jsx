@@ -42,23 +42,23 @@ export default function Events() {
     <div className="w-full bg-[#f8f7f4] min-h-screen font-sans text-[#0f0f0f]">
 
       {/* ---------- Header / Masthead ---------- */}
-      <section className="px-6 md:px-12 pt-28 md:pt-32 pb-12 w-full border-b border-black/10">
+      <section className="px-6 md:px-12 pt-6 md:pt-8 pb-6 md:pb-8 w-full border-b border-black/10">
         <div className="max-w-7xl mx-auto flex flex-col w-full">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.5 }}
             transition={{ duration: 1 }}
-            className="text-[11px] font-display font-semibold tracking-[0.3em] uppercase text-black mb-6"
+            className="text-[10px] font-display font-semibold tracking-[0.2em] uppercase text-black mb-3"
           >
             UPCOMING EVENTS
           </motion.div>
 
-          <div className="flex flex-col md:flex-row items-end justify-between w-full gap-8">
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between w-full gap-3 md:gap-8">
             <motion.h1
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="font-display font-black leading-[0.85] tracking-tight text-[#0f0f0f] text-[13vw] sm:text-6xl md:text-7xl lg:text-8xl flex-shrink-0"
+              className="font-display font-black leading-[0.85] tracking-tight text-[#0f0f0f] text-[12vw] sm:text-5xl md:text-6xl lg:text-7xl flex-shrink-0"
             >
               EVENTS.
             </motion.h1>
@@ -76,7 +76,7 @@ export default function Events() {
 
       {/* ---------- Events List Section ---------- */}
       <section className="w-full">
-        <div className="max-w-7xl mx-auto flex flex-col px-6 md:px-12 py-12 md:py-20">
+        <div className="max-w-5xl mx-auto flex flex-col px-6 md:px-12 py-6 md:py-8">
           {events.map((event) => (
             <motion.article
               key={`${event.month}-${event.day}-${event.title}`}
@@ -84,29 +84,29 @@ export default function Events() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-10%" }}
-              className="group relative flex flex-col md:flex-row w-full border-b border-[#e0ddd8] py-8 md:py-10 transition-all duration-200 hover:pl-4 border-l-[3px] border-l-transparent hover:border-l-[#3b2c5a]"
+              className="group relative flex flex-col md:flex-row w-full border-b border-[#e0ddd8] py-6 md:py-7 transition-all duration-200 hover:pl-4 border-l-[3px] border-l-transparent hover:border-l-[#3b2c5a]"
             >
               {/* Date Column */}
-              <div className="w-full md:w-[220px] lg:w-[280px] md:pr-8 lg:pr-12 flex items-start shrink-0 md:border-r border-[#e0ddd8] pt-1">
-                <span className="text-xs md:text-sm font-display tracking-[0.2em] font-bold uppercase text-black mt-[0.9em] md:mt-[1.1em] mr-2">
+              <div className="w-full md:w-[130px] lg:w-[150px] md:pr-6 flex items-start shrink-0 md:border-r border-[#e0ddd8] pt-1">
+                <span className="text-[10px] md:text-xs font-display tracking-[0.15em] font-bold uppercase text-black mt-[1em] md:mt-[1.15em] mr-1.5">
                   {event.month}
                 </span>
-                <span className="text-6xl md:text-7xl font-display font-black tracking-tight leading-[0.85] text-[#0f0f0f] group-hover:text-[#3b2c5a] transition-colors duration-200">
+                <span className="text-4xl md:text-5xl font-display font-black tracking-tight leading-[0.85] text-[#0f0f0f] group-hover:text-[#3b2c5a] transition-colors duration-200">
                   {event.day}
                 </span>
               </div>
 
               {/* Content Column */}
-              <div className="flex-1 flex flex-col items-start md:pl-10 min-w-0 mt-4 md:mt-0 w-full">
-                <h2 className="text-2xl md:text-3xl font-display font-bold tracking-tight mb-3 text-[#0f0f0f] break-words w-full">
+              <div className="flex-1 flex flex-col items-start md:pl-8 min-w-0 mt-3 md:mt-0 w-full">
+                <h2 className="text-xl md:text-2xl font-display font-bold tracking-tight mb-1.5 text-[#0f0f0f] break-words w-full">
                   {event.title}
                 </h2>
 
-                <div className="text-[13px] md:text-sm font-display font-bold tracking-wider uppercase text-black mb-4">
+                <div className="text-[11px] md:text-xs font-display font-bold tracking-wider uppercase text-black/70 mb-2.5">
                   {event.weekday} &nbsp;&middot;&nbsp; {event.time} &nbsp;&middot;&nbsp; {event.location}
                 </div>
 
-                <p className="text-base md:text-lg text-black/70 leading-relaxed max-w-2xl font-sans w-full">
+                <p className="text-sm md:text-base text-black/70 leading-relaxed max-w-2xl font-sans w-full">
                   {event.desc}
                 </p>
               </div>

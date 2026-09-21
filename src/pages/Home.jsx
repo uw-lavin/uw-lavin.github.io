@@ -47,10 +47,10 @@ export default function Home() {
                 hidden: { opacity: 0 },
                 visible: { opacity: 1, transition: { duration: 0.8, delay: 0 } }
               }}
-              className="text-[9px] md:text-[11px] font-display tracking-[0.3em] uppercase text-[#0f0f0f]"
+              className="text-[8px] md:text-[9px] font-display font-medium tracking-[0.18em] uppercase text-[#0f0f0f]/70"
             >
-              <span className="md:hidden font-bold">LAVIN</span><span className="md:hidden"> — UW SEATTLE — 1996</span>
-              <span className="hidden md:inline font-bold">LAVIN ENTREPRENEURSHIP PROGRAM</span><span className="hidden md:inline"> — UW SEATTLE</span>
+              <span className="md:hidden font-semibold">LAVIN</span><span className="md:hidden"> — UW SEATTLE — 1996</span>
+              <span className="hidden md:inline font-semibold">LAVIN ENTREPRENEURSHIP PROGRAM</span><span className="hidden md:inline"> — UW SEATTLE</span>
             </motion.div>
             <motion.div
               initial="hidden"
@@ -65,7 +65,7 @@ export default function Home() {
 
           {/* Main Manifesto Text */}
           <div className="flex-1 flex flex-col justify-center items-start w-full">
-            <div className="font-display font-black leading-[0.95] md:leading-[1.0] tracking-tighter text-[#0f0f0f] text-[12vw] sm:text-[11vw] md:text-[11vw] lg:text-[10vw] overflow-hidden">
+            <div className="font-display font-black leading-[0.95] md:leading-[1.0] tracking-tighter text-[#0f0f0f] text-[12vw] sm:text-[11vw] md:text-[11vw] lg:text-[10vw] pr-[3vw]">
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -83,7 +83,7 @@ export default function Home() {
                   hidden: { y: 40, opacity: 0 },
                   visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: 0.6, ease: [0.33, 1, 0.68, 1] } }
                 }}
-                className="md:ml-[4vw]"
+                className="md:ml-[2vw]"
               >
                 INNOVATE<span className="text-[#3b2c5a]">.</span>
               </motion.div>
@@ -113,11 +113,11 @@ export default function Home() {
             >
               <button
                 onClick={() => navigate('/recruitment')}
-                className="inline-flex w-fit items-center gap-3 bg-[#00A651] px-5 py-3 text-sm md:text-base font-display font-black tracking-[0.18em] uppercase text-white shadow-md hover:bg-[#00933f] transition-colors"
+                className="inline-flex w-fit items-center gap-3 bg-spirit-gold px-5 py-3 text-sm md:text-base font-display font-black tracking-[0.18em] uppercase text-[#0f0f0f] shadow-md hover:bg-[#e6b400] transition-colors animate-status-pulse motion-reduce:animate-none"
               >
                 <span className="relative flex h-2.5 w-2.5 shrink-0">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white" />
+                  <span className="absolute inline-flex h-full w-full animate-status-ring motion-reduce:animate-none rounded-full bg-[#0f0f0f]" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#0f0f0f]" />
                 </span>
                 Applications open now
               </button>
@@ -208,12 +208,12 @@ export default function Home() {
         </div>
 
         {/* 2. Stats - Editorial Layout */}
-        <div className="py-12 md:py-16 text-black w-full font-display overflow-hidden">
-          <div className="container-x w-full flex flex-col gap-y-4 md:gap-y-10">
+        <div className="py-8 md:py-12 text-black w-full font-display overflow-hidden">
+          <div className="mx-auto w-full max-w-4xl px-6 md:px-8 flex flex-col gap-y-2 md:gap-y-6">
 
             {/* Stat 1: HUNDREDS (Left aligned) */}
-            <div className="w-full relative flex flex-col justify-start overflow-visible py-4 md:py-6 group">
-              <div className="w-full md:w-1/2 border-l-4 border-gray-900 pl-6 md:pl-8 z-10">
+            <div className="w-full relative flex flex-col justify-start overflow-visible py-2 md:py-4 group">
+              <div className="w-full md:w-[62%] border-l-4 border-gray-900 pl-6 md:pl-8 z-10">
                 <div className="text-[10vw] md:text-[7vw] font-display font-black leading-[0.85] tracking-tight text-gray-900 flex flex-nowrap pb-2 whitespace-nowrap">
                   {"HUNDREDS".split("").map((letter, i) => (
                     <motion.span
@@ -246,14 +246,14 @@ export default function Home() {
             </div>
 
             {/* Stat 2: 30 Years (Right aligned) */}
-            <div className="w-full relative flex flex-col justify-end overflow-visible py-4 md:py-6 mt-8 md:mt-0">
+            <div className="w-full relative flex flex-col justify-end overflow-visible py-2 md:py-4 mt-4 md:mt-0">
               {/* Ghost Context (Left side) - Leonard Lavin tribute */}
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 1, delay: 0.8 }}
-                className="hidden md:flex absolute left-0 top-0 bottom-0 w-1/2 items-center pointer-events-none pl-8 lg:pl-16"
+                className="hidden md:flex absolute left-0 top-0 bottom-0 w-[36%] items-center pointer-events-none"
               >
                 <div className="flex flex-col gap-2">
                   <div className="text-[10px] font-display tracking-[0.25em] uppercase text-[#0f0f0f] font-bold">
@@ -268,7 +268,7 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              <div className="w-full md:w-1/2 border-r-4 border-[#3b2c5a] pr-6 md:pr-8 text-right flex flex-col items-end z-10 ml-auto">
+              <div className="w-full md:w-[62%] border-r-4 border-[#3b2c5a] pr-6 md:pr-8 text-right flex flex-col items-end z-10 ml-auto">
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -295,8 +295,8 @@ export default function Home() {
             </div>
 
             {/* Stat 3: 2 YC Backed (Left aligned) */}
-            <div className="w-full relative flex flex-col justify-start overflow-visible py-4 md:py-6 mt-8 md:mt-0">
-              <div className="w-full md:w-1/2 border-l-4 border-[#a69041] pl-6 md:pl-8 z-10">
+            <div className="w-full relative flex flex-col justify-start overflow-visible py-2 md:py-4 mt-4 md:mt-0">
+              <div className="w-full md:w-[62%] border-l-4 border-[#a69041] pl-6 md:pl-8 z-10">
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -327,7 +327,7 @@ export default function Home() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 1, delay: 0.8 }}
-                className="hidden md:flex absolute right-0 top-0 bottom-0 w-1/2 items-center pl-16 xl:pl-32"
+                className="hidden md:flex absolute right-0 top-0 bottom-0 w-[36%] items-center justify-end"
               >
                 <div className="flex flex-col gap-5 relative z-20 w-fit pointer-events-auto">
                   <a href="https://vly.ai/" target="_blank" rel="noreferrer" className="group flex items-center gap-3">

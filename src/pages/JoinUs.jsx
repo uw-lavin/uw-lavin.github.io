@@ -44,7 +44,7 @@ export default function JoinUs() {
   return (
     <div className="w-full">
       {/* ---------- Section 1: Hero / Overview ---------- */}
-      <section className="relative bg-slate-50 px-6 md:px-12 pt-10 pb-10 md:pt-12 md:pb-12">
+      <section className="relative bg-slate-50 px-6 md:px-12 pt-6 pb-8 md:pt-10 md:pb-10">
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <h1 className="text-black font-display font-black leading-[0.9] text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4 md:mb-6 lowercase">
