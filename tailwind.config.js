@@ -25,11 +25,12 @@ export default {
         'accent-pink': '#e93cac',
         'accent-lavender': '#c5b4e3',
       },
+      // Two families only:
+      //   font-display -> Encode Sans, the Lavin logo typeface (headings + labels)
+      //   font-sans    -> Open Sans (body copy)
       fontFamily: {
         sans: ['"Open Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        slab: ['"Roboto Slab"', 'serif'],
-        // Bookmania as primary display serif; use font-display or .display / .h2
-        display: ['Bookmania', 'ui-serif', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
+        display: ['"Encode Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       }
     },
   },

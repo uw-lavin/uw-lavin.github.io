@@ -35,7 +35,7 @@ export default function RotatingTestimonial() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.6 }}
-          className="absolute w-full text-neutral-600 italic text-md text-center px-4 font-slab"
+          className="absolute w-full text-neutral-600 italic text-md text-center px-4 font-display"
         >
           {/* Quote */}
           <p className="text-lg text-neutral-800 italic leading-relaxed">

@@ -74,7 +74,7 @@ export default function Navbar() {
         className="lg:hidden w-full h-[48px] bg-[#f8f7f4] border-b border-[#e0ddd8] flex items-center justify-between px-6 pointer-events-auto -mt-1"
       >
         {/* Mobile: Logo */}
-        <span className="text-[12px] font-mono tracking-[0.25em] opacity-70 uppercase text-[#0f0f0f] mt-[2px]">
+        <span className="text-[12px] font-display tracking-[0.25em] opacity-70 uppercase text-[#0f0f0f] mt-[2px]">
           LAVIN
         </span>
 

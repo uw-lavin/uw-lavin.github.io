@@ -70,7 +70,7 @@ export default function Gallery() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-black font-serif font-black leading-[0.9] text-5xl md:text-7xl lg:text-[7.5rem] tracking-tighter drop-shadow-sm mb-4 md:mb-6 lowercase"
+            className="text-black font-display font-black leading-[0.9] text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4 md:mb-6 lowercase"
           >
             memories
           </motion.h1>

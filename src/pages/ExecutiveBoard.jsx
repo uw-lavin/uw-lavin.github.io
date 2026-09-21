@@ -125,7 +125,7 @@ export default function ExecutiveBoard() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-black font-serif font-black leading-[0.9] text-[10vw] sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter drop-shadow-sm mb-4 md:mb-6 lowercase whitespace-nowrap"
+            className="text-black font-display font-black leading-[0.9] text-[7vw] sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4 md:mb-6 lowercase whitespace-nowrap"
           >
             25/26 executive board
           </motion.h1>
@@ -175,10 +175,10 @@ export default function ExecutiveBoard() {
 
                   {/* Always Visible Text Details */}
                   <div className="flex flex-col flex-1 pl-1">
-                    <h3 className="text-xl md:text-2xl font-serif font-bold text-[#0f0f0f] tracking-tight mb-2">
+                    <h3 className="text-xl md:text-2xl font-display font-bold text-[#0f0f0f] tracking-tight mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-[11px] font-mono tracking-[0.1em] uppercase text-[#0f0f0f]">
+                    <p className="text-[11px] font-display tracking-[0.1em] uppercase text-[#0f0f0f]">
                       {member.role}
                     </p>
                   </div>

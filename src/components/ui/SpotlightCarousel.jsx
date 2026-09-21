@@ -49,7 +49,7 @@ export default function SpotlightCarousel() {
   return (
     <div>
       <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-encode text-husky-purple mb-4">
+        <h2 className="text-2xl md:text-3xl text-husky-purple mb-4">
           What's happening in the Lavin community?
         </h2>
       </div>
@@ -62,10 +62,10 @@ export default function SpotlightCarousel() {
               <h3 className="text-lg md:text-xl font-semibold mb-2 text-husky-purple">
                 {slide.title}
               </h3>
-              <p className="italic text-neutral-700 mb-1 font-open text-sm md:text-base">
+              <p className="italic text-neutral-700 mb-1 text-sm md:text-base">
                 "{slide.subtitle}"
               </p>
-              <p className="text-xs md:text-sm text-neutral-500 font-open">
+              <p className="text-xs md:text-sm text-neutral-500">
                 {slide.caption}
               </p>
             </div>

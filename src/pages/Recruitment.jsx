@@ -24,7 +24,7 @@ export default function Recruitment() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.4 }}
             transition={{ duration: 1 }}
-            className="text-[11px] font-mono tracking-[0.3em] uppercase text-black mb-6"
+            className="text-[11px] font-display tracking-[0.3em] uppercase text-black mb-6"
           >
             RECRUITMENT — UW SEATTLE
           </motion.div>
@@ -34,7 +34,7 @@ export default function Recruitment() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="font-serif font-black leading-[0.8] tracking-tighter text-[#0f0f0f] text-[12vw] sm:text-[10vw] md:text-[8vw] flex-shrink-0"
+              className="font-display font-black leading-[0.8] tracking-tighter text-[#0f0f0f] text-[10vw] sm:text-5xl md:text-6xl lg:text-7xl flex-shrink-0"
             >
               RECRUITMENT<span className="text-[#c4622d]">.</span>
             </motion.h1>
@@ -42,7 +42,7 @@ export default function Recruitment() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="font-serif italic text-base md:text-lg text-black/60 pb-2 md:pb-4 md:text-right max-w-[200px]"
+              className="font-sans italic text-base md:text-lg text-black/60 pb-2 md:pb-4 md:text-right max-w-[200px]"
             >
               competitive.<br className="hidden md:block" /> cohort-based.<br className="hidden md:block" /> life-changing.
             </motion.div>
@@ -52,11 +52,11 @@ export default function Recruitment() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-10 flex items-center gap-2.5 text-[11px] font-mono font-bold tracking-[0.25em] uppercase text-[#0d6e5e]"
+            className="mt-10 inline-flex w-fit items-center gap-3 bg-[#00A651] px-5 py-3 text-sm md:text-base font-display font-black tracking-[0.18em] uppercase text-white shadow-md"
           >
-            <span className="relative flex h-2 w-2 shrink-0">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#0d6e5e] opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#0d6e5e]" />
+            <span className="relative flex h-2.5 w-2.5 shrink-0">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white" />
             </span>
             Applications open now
           </motion.div>
@@ -68,7 +68,7 @@ export default function Recruitment() {
             >
               Apply Now
             </a>
-            <p className="text-[14px] text-[#0f0f0f] italic font-serif md:text-right max-w-sm">
+            <p className="text-[14px] text-[#0f0f0f] italic font-sans md:text-right max-w-sm">
               Open to all UW undergrads with 3+ years remaining. No business experience required.
             </p>
           </div>
@@ -85,7 +85,7 @@ export default function Recruitment() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 0.4 }}
               viewport={{ once: true }}
-              className="text-[11px] font-mono tracking-[0.3em] uppercase text-black mb-4"
+              className="text-[11px] font-display tracking-[0.3em] uppercase text-black mb-4"
             >
               APPLICATION PROCESS — FALL 2026
             </motion.div>
@@ -94,7 +94,7 @@ export default function Recruitment() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="text-[8vw] md:text-6xl lg:text-7xl font-serif font-black tracking-tighter text-[#0f0f0f] leading-[0.8] lowercase"
+              className="text-[9vw] md:text-5xl lg:text-6xl font-display font-black tracking-tight text-[#0f0f0f] leading-[0.85] lowercase"
             >
               TIMELINE
             </motion.h2>
@@ -146,7 +146,7 @@ export default function Recruitment() {
             style={{ filter: 'grayscale(1) contrast(1.25) brightness(0.92)' }}
           />
           <div className="absolute bottom-4 left-6 md:left-12">
-            <span className="text-[10px] md:text-[11px] font-mono tracking-[0.3em] uppercase text-white/90 drop-shadow-sm mix-blend-difference">
+            <span className="text-[10px] md:text-[11px] font-display tracking-[0.3em] uppercase text-white/90 drop-shadow-sm mix-blend-difference">
               LAVIN COHORT — SEATTLE
             </span>
           </div>
@@ -161,7 +161,7 @@ export default function Recruitment() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-[8vw] md:text-6xl lg:text-7xl font-serif font-black tracking-tighter text-[#0f0f0f] leading-[0.8] lowercase mb-16"
+            className="text-[9vw] md:text-5xl lg:text-6xl font-display font-black tracking-tight text-[#0f0f0f] leading-[0.85] lowercase mb-16"
           >
             commitments
           </motion.h2>
@@ -199,7 +199,7 @@ export default function Recruitment() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl lg:text-6xl font-serif font-black tracking-tighter text-[#0f0f0f] leading-[0.85] lowercase mb-6"
+            className="text-3xl md:text-4xl lg:text-5xl font-display font-black tracking-tight text-[#0f0f0f] leading-[0.9] lowercase mb-6"
           >
             ready to<br />apply?
           </motion.h2>
@@ -209,7 +209,7 @@ export default function Recruitment() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-[18px] md:text-[20px] text-[#0f0f0f] italic font-serif mb-12"
+            className="text-[18px] md:text-[20px] text-[#0f0f0f] italic font-sans mb-12"
           >
             Applications are open now. Join the Lavin community.
           </motion.p>
@@ -233,7 +233,7 @@ export default function Recruitment() {
           viewport={{ once: true }}
           className="hidden lg:flex absolute right-12 top-0 bottom-0 items-center justify-center pointer-events-none"
         >
-          <div className="text-[12vw] xl:text-[15vw] leading-none font-serif font-thin text-[#0f0f0f] opacity-[0.03] tracking-tighter whitespace-nowrap rotate-90 origin-center select-none uppercase pointer-events-none">
+          <div className="text-[12vw] xl:text-[15vw] leading-none font-display font-thin text-[#0f0f0f] opacity-[0.03] tracking-tighter whitespace-nowrap rotate-90 origin-center select-none uppercase pointer-events-none">
             FALL 2026 APPLICATIONS
           </div>
         </motion.div>
@@ -271,10 +271,10 @@ function TimelineNode({ date, title, desc, align }) {
         }}
         className={`w-full md:w-1/2 flex flex-col pt-1 md:pt-0 ${isLeft ? 'md:pr-16 md:text-right md:items-end' : 'md:pl-16 text-left items-start'}`}
       >
-        <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-black/40 mb-2">
+        <div className="text-[11px] font-display tracking-[0.2em] uppercase text-black/40 mb-2">
           {date}
         </div>
-        <h3 className="font-serif font-bold text-[1.5rem] md:text-[1.8rem] tracking-tight text-[#0f0f0f] mb-2 leading-tight lowercase">
+        <h3 className="font-display font-bold text-[1.5rem] md:text-[1.8rem] tracking-tight text-[#0f0f0f] mb-2 leading-tight lowercase">
           {title}
         </h3>
         <p className="text-[14px] md:text-[15px] font-sans text-[#0f0f0f]">
@@ -295,7 +295,7 @@ function CommitmentRow({ title, desc }) {
       className="w-full border-b border-black/10 py-6 md:py-10 flex flex-col md:flex-row items-baseline justify-between gap-4 md:gap-12"
     >
       <div className="md:w-1/4 flex-shrink-0">
-        <h4 className="font-serif font-bold text-xl md:text-2xl text-[#0f0f0f] lowercase tracking-tight">{title}</h4>
+        <h4 className="font-display font-bold text-xl md:text-2xl text-[#0f0f0f] lowercase tracking-tight">{title}</h4>
       </div>
       <div className="md:w-3/4 flex-grow">
         <p className="text-base md:text-[17px] text-[#0f0f0f] font-sans leading-relaxed">{desc}</p>

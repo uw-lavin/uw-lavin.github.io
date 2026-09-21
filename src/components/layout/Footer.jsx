@@ -9,11 +9,6 @@ export default function Footer() {
           <img src={LogoNoTagline} alt="Lavin logo" className="h-8 w-auto object-contain" />
         </div>
 
-        {/* Center: Made with love message */}
-        <div className="text-center text-gray-600 font-open">
-          Made with <span className="text-yellow-500">♥</span> by Lavin Executives.
-        </div>
-
         {/* Right: Social Media Icons */}
         <div className="flex items-center space-x-4">
           {/* Instagram */}

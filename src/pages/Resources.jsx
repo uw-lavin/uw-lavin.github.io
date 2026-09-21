@@ -105,7 +105,7 @@ export default function Resources() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="text-black font-serif font-black leading-[0.9] text-5xl md:text-7xl lg:text-[7.5rem] tracking-tighter drop-shadow-sm mb-4 md:mb-6 lowercase"
+              className="text-black font-display font-black leading-[0.9] text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4 md:mb-6 lowercase"
             >
               resources
             </motion.h1>
@@ -133,7 +133,7 @@ export default function Resources() {
               viewport={{ once: true }}
               className="bg-transparent border border-black/10 p-10"
             >
-              <h2 className="text-2xl md:text-3xl font-serif font-bold tracking-tight text-black mb-4 lowercase text-center">member access</h2>
+              <h2 className="text-2xl md:text-3xl font-display font-bold tracking-tight text-black mb-4 lowercase text-center">member access</h2>
               <p className="text-[#0f0f0f] mb-8 font-sans text-center text-sm">
                 Enter the password to access member-only resources and tools.
               </p>
@@ -155,12 +155,12 @@ export default function Resources() {
                 </div>
 
                 {error && (
-                  <p className="text-red-600 text-sm font-open">{error}</p>
+                  <p className="text-red-600 text-sm">{error}</p>
                 )}
 
                 <button
                   type="submit"
-                  className="w-full bg-black text-white hover:bg-black/80 py-3 px-6 font-serif font-bold text-lg lowercase tracking-wide transition-all duration-200"
+                  className="w-full bg-black text-white hover:bg-black/80 py-3 px-6 font-display font-bold text-lg lowercase tracking-wide transition-all duration-200"
                 >
                   Access Resources
                 </button>
@@ -193,7 +193,7 @@ export default function Resources() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="text-black font-serif font-black leading-[0.9] text-5xl md:text-7xl lg:text-[7.5rem] tracking-tighter drop-shadow-sm mb-4 md:mb-6 lowercase"
+            className="text-black font-display font-black leading-[0.9] text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4 md:mb-6 lowercase"
           >
             internal resources
           </motion.h1>
@@ -224,7 +224,7 @@ export default function Resources() {
                 className="space-y-10"
               >
                 <div className="text-left border-l-4 border-gray-900 pl-6 py-2">
-                  <h3 className="text-3xl md:text-4xl font-serif font-bold text-black tracking-tight lowercase mb-2">{section.title}</h3>
+                  <h3 className="text-3xl md:text-4xl font-display font-bold text-black tracking-tight lowercase mb-2">{section.title}</h3>
                   <p className="text-[#0f0f0f] font-sans">{section.description}</p>
                 </div>
 
@@ -247,7 +247,7 @@ export default function Resources() {
                               {resource.type}
                             </span>
                           </div>
-                          <h4 className="text-2xl font-serif font-bold text-black lowercase tracking-tight mb-4">{resource.title}</h4>
+                          <h4 className="text-2xl font-display font-bold text-black lowercase tracking-tight mb-4">{resource.title}</h4>
                           <p className="text-[#0f0f0f] mb-6 font-sans leading-relaxed text-sm">
                             {resource.description}
                           </p>

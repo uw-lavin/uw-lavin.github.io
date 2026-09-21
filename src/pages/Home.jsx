@@ -36,7 +36,7 @@ export default function Home() {
         </svg>
 
         {/* Content Wrapper */}
-        <div className="relative z-10 w-full h-full flex flex-col justify-between px-6 md:px-12 pt-[80px] md:pt-12 pb-8 md:pb-12">
+        <div className="relative z-10 w-full h-full flex flex-col justify-between px-6 md:px-12 pt-[80px] md:pt-16 lg:pt-24 pb-8 md:pb-12">
 
           {/* Top Header Label & Rule */}
           <div className="w-full hidden md:block">
@@ -47,7 +47,7 @@ export default function Home() {
                 hidden: { opacity: 0 },
                 visible: { opacity: 1, transition: { duration: 0.8, delay: 0 } }
               }}
-              className="text-[9px] md:text-[11px] font-mono tracking-[0.3em] uppercase text-[#0f0f0f]"
+              className="text-[9px] md:text-[11px] font-display tracking-[0.3em] uppercase text-[#0f0f0f]"
             >
               <span className="md:hidden font-bold">LAVIN</span><span className="md:hidden"> — UW SEATTLE — 1996</span>
               <span className="hidden md:inline font-bold">LAVIN ENTREPRENEURSHIP PROGRAM</span><span className="hidden md:inline"> — UW SEATTLE</span>
@@ -65,7 +65,7 @@ export default function Home() {
 
           {/* Main Manifesto Text */}
           <div className="flex-1 flex flex-col justify-center items-start w-full">
-            <div className="font-serif font-black leading-[0.95] md:leading-[1.0] tracking-tighter text-[#0f0f0f] text-[16vw] sm:text-[15vw] md:text-[16vw] lg:text-[15vw] overflow-hidden">
+            <div className="font-display font-black leading-[0.95] md:leading-[1.0] tracking-tighter text-[#0f0f0f] text-[12vw] sm:text-[11vw] md:text-[11vw] lg:text-[10vw] overflow-hidden">
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -113,11 +113,11 @@ export default function Home() {
             >
               <button
                 onClick={() => navigate('/recruitment')}
-                className="flex items-center gap-2.5 text-[10px] md:text-[11px] font-mono font-bold tracking-[0.25em] uppercase text-[#0d6e5e] hover:text-[#0a5548] transition-colors text-left"
+                className="inline-flex w-fit items-center gap-3 bg-[#00A651] px-5 py-3 text-sm md:text-base font-display font-black tracking-[0.18em] uppercase text-white shadow-md hover:bg-[#00933f] transition-colors"
               >
-                <span className="relative flex h-2 w-2 shrink-0">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#0d6e5e] opacity-60" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#0d6e5e]" />
+                <span className="relative flex h-2.5 w-2.5 shrink-0">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white" />
                 </span>
                 Applications open now
               </button>
@@ -145,7 +145,7 @@ export default function Home() {
                 hidden: { opacity: 0 },
                 visible: { opacity: 1, transition: { duration: 0.8, delay: 1.0 } }
               }}
-              className="font-serif italic text-base md:text-lg text-[#0f0f0f] text-left md:text-right"
+              className="font-sans italic text-base md:text-lg text-[#0f0f0f] text-left md:text-right"
             >
               AN ENDOWED BUERK CENTER PROGRAM
             </motion.div>
@@ -153,7 +153,7 @@ export default function Home() {
 
           {/* Vertical Foster Text */}
           <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2 opacity-25 pointer-events-none">
-            <div className="text-[11px] font-mono tracking-[0.3em] uppercase text-black" style={{ writingMode: 'vertical-rl' }}>
+            <div className="text-[11px] font-display tracking-[0.3em] uppercase text-black" style={{ writingMode: 'vertical-rl' }}>
               FOSTER SCHOOL OF BUSINESS
             </div>
           </div>
@@ -175,7 +175,7 @@ export default function Home() {
           <div className="w-full text-center flex flex-col items-center justify-center gap-y-1 sm:gap-y-2 lg:gap-y-4">
             <motion.div className="overflow-hidden pb-4" initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <motion.div variants={{ hidden: { y: "110%" }, visible: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 } } }}>
-                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
+                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
                   The Lavin Entrepreneurship Program
                 </span>
               </motion.div>
@@ -183,7 +183,7 @@ export default function Home() {
 
             <motion.div className="overflow-hidden pb-4" initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <motion.div variants={{ hidden: { y: "110%" }, visible: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.25 } } }}>
-                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
+                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
                   is a highly-competitive, endowed program
                 </span>
               </motion.div>
@@ -191,7 +191,7 @@ export default function Home() {
 
             <motion.div className="overflow-hidden pb-4" initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <motion.div variants={{ hidden: { y: "110%" }, visible: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 } } }}>
-                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
+                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
                   for undergraduate entrepreneurs from all
                 </span>
               </motion.div>
@@ -199,7 +199,7 @@ export default function Home() {
 
             <motion.div className="overflow-hidden pb-4" initial="hidden" whileInView="visible" viewport={{ once: true }}>
               <motion.div variants={{ hidden: { y: "110%" }, visible: { y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.55 } } }}>
-                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
+                <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black text-[#0f0f0f] leading-[1.05] tracking-tight">
                   majors and disciplines across campus.
                 </span>
               </motion.div>
@@ -208,13 +208,13 @@ export default function Home() {
         </div>
 
         {/* 2. Stats - Editorial Layout */}
-        <div className="py-12 md:py-16 text-black w-full font-serif overflow-hidden">
+        <div className="py-12 md:py-16 text-black w-full font-display overflow-hidden">
           <div className="container-x w-full flex flex-col gap-y-4 md:gap-y-10">
 
             {/* Stat 1: HUNDREDS (Left aligned) */}
             <div className="w-full relative flex flex-col justify-start overflow-visible py-4 md:py-6 group">
               <div className="w-full md:w-1/2 border-l-4 border-gray-900 pl-6 md:pl-8 z-10">
-                <div className="text-[14vw] md:text-[10vw] font-serif font-black leading-[0.85] tracking-tight text-gray-900 flex flex-nowrap pb-2 whitespace-nowrap">
+                <div className="text-[10vw] md:text-[7vw] font-display font-black leading-[0.85] tracking-tight text-gray-900 flex flex-nowrap pb-2 whitespace-nowrap">
                   {"HUNDREDS".split("").map((letter, i) => (
                     <motion.span
                       key={i}
@@ -233,7 +233,7 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.5 }}
                 >
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-sans mt-4 text-black/90 tracking-tight">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-sans mt-4 text-black/90 tracking-tight">
                     of student founders
                   </h3>
                   <p className="mt-2 text-base md:text-lg text-black/50 font-sans tracking-wide uppercase font-semibold">
@@ -256,13 +256,13 @@ export default function Home() {
                 className="hidden md:flex absolute left-0 top-0 bottom-0 w-1/2 items-center pointer-events-none pl-8 lg:pl-16"
               >
                 <div className="flex flex-col gap-2">
-                  <div className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#0f0f0f] font-bold">
+                  <div className="text-[10px] font-display tracking-[0.25em] uppercase text-[#0f0f0f] font-bold">
                     FOUNDED BY
                   </div>
-                  <div className="font-serif text-3xl lg:text-4xl font-black text-[#0f0f0f] tracking-tight leading-tight select-none">
+                  <div className="font-display text-3xl lg:text-4xl font-black text-[#0f0f0f] tracking-tight leading-tight select-none">
                     Leonard<br />Lavin
                   </div>
-                  <div className="text-[10px] font-mono tracking-[0.2em] uppercase text-[#0f0f0f] mt-1 font-bold">
+                  <div className="text-[10px] font-display tracking-[0.2em] uppercase text-[#0f0f0f] mt-1 font-bold">
                     1996 — SEATTLE
                   </div>
                 </div>
@@ -274,7 +274,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-10%" }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="text-[14vw] md:text-[11vw] lg:text-[10vw] font-serif font-black leading-[0.85] tracking-tighter text-[#3b2c5a] pb-2"
+                  className="text-[10vw] md:text-[8vw] lg:text-[7vw] font-display font-black leading-[0.85] tracking-tighter text-[#3b2c5a] pb-2"
                 >
                   <CountUp from={0} to={30} direction="up" duration={2} />
                 </motion.div>
@@ -284,7 +284,7 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.5 }}
                 >
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-sans mt-4 text-black/90 tracking-tight">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-sans mt-4 text-black/90 tracking-tight">
                     years of legacy
                   </h3>
                   <p className="mt-2 text-base md:text-lg text-black/50 font-sans tracking-wide">
@@ -302,7 +302,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-10%" }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="text-[14vw] md:text-[11vw] lg:text-[10vw] font-serif font-black leading-[0.85] tracking-tighter text-[#a69041] pb-2"
+                  className="text-[10vw] md:text-[8vw] lg:text-[7vw] font-display font-black leading-[0.85] tracking-tighter text-[#a69041] pb-2"
                 >
                   <CountUp from={0} to={10} direction="up" duration={1.5} />+
                 </motion.div>
@@ -312,7 +312,7 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.5 }}
                 >
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-sans mt-4 text-black/90 tracking-tight">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-sans mt-4 text-black/90 tracking-tight">
                     Alumni Startups
                   </h3>
                   <p className="mt-2 text-base md:text-lg text-black/50 font-sans tracking-wide max-w-lg mb-6">
@@ -331,11 +331,11 @@ export default function Home() {
               >
                 <div className="flex flex-col gap-5 relative z-20 w-fit pointer-events-auto">
                   <a href="https://vly.ai/" target="_blank" rel="noreferrer" className="group flex items-center gap-3">
-                    <span className="text-2xl md:text-3xl lg:text-4xl font-serif font-black text-black/80 border-b border-[#a69041]/30 group-hover:text-[#a69041] group-hover:border-[#a69041] transition-colors pb-1">vly.ai</span>
+                    <span className="text-2xl md:text-3xl lg:text-4xl font-display font-black text-black/80 border-b border-[#a69041]/30 group-hover:text-[#a69041] group-hover:border-[#a69041] transition-colors pb-1">vly.ai</span>
                     <span className="text-[#a69041] font-sans font-bold text-sm tracking-widest uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">YC W24 &rarr;</span>
                   </a>
                   <a href="https://toastedseattle.com/" target="_blank" rel="noreferrer" className="group flex items-center gap-3">
-                    <span className="text-2xl md:text-3xl lg:text-4xl font-serif font-black text-black/80 border-b border-[#a69041]/30 group-hover:text-[#a69041] group-hover:border-[#a69041] transition-colors pb-1">toasted seattle</span>
+                    <span className="text-2xl md:text-3xl lg:text-4xl font-display font-black text-black/80 border-b border-[#a69041]/30 group-hover:text-[#a69041] group-hover:border-[#a69041] transition-colors pb-1">toasted seattle</span>
                     <span className="text-[#a69041] font-sans font-bold text-sm tracking-widest uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">&rarr;</span>
                   </a>
                 </div>
@@ -353,7 +353,7 @@ export default function Home() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-serif font-bold text-black tracking-tight mb-4 text-center lowercase"
+              className="text-2xl md:text-4xl font-display font-bold text-black tracking-tight mb-4 text-center lowercase"
             >
               Lavin&apos;s impact on UW and Seattle
             </motion.h2>

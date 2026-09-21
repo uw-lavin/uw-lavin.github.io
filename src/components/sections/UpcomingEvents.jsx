@@ -16,7 +16,7 @@ export default function UpcomingEvents() {
   if (loading) {
     return (
       <div className="bg-white p-8 shadow-lg border border-gray-100">
-        <h2 className="text-2xl md:text-3xl font-encode text-husky-purple mb-6">
+        <h2 className="text-2xl md:text-3xl text-husky-purple mb-6">
           Upcoming Events
         </h2>
         <div className="flex items-center justify-center py-8">
@@ -29,7 +29,7 @@ export default function UpcomingEvents() {
   if (!events || events.length === 0) {
     return (
       <div className="bg-white p-8 shadow-lg border border-gray-100">
-        <h2 className="text-2xl md:text-3xl font-encode text-husky-purple mb-6">
+        <h2 className="text-2xl md:text-3xl text-husky-purple mb-6">
           Upcoming Events
         </h2>
         <div className="flex items-center justify-center py-8">
@@ -41,7 +41,7 @@ export default function UpcomingEvents() {
 
   return (
     <div className="bg-white p-8 shadow-lg border border-gray-100">
-      <h2 className="text-2xl md:text-3xl font-encode text-husky-purple mb-8">
+      <h2 className="text-2xl md:text-3xl text-husky-purple mb-8">
         Upcoming Events
       </h2>
       <div className="space-y-6">

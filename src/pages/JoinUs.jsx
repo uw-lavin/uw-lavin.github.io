@@ -47,7 +47,7 @@ export default function JoinUs() {
       <section className="relative bg-slate-50 px-6 md:px-12 pt-10 pb-10 md:pt-12 md:pb-12">
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <h1 className="text-black font-serif font-black leading-[0.9] text-5xl md:text-7xl lg:text-[7.5rem] tracking-tighter drop-shadow-sm mb-4 md:mb-6 lowercase">
+            <h1 className="text-black font-display font-black leading-[0.9] text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4 md:mb-6 lowercase">
               join us
             </h1>
             <p className="text-lg md:text-xl text-black/80 mb-8 leading-relaxed font-sans text-center">
@@ -69,7 +69,7 @@ export default function JoinUs() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-serif font-bold tracking-tight text-black mb-6 lowercase text-center"
+            className="text-2xl md:text-4xl font-display font-bold tracking-tight text-black mb-6 lowercase text-center"
           >
             our sponsors
           </motion.h2>
@@ -115,7 +115,7 @@ export default function JoinUs() {
       <section className="bg-slate-50 px-6 md:px-12 py-24 relative">
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold tracking-tight text-black mb-6 lowercase text-center">
+            <h2 className="text-2xl md:text-4xl font-display font-bold tracking-tight text-black mb-6 lowercase text-center">
               sponsor us!
             </h2>
             <p className="text-lg text-[#0f0f0f] mb-10 font-sans max-w-2xl mx-auto">
@@ -140,7 +140,7 @@ export default function JoinUs() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-serif font-bold tracking-tight text-black mb-12 lowercase text-center"
+            className="text-2xl md:text-4xl font-display font-bold tracking-tight text-black mb-12 lowercase text-center"
           >
             get involved: students
           </motion.h2>
@@ -171,7 +171,7 @@ export default function JoinUs() {
               </p>
 
               <div>
-                <h4 className="font-serif font-bold text-xl text-black lowercase tracking-tight mb-2">join the team.</h4>
+                <h4 className="font-display font-bold text-xl text-black lowercase tracking-tight mb-2">join the team.</h4>
                 <p className="text-base text-[#0f0f0f]">
                   It takes a diverse set of skills to run UW's premier entrepreneurship
                   organization: we need programmers, designers, managers, salespeople, artists, planners, and more.
@@ -198,7 +198,7 @@ export default function JoinUs() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-serif font-bold tracking-tight text-black mb-12 lowercase text-center"
+            className="text-2xl md:text-4xl font-display font-bold tracking-tight text-black mb-12 lowercase text-center"
           >
             get involved: professionals
           </motion.h2>
@@ -224,7 +224,7 @@ export default function JoinUs() {
 
               <div className="space-y-8 mt-12">
                 <div>
-                  <h4 className="font-serif font-bold text-xl text-black lowercase tracking-tight mb-2">mentor our members</h4>
+                  <h4 className="font-display font-bold text-xl text-black lowercase tracking-tight mb-2">mentor our members</h4>
                   <p className="text-base text-[#0f0f0f]">
                     Share your expertise and guide the next generation of entrepreneurs.
                     Whether it's through one-on-one mentoring, workshop facilitation, or project guidance, your insights are invaluable.
@@ -232,7 +232,7 @@ export default function JoinUs() {
                 </div>
 
                 <div>
-                  <h4 className="font-serif font-bold text-xl text-black lowercase tracking-tight mb-2">connect us with your company</h4>
+                  <h4 className="font-display font-bold text-xl text-black lowercase tracking-tight mb-2">connect us with your company</h4>
                   <p className="text-base text-[#0f0f0f]">
                     If you think your employer would like to sponsor Lavin,
                     connecting us with a member of your recruiting or university recruiting team is the first step to make that happen.
@@ -240,7 +240,7 @@ export default function JoinUs() {
                 </div>
 
                 <div>
-                  <h4 className="font-serif font-bold text-xl text-black lowercase tracking-tight mb-2">speak at our events</h4>
+                  <h4 className="font-display font-bold text-xl text-black lowercase tracking-tight mb-2">speak at our events</h4>
                   <p className="text-base text-[#0f0f0f]">
                     If you think you or someone you know would be a standout speaker
                     at our events, we'd love to hear from you!
@@ -266,7 +266,7 @@ export default function JoinUs() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-serif font-bold tracking-tight text-black mb-12 lowercase text-center"
+            className="text-2xl md:text-4xl font-display font-bold tracking-tight text-black mb-12 lowercase text-center"
           >
             get involved: companies
           </motion.h2>
@@ -316,7 +316,7 @@ function SponsorCard({ sponsor }) {
         <div className="w-16 h-16 bg-white border border-black/10 mb-6 flex items-center justify-center -rotate-3 text-4xl opacity-50 grayscale">
           {sponsor.logo}
         </div>
-        <h3 className="text-2xl font-serif font-bold text-black lowercase tracking-tight mb-2">{sponsor.name}</h3>
+        <h3 className="text-2xl font-display font-bold text-black lowercase tracking-tight mb-2">{sponsor.name}</h3>
         <p className="text-sm tracking-widest uppercase font-bold text-black/40 mb-4">{sponsor.category}</p>
       </div>
       <p className="text-[#0f0f0f] text-sm font-sans leading-relaxed pt-6 border-t border-black/10">{sponsor.description}</p>
