@@ -109,20 +109,33 @@ export default function Home() {
                 hidden: { opacity: 0 },
                 visible: { opacity: 1, transition: { duration: 0.8, delay: 1.1 } }
               }}
-              className="flex flex-row gap-3 md:gap-4 w-full md:w-auto"
+              className="flex flex-col gap-3 md:gap-4 w-full md:w-auto"
             >
               <button
                 onClick={() => navigate('/recruitment')}
-                className="flex-1 md:flex-none px-6 md:px-8 py-3 bg-[#0f0f0f] text-white font-sans text-sm font-semibold hover:bg-black/80 transition-colors"
+                className="flex items-center gap-2.5 text-[10px] md:text-[11px] font-mono font-bold tracking-[0.25em] uppercase text-[#0d6e5e] hover:text-[#0a5548] transition-colors text-left"
               >
-                join.
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#0d6e5e] opacity-60" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#0d6e5e]" />
+                </span>
+                Applications open now
               </button>
-              <button
-                onClick={() => navigate('/events')}
-                className="flex-1 md:flex-none px-6 md:px-8 py-3 border border-[#0f0f0f]/30 text-[#0f0f0f] font-sans text-sm font-semibold hover:bg-[#0f0f0f]/5 hover:border-[#0f0f0f] transition-all"
-              >
-                events.
-              </button>
+
+              <div className="flex flex-row gap-3 md:gap-4 w-full md:w-auto">
+                <button
+                  onClick={() => navigate('/recruitment')}
+                  className="flex-1 md:flex-none px-6 md:px-8 py-3 bg-[#0f0f0f] text-white font-sans text-sm font-semibold hover:bg-black/80 transition-colors"
+                >
+                  join.
+                </button>
+                <button
+                  onClick={() => navigate('/events')}
+                  className="flex-1 md:flex-none px-6 md:px-8 py-3 border border-[#0f0f0f]/30 text-[#0f0f0f] font-sans text-sm font-semibold hover:bg-[#0f0f0f]/5 hover:border-[#0f0f0f] transition-all"
+                >
+                  events.
+                </button>
+              </div>
             </motion.div>
 
             <motion.div

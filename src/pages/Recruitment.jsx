@@ -48,12 +48,25 @@ export default function Recruitment() {
             </motion.div>
           </div>
 
-          <div className="mt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-12 w-full">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="mt-10 flex items-center gap-2.5 text-[11px] font-mono font-bold tracking-[0.25em] uppercase text-[#0d6e5e]"
+          >
+            <span className="relative flex h-2 w-2 shrink-0">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#0d6e5e] opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#0d6e5e]" />
+            </span>
+            Applications open now
+          </motion.div>
+
+          <div className="mt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-12 w-full">
             <a
               href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors"
               className="px-7 py-3 bg-[#0f0f0f] text-white font-sans text-sm font-semibold hover:bg-black/80 transition-colors whitespace-nowrap"
             >
-              Applications Open Fall 2026
+              Apply Now
             </a>
             <p className="text-[14px] text-[#0f0f0f] italic font-serif md:text-right max-w-sm">
               Open to all UW undergrads with 3+ years remaining. No business experience required.
@@ -100,9 +113,9 @@ export default function Recruitment() {
             {/* Nodes */}
             <div className="relative z-10 w-full flex flex-col gap-24 py-10 pl-12 md:pl-0">
               <TimelineNode
-                date="SEPTEMBER 2026"
-                title="application opens"
-                desc="Applications open until early October."
+                date="SEPTEMBER 2026 — OPEN NOW"
+                title="application open"
+                desc="The application is live. Submissions close in early October."
                 align="left"
               />
               <TimelineNode
@@ -198,7 +211,7 @@ export default function Recruitment() {
             viewport={{ once: true }}
             className="text-[18px] md:text-[20px] text-[#0f0f0f] italic font-serif mb-12"
           >
-            Applications open in Fall 2026. Join the Lavin community.
+            Applications are open now. Join the Lavin community.
           </motion.p>
 
           <motion.a
@@ -209,7 +222,7 @@ export default function Recruitment() {
             href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors"
             className="px-8 py-4 bg-[#0f0f0f] text-white font-sans text-sm md:text-base font-semibold hover:bg-black/80 transition-colors"
           >
-            Applications Open Fall 2026
+            Apply Now
           </motion.a>
         </div>
 
