@@ -25,6 +25,8 @@ That serves the site at **http://localhost:5173**. Edits appear immediately — 
 | `npm run build` | Production build into `dist/` |
 | `npm run preview` | Serve the built `dist/` to check it before pushing |
 | `npm run lint` | ESLint. Must pass — CI runs it |
+| `npm run resources:decrypt` | Decrypt member resources for editing |
+| `npm run resources:encrypt` | Re-encrypt them after editing |
 
 ---
 
@@ -80,9 +82,23 @@ The `alumniStartups` array in [`src/pages/Home.jsx`](src/pages/Home.jsx). Link t
 
 ### Internal resources
 
-The `resourceSections` array in [`src/pages/Resources.jsx`](src/pages/Resources.jsx).
+The member resources are **encrypted**. The built site ships only ciphertext — no password, no links — so there is nothing useful to read in the repo or in devtools. The password decrypts them in the browser.
 
-> **Note:** the password on that page is in the JavaScript that ships to the browser, so anyone who looks can find it. Treat that page as public. Do not put anything genuinely private behind it.
+To change a link:
+
+```bash
+npm run resources:decrypt   # asks for the password, writes resources.json
+# edit resources.json
+npm run resources:encrypt   # writes src/data/resources.enc.json
+```
+
+Commit `src/data/resources.enc.json`. **Never commit `resources.json`** — it is gitignored for that reason.
+
+To change the password, decrypt with the old one and encrypt with the new one.
+
+How it works: PBKDF2-HMAC-SHA256 (310,000 iterations) derives a key from the password, and AES-256-GCM encrypts the payload. Both sides use the browser's and Node's built-in crypto, so there is no dependency and no page weight. Unlocking takes well under a tenth of a second.
+
+> **Worth knowing:** this is real encryption, not a fake gate, but the password is the weak link — a short, guessable one can be attacked offline by anyone who downloads the file. Keep genuinely sensitive documents restricted through Google's own sharing settings (for example "UW accounts only") as well. Losing the password means the content can only be recovered from git history.
 
 ### Photos
 
@@ -140,7 +156,9 @@ src/
   components/layout/    Navbar, Footer
   components/ui/        CountUp, InfoCard, LogoMarquee, MapLink
   hooks/                useScrollToTop
-  lib/                  Animation variants, campus-location registry
+  lib/                  Animation variants, location registry, vault decryption
+  data/                 Encrypted member resources
+scripts/                Encrypt/decrypt CLI for member resources
   assets/               Images and fonts
 ```
 

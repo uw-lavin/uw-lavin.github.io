@@ -77,3 +77,6 @@ jspm_packages/
 
 # DynamoDB Local files
 .dynamodb/ 
+# Decrypted member resources. Never commit this -- only the encrypted
+# blob in src/data/ is published.
+resources.json
