@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import MapLink from '../components/ui/MapLink';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -7,6 +8,8 @@ const fadeUp = {
 
 // Public-facing event times only — setup/teardown and room-booking windows are
 // intentionally not published.
+// `location` is a room name; the building and campus-map link come from
+// src/lib/locations.js. Register new venues there.
 const events = [
   {
     month: 'SEP',
@@ -14,7 +17,7 @@ const events = [
     weekday: 'Wednesday',
     title: 'Lavin Kickoff Mixer',
     time: '3:30 – 5:00 PM',
-    location: 'Hogan Terrace, PACCAR Hall',
+    location: 'Hogan Terrace',
     desc: 'A casual outdoor drop-in to meet the Lavin community. Free snacks, current Lavin students on hand, and no commitment — come by if you are even a little curious.',
   },
   {
@@ -103,7 +106,7 @@ export default function Events() {
                 </h2>
 
                 <div className="text-[11px] md:text-xs font-display font-bold tracking-wider uppercase text-black/70 mb-2.5">
-                  {event.weekday} &nbsp;&middot;&nbsp; {event.time} &nbsp;&middot;&nbsp; {event.location}
+                  {event.weekday} &nbsp;&middot;&nbsp; {event.time} &nbsp;&middot;&nbsp; <MapLink name={event.location} />
                 </div>
 
                 <p className="text-sm md:text-base text-black/70 leading-relaxed max-w-2xl font-sans w-full">

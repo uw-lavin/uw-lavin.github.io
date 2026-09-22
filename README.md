@@ -43,7 +43,7 @@ Everything is the `events` array at the top of [`src/pages/Events.jsx`](src/page
   weekday: 'Wednesday',
   title: 'Lavin Kickoff Mixer',
   time: '3:30 – 5:00 PM',
-  location: 'Hogan Terrace, PACCAR Hall',
+  location: 'Hogan Terrace',
   desc: 'A casual outdoor drop-in to meet the Lavin community.',
 },
 ```
@@ -51,6 +51,20 @@ Everything is the `events` array at the top of [`src/pages/Events.jsx`](src/page
 Publish the time the event actually runs — not the room booking window or setup time.
 
 Past events do not disappear on their own. Delete them when they are over.
+
+**`location` is a room name only.** The building and the campus-map link come from [`src/lib/locations.js`](src/lib/locations.js), so `'Peek Forum'` renders as "Peek Forum, Founders Hall" linked to the UW interactive map.
+
+To add a venue, register it there:
+
+```js
+const ROOMS = {
+  'Peek Forum': 'Founders Hall',
+};
+```
+
+If the building is not already in `BUILDINGS`, add it with its UW facility code — find the building on [the UW map](https://www.washington.edu/maps/) and read the code off its panel (PACCAR Hall is `PCAR`, Founders Hall is `FNDR`, Dempsey Hall is `DEM`).
+
+An unregistered venue still renders fine, just as plain text with no link — so off-campus locations need nothing special.
 
 ### Executive board
 
@@ -124,9 +138,9 @@ src/
   index.css             Fonts, Tailwind, shared classes
   pages/                One file per route
   components/layout/    Navbar, Footer
-  components/ui/        CountUp, InfoCard, LogoMarquee
+  components/ui/        CountUp, InfoCard, LogoMarquee, MapLink
   hooks/                useScrollToTop
-  lib/                  Shared animation variants
+  lib/                  Animation variants, campus-location registry
   assets/               Images and fonts
 ```
 
