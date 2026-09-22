@@ -22,7 +22,7 @@ const events = [
     day: '25',
     weekday: 'Friday',
     title: 'Founder Panel + Q&A',
-    time: '4:30 PM',
+    time: '5:00 PM',
     location: 'Peek Forum',
     desc: 'Current Lavin students and alumni founders on how their startups actually got going — closing with a walkthrough of how to apply.',
   },
