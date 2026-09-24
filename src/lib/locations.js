@@ -7,7 +7,9 @@
 // venue still displays correctly.
 //
 // To add a venue: find the building on https://www.washington.edu/maps/,
-// read its Facility Code off the building panel, and add a row below.
+// read its Facility Code off the building panel, and add a row below. Then
+// add the room to the location dropdown in .pages.yml too -- the build fails
+// with a clear message if the two lists ever disagree.
 
 const UW_MAP_BASE = 'https://www.washington.edu/maps/#!/';
 
@@ -32,6 +34,10 @@ const ROOMS = {
   'Peek Forum': 'Founders Hall',
   'Founders Gallery': 'Founders Hall',
 };
+
+// Every registered room. The admin's location dropdown (.pages.yml) must list
+// exactly these; the build checks the two match.
+export const KNOWN_ROOMS = Object.keys(ROOMS);
 
 /**
  * Resolve a venue name to a display label and a UW campus map URL.

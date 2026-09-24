@@ -1,46 +1,16 @@
 import { motion } from 'framer-motion';
 import Masonry from 'react-masonry-css';
 import { fadeUp } from '../lib/animations';
+import { galleryImage } from '../lib/media';
+import gallery from '../content/gallery.json';
 
-// Import gallery images
-import img1 from '../assets/Gallery Images/_dsc3882jpg_52913072518_o.jpg';
-import img2 from '../assets/Gallery Images/_dsc3867jpg_52912040252_o.jpg';
-import img3 from '../assets/Gallery Images/_dsc3397jpg_52912607816_o.jpg';
-import img4 from '../assets/Gallery Images/20240307_234834_E5F299.JPEG';
-import img5 from '../assets/Gallery Images/20240307_234833_EEB886 2.JPEG';
-import img6 from '../assets/Gallery Images/20D99343-1F72-4777-9B46-C8C4D81EC693.JPG';
-import img7 from '../assets/Gallery Images/bouldering.JPEG';
-import img9 from '../assets/Gallery Images/Welcome Reception Fall 2023.png';
-import img10 from '../assets/Gallery Images/IMG_5838.JPG';
-import img11 from '../assets/Gallery Images/IMG_5763.JPG';
-import img12 from '../assets/Gallery Images/20250510_200158.jpg';
-import img13 from '../assets/Gallery Images/_dsc0467jpg_53732717906_o.jpg';
-import img14 from '../assets/Gallery Images/_dsc0468jpg_53731794042_o.jpg';
-import img15 from '../assets/Gallery Images/_dsc0323jpg_53732914213_o.jpg';
-import img16 from '../assets/Gallery Images/_dsc0166jpg_53732702526_o.jpg';
-import img17 from '../assets/Gallery Images/_dsc0167jpg_53732702756_o.jpg';
-
-const images = [
-  { src: img10, title: "Lavin Event 10" },
-  { src: img2, title: "Lavin Event 2" },
-  { src: img15, title: "Lavin Event 15" },
-  { src: img7, title: "Bouldering Activity" },
-  { src: img11, title: "Lavin Event 11" },
-  { src: img4, title: "Lavin Event 4" },
-  { src: img13, title: "Lavin Event 13" },
-  { src: img1, title: "Lavin Event 1" },
-  { src: img16, title: "Lavin Event 16" },
-  { src: img6, title: "Lavin Event 6" },
-  { src: img12, title: "Lavin Event 12" },
-  { src: img3, title: "Lavin Event 3" },
-  { src: img14, title: "Lavin Event 14" },
-  { src: img5, title: "Lavin Event 5" },
-  { src: img17, title: "Lavin Event 17" },
-  { src: img9, title: "Welcome Reception Fall 2023" },
-];
-
-
-
+// The photo list is edited through the admin (Pages CMS) and kept in order in
+// src/content/gallery.json. Each upload is resized to a small WebP at build
+// time; a path whose file has gone missing is simply left out.
+const images = gallery.photos
+  .map((path) => galleryImage(path))
+  .filter(Boolean)
+  .map((src) => ({ src, title: 'Lavin event photo' }));
 
 export default function Gallery() {
   const breakpointCols = {
@@ -96,6 +66,8 @@ export default function Gallery() {
                   <img
                     src={img.src}
                     alt={img.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full block object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </motion.div>

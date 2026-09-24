@@ -34,57 +34,71 @@ That serves the site at **http://localhost:5173**. Edits appear immediately — 
 
 Most updates are content, not code. Here is where things live.
 
-### Events
+### Events — edited through the admin, no code
 
-Everything lives in [`src/data/events.js`](src/data/events.js). Add, edit, or delete an entry:
+Anyone on the board can add or change events at **[app.pagescms.org](https://app.pagescms.org)**. No GitHub account, no password, no code.
 
-```js
-{
-  date: '2026-09-25',
-  start: '17:00',        // 24-hour, Pacific time
-  end: '18:30',          // required -- calendars need an end time
-  title: 'Founder Panel + Q&A',
-  location: 'Peek Forum',
-  desc: 'Current Lavin students and alumni founders on their startups.',
-},
-```
+1. Go to app.pagescms.org, enter your email, and click the sign-in link it emails you.
+2. Open **Events** and click **Add** (or click an existing event to change it).
+3. Fill in the form: title, date, start and end time, location, description. Times and rooms are dropdowns, so they can't be mistyped.
+4. Click **Save**. The site updates in **about 2 minutes** — refresh to see it.
 
-Write times as plain Pacific wall-clock times. There are no offsets to get right; daylight saving is handled for you. The weekday and the "5:00 – 6:30 PM" label are worked out from these, so they can't drift out of sync.
+What happens on its own:
 
-Publish the time the event actually runs — not the room booking window or setup time.
+- **The building and a campus-map link** are added from the room you pick. For anywhere not in the list, choose **"Somewhere else"** and type the location — it shows exactly as typed, with no map link.
+- **Add-to-calendar buttons** appear on every upcoming event. Google Calendar gets a pre-filled link (Google doesn't let a website set reminders, so it uses the person's own default alert). Apple / Outlook get a file with alerts a day and an hour before; Apple keeps both, Outlook keeps one.
+- **Past events archive themselves.** Once an event ends it moves to a small "Past events" log at the bottom of the page. Don't delete old events — that log is the record.
 
-**Past events archive themselves.** Once an event's end time passes, the Events page moves it from the upcoming list to a small "Past events" log at the bottom. Don't delete old entries — that log is the record.
+Publish the time an event actually runs, not the room booking or setup window.
 
-**Add-to-calendar buttons** appear on every upcoming event:
+**If your change hasn't appeared after five minutes,** something in the entry was invalid and that one event was skipped — the rest of the site still updated. Check the times (the end must be after the start) and, if you chose "Somewhere else", that a location is typed in. If it still doesn't show, message whoever maintains the site; the exact problem is printed in the deploy log.
 
-- **Google Calendar** — a pre-filled link. Google does not let a website set reminders, so it uses the person's own default alert.
-- **Apple / Outlook** — an `.ics` file with two alerts, a day before and an hour before. Apple Calendar keeps both; Outlook keeps one.
+#### Giving people access (once a year)
 
-**Adding an event is the whole process.** The buttons and the `.ics` file are created from `events.js` automatically — by a small plugin in [`vite.config.js`](vite.config.js) — both in the local preview (no restart needed) and on the live site. There are no generated files to edit or commit.
+When the new board starts each fall:
 
-Every entry is checked when you save and again at deploy. A mistake such as `start: '5 PM'` or an end time before the start prints a clear message, and **the deploy refuses to go out**, so the live site stays on the last good version. The message says exactly which event and which field to fix.
+1. Sign in at app.pagescms.org **with a GitHub account that has access to this repository**. Only those accounts can manage editors — people invited by email can edit events but can't invite anyone.
+2. Open this repository's **Collaborators** settings, **add each new board member's email**, and **remove the people who have left**.
 
-**`location` is a room name only.** The building and the campus-map link come from [`src/lib/locations.js`](src/lib/locations.js), so `'Peek Forum'` renders as "Peek Forum, Founders Hall" linked to the UW interactive map.
+Each person needs inviting only once, not every time they edit. Keep at least two people (for example the co-presidents) with GitHub access to the repo, so this never depends on a single person. Every change is recorded under the editor's own name, so anything can be traced and undone from the repository history.
 
-To add a venue, register it there:
+#### For developers
 
-```js
-const ROOMS = {
-  'Peek Forum': 'Founders Hall',
-};
-```
+Each event is a JSON file in [`src/content/events/`](src/content/events/), and the admin form is defined in [`.pages.yml`](.pages.yml). Pages CMS rewrites a file from the fields declared there and **drops any key not declared** — add a field to `.pages.yml` before the site starts reading it.
 
-If the building is not already in `BUILDINGS`, add it with its UW facility code — find the building on [the UW map](https://www.washington.edu/maps/) and read the code off its panel (PACCAR Hall is `PCAR`, Founders Hall is `FNDR`, Dempsey Hall is `DEM`).
+Times are stored as 24-hour Pacific strings (`"17:00"`) and daylight saving is handled in [`src/lib/events.js`](src/lib/events.js). The `.ics` files are generated by a small plugin in [`vite.config.js`](vite.config.js), in the local preview and in the build; there are no generated files to commit.
 
-An unregistered venue still renders fine, just as plain text with no link — so off-campus locations need nothing special.
+**Adding a venue** takes two edits: the room in `ROOMS` in [`src/lib/locations.js`](src/lib/locations.js), and the same room in the location dropdown in `.pages.yml` (between the `rooms:start` and `rooms:end` markers). If the building is new too, add it to `BUILDINGS` with its UW facility code — find it on [the UW map](https://www.washington.edu/maps/) (PACCAR Hall is `PCAR`, Founders Hall is `FNDR`, Dempsey Hall is `DEM`). **The build fails with a clear message if the two room lists ever disagree**, so they can't drift apart.
+
+That is the only check that stops a deploy. A malformed event entered through the admin is skipped and reported instead, so one editor's mistake never blocks everyone else's updates.
 
 ### Executive board
 
-The `executiveBoard` array in [`src/pages/ExecutiveBoard.jsx`](src/pages/ExecutiveBoard.jsx). Each entry is a name, role, cohort, email, and LinkedIn URL. **Order does not matter** — the page sorts by last name automatically.
+One JSON file per person in [`src/content/leadership/`](src/content/leadership/), edited by hand:
 
-Photos are optional. Without one, the card shows the person's initials. To add one, put the image in `src/assets/profilePics/`, import it at the top of the file, and set `photo` on that person's entry. It displays as a small square, so a centred head-and-shoulders crop works best. (Ananya Tripathi's and Sreshta's photos from last year are already in that folder.)
+```json
+{
+  "name": "Divij Chawla",
+  "role": "Co-President",
+  "cohort": 2025,
+  "email": "dc245@uw.edu",
+  "linkedin": "https://www.linkedin.com/in/divijchawla7/",
+  "website": "",
+  "photo": ""
+}
+```
+
+**Order does not matter** — the page sorts by last name. `linkedin`, `website`, and `photo` are optional; empty ones are simply not shown.
+
+For a photo, put the image in [`src/content/media/leadership/`](src/content/media/leadership/) and set `"photo": "/src/content/media/leadership/divij-chawla.jpg"`. It's cropped to a square and resized automatically, so upload it as it is. Without a photo, the card shows the person's initials. (Ananya Tripathi's and Sreshta's photos from last year are already in that folder.)
 
 Update the year in the page heading each fall.
+
+### Memories
+
+Photos live in [`src/content/media/gallery/`](src/content/media/gallery/), and [`src/content/gallery.json`](src/content/gallery.json) lists them in display order. To add one, drop the file in the folder and add its path to the list.
+
+**Upload photos as they are.** Each one is resized to a small WebP automatically when the site is built — the 16 current photos went from 26.8 MB to 1.6 MB delivered. Use JPG, PNG, or WebP; iPhone HEIC files don't display in Chrome or Firefox.
 
 ### Alumni startups
 
@@ -114,9 +128,6 @@ How it works: PBKDF2-HMAC-SHA256 (310,000 iterations) derives a key from the pas
 
 > **Worth knowing:** this is real encryption, not a fake gate, but the password is the weak link — a short, guessable one can be attacked offline by anyone who downloads the file. Keep genuinely sensitive documents restricted through Google's own sharing settings (for example "UW accounts only") as well. Losing the password means the content can only be recovered from git history.
 
-### Photos
-
-Drop files in `src/assets/Gallery Images/` and add them to the `images` array in [`src/pages/Gallery.jsx`](src/pages/Gallery.jsx). **Resize before committing** — several existing photos are 2–5 MB each, which is far larger than the page needs. Roughly 1600px wide is plenty.
 
 ---
 
@@ -161,6 +172,7 @@ The custom domain is set by the `CNAME` file. Do not delete it.
 
 ```
 index.html              Page shell, favicons, social preview tags
+.pages.yml              The events admin form (Pages CMS)
 public/                 Copied to the site root as-is (icons, 404 page)
 src/
   main.jsx              Entry point
@@ -170,10 +182,11 @@ src/
   components/layout/    Navbar, Footer
   components/ui/        CountUp, InfoCard, LogoMarquee, MapLink
   hooks/                useScrollToTop
-  lib/                  Animation variants, locations, event times + calendar export, vault
-  data/                 Events list, encrypted member resources
+  lib/                  Event times + calendar export, locations, image resizing, vault
+  content/              Site content: events, leadership, gallery, and their photos
+  data/                 Encrypted member resources
+  assets/               Logo, fonts, fixed page images
 scripts/                Member-resources encrypt/decrypt
-  assets/               Images and fonts
 ```
 
 Routing uses `HashRouter`, so URLs look like `uwlavin.com/#/events`. Any other path is redirected to the homepage by `public/404.html`.

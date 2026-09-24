@@ -1,11 +1,14 @@
 import { motion } from 'framer-motion';
 import MapLink from '../components/ui/MapLink';
-import { events } from '../data/events';
 import { formatEvent, googleCalendarUrl, icsHref, splitEvents, eventSlug } from '../lib/events';
 import { resolveLocation } from '../lib/locations';
 
-// Events are edited in src/data/events.js. They move from "upcoming" to the
-// past-events log on their own once they end.
+// One JSON file per event, created and edited through the admin (Pages CMS).
+// Events move from "upcoming" to the past-events log on their own once they
+// end, so nothing ever needs deleting.
+const events = Object.values(
+  import.meta.glob('/src/content/events/*.json', { eager: true, import: 'default' }),
+);
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },

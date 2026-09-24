@@ -1,67 +1,13 @@
 import { motion } from 'framer-motion';
 import { fadeUp } from '../lib/animations';
+import { leadershipPhoto } from '../lib/media';
 
-// 26/27 executive board. Order here does not matter -- the page sorts by last
-// name. `photo` is optional: import an image from ../assets/profilePics/ and
-// set it, and it replaces the initials tile.
-const executiveBoard = [
-  {
-    name: 'Sreshta Appalabattula',
-    role: 'Director of Marketing',
-    cohort: 2023,
-    email: 'sappala@uw.edu',
-    linkedin: 'https://www.linkedin.com/in/sreshtaappala/',
-  },
-  {
-    name: 'Divij Chawla',
-    role: 'Co-President',
-    cohort: 2025,
-    email: 'dc245@uw.edu',
-    linkedin: 'https://www.linkedin.com/in/divijchawla7/',
-  },
-  {
-    name: 'Rishabh Goenka',
-    role: 'Director of Community Development + Web Development',
-    cohort: 2024,
-    email: 'rish9@uw.edu',
-    linkedin: 'https://www.linkedin.com/in/rishabh-goenkx/',
-  },
-  {
-    name: 'Nishka Jaiswal',
-    role: 'Director of Outreach',
-    cohort: 2025,
-    email: 'njaisw2@uw.edu',
-    linkedin: 'https://www.linkedin.com/in/nishkaj/',
-  },
-  {
-    name: 'Ananya Prakash',
-    role: 'ENTRE 490 TA',
-    cohort: 2025,
-    email: 'aparak@uw.edu',
-    linkedin: 'https://www.linkedin.com/in/apraka/',
-  },
-  {
-    name: 'Ishaan Roybiswas',
-    role: 'Director of Community Development',
-    cohort: 2025,
-    email: 'iroybisw@uw.edu',
-    linkedin: 'https://www.linkedin.com/in/ishaan-roybiswas/',
-  },
-  {
-    name: 'Ananya Tripathi',
-    role: 'Co-President',
-    cohort: 2024,
-    email: 'ananyat@uw.edu',
-    linkedin: 'https://www.linkedin.com/in/ananya-tr/',
-  },
-  {
-    name: 'Anusha Upadhyayula',
-    role: 'Director of Outreach',
-    cohort: 2025,
-    email: 'anushasu@uw.edu',
-    linkedin: 'https://www.linkedin.com/in/anusha-upadhyayula/',
-  },
-];
+// One JSON file per person, created and edited through the admin (Pages CMS).
+// Order doesn't matter -- the page sorts by last name. `photo` is optional;
+// without one the card shows initials.
+const executiveBoard = Object.values(
+  import.meta.glob('/src/content/leadership/*.json', { eager: true, import: 'default' }),
+);
 
 const lastName = (name) => name.trim().split(/\s+/).pop();
 
@@ -76,11 +22,13 @@ const initials = (name) => {
 };
 
 function Avatar({ member }) {
-  if (member.photo) {
+  const photo = leadershipPhoto(member.photo);
+  if (photo) {
     return (
       <img
-        src={member.photo}
+        src={photo}
         alt={member.name}
+        loading="lazy"
         className="h-14 w-14 shrink-0 object-cover"
       />
     );
@@ -151,14 +99,30 @@ export default function ExecutiveBoard() {
                 >
                   {member.email}
                 </a>
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[11px] font-display font-bold uppercase tracking-[0.12em] text-black/70 hover:text-black transition-colors"
-                >
-                  LinkedIn &rarr;
-                </a>
+                {(member.linkedin || member.website) && (
+                  <div className="flex flex-wrap gap-x-4 gap-y-1">
+                    {member.linkedin && (
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[11px] font-display font-bold uppercase tracking-[0.12em] text-black/70 hover:text-black transition-colors"
+                      >
+                        LinkedIn &rarr;
+                      </a>
+                    )}
+                    {member.website && (
+                      <a
+                        href={member.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[11px] font-display font-bold uppercase tracking-[0.12em] text-black/70 hover:text-black transition-colors"
+                      >
+                        Website &rarr;
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             </li>
           ))}
