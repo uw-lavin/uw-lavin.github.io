@@ -80,3 +80,6 @@ jspm_packages/
 # Decrypted member resources. Never commit this -- only the encrypted
 # blob in src/data/ is published.
 resources.json
+
+# Generated from src/data/events.js by scripts/build-calendar.mjs.
+public/calendar/

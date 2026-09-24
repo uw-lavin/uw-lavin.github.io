@@ -36,23 +36,31 @@ Most updates are content, not code. Here is where things live.
 
 ### Events
 
-Everything is the `events` array at the top of [`src/pages/Events.jsx`](src/pages/Events.jsx). Add, edit, or delete an entry:
+Everything lives in [`src/data/events.js`](src/data/events.js). Add, edit, or delete an entry:
 
 ```js
 {
-  month: 'SEP',
-  day: '23',
-  weekday: 'Wednesday',
-  title: 'Lavin Kickoff Mixer',
-  time: '3:30 – 5:00 PM',
-  location: 'Hogan Terrace',
-  desc: 'A casual outdoor drop-in to meet the Lavin community.',
+  date: '2026-09-25',
+  start: '17:00',        // 24-hour, Pacific time
+  end: '18:30',          // required -- calendars need an end time
+  title: 'Founder Panel + Q&A',
+  location: 'Peek Forum',
+  desc: 'Current Lavin students and alumni founders on their startups.',
 },
 ```
 
+Write times as plain Pacific wall-clock times. There are no offsets to get right; daylight saving is handled for you. The weekday and the "5:00 – 6:30 PM" label are worked out from these, so they can't drift out of sync.
+
 Publish the time the event actually runs — not the room booking window or setup time.
 
-Past events do not disappear on their own. Delete them when they are over.
+**Past events archive themselves.** Once an event's end time passes, the Events page moves it from the upcoming list to a small "Past events" log at the bottom. Don't delete old entries — that log is the record.
+
+**Add-to-calendar buttons** appear on every upcoming event:
+
+- **Google Calendar** — a pre-filled link. Google does not let a website set reminders, so it uses the person's own default alert.
+- **Apple / Outlook** — an `.ics` file with two alerts, a day before and an hour before. Apple Calendar keeps both; Outlook keeps one.
+
+The `.ics` files are generated from `events.js` by [`scripts/build-calendar.mjs`](scripts/build-calendar.mjs), which runs automatically before `npm run dev` and `npm run build`. They are gitignored — never edit them by hand.
 
 **`location` is a room name only.** The building and the campus-map link come from [`src/lib/locations.js`](src/lib/locations.js), so `'Peek Forum'` renders as "Peek Forum, Founders Hall" linked to the UW interactive map.
 
@@ -160,9 +168,9 @@ src/
   components/layout/    Navbar, Footer
   components/ui/        CountUp, InfoCard, LogoMarquee, MapLink
   hooks/                useScrollToTop
-  lib/                  Animation variants, location registry, vault decryption
-  data/                 Encrypted member resources
-scripts/                Encrypt/decrypt CLI for member resources
+  lib/                  Animation variants, locations, event times + calendar export, vault
+  data/                 Events list, encrypted member resources
+scripts/                Calendar-file generator, member-resources encrypt/decrypt
   assets/               Images and fonts
 ```
 
