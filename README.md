@@ -60,7 +60,9 @@ Publish the time the event actually runs — not the room booking window or setu
 - **Google Calendar** — a pre-filled link. Google does not let a website set reminders, so it uses the person's own default alert.
 - **Apple / Outlook** — an `.ics` file with two alerts, a day before and an hour before. Apple Calendar keeps both; Outlook keeps one.
 
-The `.ics` files are generated from `events.js` by [`scripts/build-calendar.mjs`](scripts/build-calendar.mjs), which runs automatically before `npm run dev` and `npm run build`. They are gitignored — never edit them by hand.
+**Adding an event is the whole process.** The buttons and the `.ics` file are created from `events.js` automatically — by a small plugin in [`vite.config.js`](vite.config.js) — both in the local preview (no restart needed) and on the live site. There are no generated files to edit or commit.
+
+Every entry is checked when you save and again at deploy. A mistake such as `start: '5 PM'` or an end time before the start prints a clear message, and **the deploy refuses to go out**, so the live site stays on the last good version. The message says exactly which event and which field to fix.
 
 **`location` is a room name only.** The building and the campus-map link come from [`src/lib/locations.js`](src/lib/locations.js), so `'Peek Forum'` renders as "Peek Forum, Founders Hall" linked to the UW interactive map.
 
@@ -170,7 +172,7 @@ src/
   hooks/                useScrollToTop
   lib/                  Animation variants, locations, event times + calendar export, vault
   data/                 Events list, encrypted member resources
-scripts/                Calendar-file generator, member-resources encrypt/decrypt
+scripts/                Member-resources encrypt/decrypt
   assets/               Images and fonts
 ```
 

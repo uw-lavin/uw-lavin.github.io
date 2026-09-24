@@ -81,5 +81,3 @@ jspm_packages/
 # blob in src/data/ is published.
 resources.json
 
-# Generated from src/data/events.js by scripts/build-calendar.mjs.
-public/calendar/

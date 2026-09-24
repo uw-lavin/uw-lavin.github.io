@@ -48,9 +48,61 @@ export function eventTimes(event) {
   };
 }
 
-/** Upcoming soonest-first, past most-recent-first. An event is past once it ends. */
+// ---------------------------------------------------------- validation ----
+
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
+const REQUIRED = ['date', 'start', 'end', 'title', 'location', 'desc'];
+
+/** Everything wrong with one entry, as readable sentences. Empty = valid. */
+export function eventProblems(e) {
+  const problems = [];
+  for (const k of REQUIRED) {
+    if (typeof e?.[k] !== 'string' || !e[k].trim()) problems.push(`missing "${k}"`);
+  }
+  if (problems.length) return problems;
+
+  if (!DATE_RE.test(e.date)) {
+    problems.push(`date must look like '2026-09-25', got '${e.date}'`);
+  } else {
+    const [y, m, d] = e.date.split('-').map(Number);
+    const dt = new Date(Date.UTC(y, m - 1, d));
+    if (dt.getUTCFullYear() !== y || dt.getUTCMonth() !== m - 1 || dt.getUTCDate() !== d) {
+      problems.push(`'${e.date}' is not a real date`);
+    }
+  }
+  for (const k of ['start', 'end']) {
+    if (!TIME_RE.test(e[k])) problems.push(`${k} must be 24-hour like '17:00', got '${e[k]}'`);
+  }
+  if (!problems.length && e.end <= e.start) {
+    problems.push(`end (${e.end}) must be after start (${e.start})`);
+  }
+  return problems;
+}
+
+/** Problems across the whole list, labelled by event. Empty = all good. */
+export function validateEvents(events) {
+  const out = [];
+  const slugs = new Map();
+  events.forEach((e, i) => {
+    const label = `Event ${i + 1}${e?.title ? ` ("${e.title}")` : ''}`;
+    for (const p of eventProblems(e)) out.push(`${label}: ${p}`);
+    if (e?.date && e?.title) {
+      const slug = eventSlug(e);
+      if (slugs.has(slug)) out.push(`${label}: same date and title as event ${slugs.get(slug)}`);
+      else slugs.set(slug, i + 1);
+    }
+  });
+  return out;
+}
+
+/**
+ * Upcoming soonest-first, past most-recent-first. An event is past once it
+ * ends. Malformed entries are skipped rather than crashing the page -- the
+ * build refuses to ship them anyway, so this only matters while previewing.
+ */
 export function splitEvents(events, now = Date.now()) {
-  const timed = events.map((e) => ({ ...e, ...eventTimes(e) }));
+  const timed = events.filter((e) => eventProblems(e).length === 0).map((e) => ({ ...e, ...eventTimes(e) }));
   return {
     upcoming: timed.filter((e) => e.endAt > now).sort((a, b) => a.startAt - b.startAt),
     past: timed.filter((e) => e.endAt <= now).sort((a, b) => b.startAt - a.startAt),
