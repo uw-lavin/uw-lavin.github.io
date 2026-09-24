@@ -2,7 +2,7 @@
 
 The website for the [Lavin Entrepreneurship Program](https://uwlavin.com) at the University of Washington, run through the UW Buerk Center for Entrepreneurship.
 
-React + Vite + Tailwind. Deployed to GitHub Pages automatically on every push to `main`.
+React + Vite + Tailwind, deployed to GitHub Pages on every push to `main`. **Events are edited through a no-code admin** — see [Events](#events) below.
 
 ---
 
@@ -17,13 +17,13 @@ npm install
 npm run dev
 ```
 
-That serves the site at **http://localhost:5173**. Edits appear immediately — no need to restart.
+That serves the site at **http://localhost:5173**.
 
 | Command | What it does |
 | --- | --- |
-| `npm run dev` | Local dev server with hot reload |
+| `npm run dev` | Local dev server |
 | `npm run build` | Production build into `dist/` |
-| `npm run preview` | Serve the built `dist/` to check it before pushing |
+| `npm run preview` | Serve the build to check it before pushing |
 | `npm run lint` | ESLint. Must pass — CI runs it |
 | `npm run resources:decrypt` | Decrypt member resources for editing |
 | `npm run resources:encrypt` | Re-encrypt them after editing |
@@ -32,65 +32,55 @@ That serves the site at **http://localhost:5173**. Edits appear immediately — 
 
 ## Making a change
 
-Most updates are content, not code. Here is where things live.
+### Events
 
-### Events — edited through the admin, no code
-
-Anyone on the board can add or change events at **[app.pagescms.org](https://app.pagescms.org)**. No GitHub account, no password, no code.
+Anyone on the board can add or change events at **[app.pagescms.org](https://app.pagescms.org)**:
 
 1. Go to app.pagescms.org, enter your email, and click the sign-in link it emails you.
-2. Open **Events** and click **Add** (or click an existing event to change it).
-3. Fill in the form: title, date, start and end time, location, description. Times and rooms are dropdowns, so they can't be mistyped.
-4. Click **Save**. The site updates in **about 2 minutes** — refresh to see it.
+2. Open **Events** and add a new one (or click an existing event to change it).
+3. Fill in the title, date, times, location, and description.
+4. Click **Save**. The site updates in about 2 minutes.
 
-What happens on its own:
-
-- **The building and a campus-map link** are added from the room you pick. For anywhere not in the list, choose **"Somewhere else"** and type the location — it shows exactly as typed, with no map link.
-- **Add-to-calendar buttons** appear on every upcoming event. Google Calendar gets a pre-filled link (Google doesn't let a website set reminders, so it uses the person's own default alert). Apple / Outlook get a file with alerts a day and an hour before; Apple keeps both, Outlook keeps one.
-- **Past events archive themselves.** Once an event ends it moves to a small "Past events" log at the bottom of the page. Don't delete old events — that log is the record.
+The building, a campus-map link, and add-to-calendar buttons are added automatically. For a location not in the list, choose **"Somewhere else"** and type it in. Past events move to a "Past events" log on their own — don't delete them.
 
 Publish the time an event actually runs, not the room booking or setup window.
 
-**If your change hasn't appeared after five minutes,** something in the entry was invalid and that one event was skipped — the rest of the site still updated. Check the times (the end must be after the start) and, if you chose "Somewhere else", that a location is typed in. If it still doesn't show, message whoever maintains the site; the exact problem is printed in the deploy log.
+**If a change hasn't appeared after five minutes,** that event had a problem and was skipped. Check that the end time is after the start, and that a location is typed in if you chose "Somewhere else".
 
 #### Giving people access (once a year)
 
 When the new board starts each fall:
 
-1. Sign in at app.pagescms.org **with a GitHub account that has access to this repository**. Only those accounts can manage editors — people invited by email can edit events but can't invite anyone.
-2. Open this repository's **Collaborators** settings, **add each new board member's email**, and **remove the people who have left**.
+1. Sign in at app.pagescms.org with a GitHub account that has access to this repository. Only those accounts can manage editors.
+2. Open the repository's **Collaborators** settings, add each new board member's email, and remove anyone who has left.
 
-Each person needs inviting only once, not every time they edit. Keep at least two people (for example the co-presidents) with GitHub access to the repo, so this never depends on a single person. Every change is recorded under the editor's own name, so anything can be traced and undone from the repository history.
+Each person only needs inviting once. Keep at least two people with GitHub access to the repo so this never depends on one person.
 
 #### For developers
 
-Each event is a JSON file in [`src/content/events/`](src/content/events/), and the admin form is defined in [`.pages.yml`](.pages.yml). Pages CMS rewrites a file from the fields declared there and **drops any key not declared** — add a field to `.pages.yml` before the site starts reading it.
+Each event is a JSON file in [`src/content/events/`](src/content/events/), and the admin form is defined in [`.pages.yml`](.pages.yml). Pages CMS drops any key that isn't declared there when it saves, so add a field to `.pages.yml` before the site reads it.
 
-Times are stored as 24-hour Pacific strings (`"17:00"`) and daylight saving is handled in [`src/lib/events.js`](src/lib/events.js). The `.ics` files are generated by a small plugin in [`vite.config.js`](vite.config.js), in the local preview and in the build; there are no generated files to commit.
-
-**Adding a venue** takes two edits: the room in `ROOMS` in [`src/lib/locations.js`](src/lib/locations.js), and the same room in the location dropdown in `.pages.yml` (between the `rooms:start` and `rooms:end` markers). If the building is new too, add it to `BUILDINGS` with its UW facility code — find it on [the UW map](https://www.washington.edu/maps/) (PACCAR Hall is `PCAR`, Founders Hall is `FNDR`, Dempsey Hall is `DEM`). **The build fails with a clear message if the two room lists ever disagree**, so they can't drift apart.
-
-That is the only check that stops a deploy. A malformed event entered through the admin is skipped and reported instead, so one editor's mistake never blocks everyone else's updates.
+**Adding a venue** takes two edits: the room in `ROOMS` in [`src/lib/locations.js`](src/lib/locations.js), and the same room in the location dropdown in `.pages.yml` (between the `rooms:start` and `rooms:end` markers). A new building also goes in `BUILDINGS` with its facility code from [the UW map](https://www.washington.edu/maps/). The build fails if the two room lists disagree.
 
 ### Executive board
 
-One JSON file per person in [`src/content/leadership/`](src/content/leadership/), edited by hand:
+One JSON file per person in [`src/content/leadership/`](src/content/leadership/):
 
 ```json
 {
-  "name": "Divij Chawla",
-  "role": "Co-President",
-  "cohort": 2025,
-  "email": "dc245@uw.edu",
-  "linkedin": "https://www.linkedin.com/in/divijchawla7/",
+  "name": "Rishabh Goenka",
+  "role": "Director of Community Development + Web Development",
+  "cohort": 2024,
+  "email": "rish9@uw.edu",
+  "linkedin": "https://www.linkedin.com/in/rishabh-goenkx/",
   "website": "",
   "photo": ""
 }
 ```
 
-**Order does not matter** — the page sorts by last name. `linkedin`, `website`, and `photo` are optional; empty ones are simply not shown.
+The page sorts by last name, so order doesn't matter. `linkedin`, `website`, and `photo` are optional.
 
-For a photo, put the image in [`src/content/media/leadership/`](src/content/media/leadership/) and set `"photo": "/src/content/media/leadership/divij-chawla.jpg"`. It's cropped to a square and resized automatically, so upload it as it is. Without a photo, the card shows the person's initials. (Ananya Tripathi's and Sreshta's photos from last year are already in that folder.)
+For a photo, put the image in [`src/content/media/leadership/`](src/content/media/leadership/) and set `"photo": "/src/content/media/leadership/rishabh-goenka.jpg"`. Without one, the card shows initials.
 
 Update the year in the page heading each fall.
 
@@ -98,7 +88,7 @@ Update the year in the page heading each fall.
 
 Photos live in [`src/content/media/gallery/`](src/content/media/gallery/), and [`src/content/gallery.json`](src/content/gallery.json) lists them in display order. To add one, drop the file in the folder and add its path to the list.
 
-**Upload photos as they are.** Each one is resized to a small WebP automatically when the site is built — the 16 current photos went from 26.8 MB to 1.6 MB delivered. Use JPG, PNG, or WebP; iPhone HEIC files don't display in Chrome or Firefox.
+Upload photos as they are — they're resized automatically. Use JPG, PNG, or WebP, not iPhone HEIC.
 
 ### Alumni startups
 
@@ -106,13 +96,11 @@ The `alumniStartups` array in [`src/pages/Home.jsx`](src/pages/Home.jsx). Link t
 
 ### Recruitment dates and the "applications open" chip
 
-[`src/pages/Recruitment.jsx`](src/pages/Recruitment.jsx) holds the timeline and both apply buttons. The gold "Applications open now" chip appears there and on the home page — when applications close, remove it from both.
+[`src/pages/Recruitment.jsx`](src/pages/Recruitment.jsx) holds the timeline and both apply buttons. The gold "Applications open now" chip appears there and on the home page — remove it from both when applications close.
 
 ### Internal resources
 
-The member resources are **encrypted**. The built site ships only ciphertext — no password, no links — so there is nothing useful to read in the repo or in devtools. The password decrypts them in the browser.
-
-To change a link:
+The member resources are encrypted, and the password unlocks them in the browser. To change a link:
 
 ```bash
 npm run resources:decrypt   # asks for the password, writes resources.json
@@ -120,51 +108,35 @@ npm run resources:decrypt   # asks for the password, writes resources.json
 npm run resources:encrypt   # writes src/data/resources.enc.json
 ```
 
-Commit `src/data/resources.enc.json`. **Never commit `resources.json`** — it is gitignored for that reason.
+Commit `src/data/resources.enc.json`. **Never commit `resources.json`.**
 
-To change the password, decrypt with the old one and encrypt with the new one.
-
-How it works: PBKDF2-HMAC-SHA256 (310,000 iterations) derives a key from the password, and AES-256-GCM encrypts the payload. Both sides use the browser's and Node's built-in crypto, so there is no dependency and no page weight. Unlocking takes well under a tenth of a second.
-
-> **Worth knowing:** this is real encryption, not a fake gate, but the password is the weak link — a short, guessable one can be attacked offline by anyone who downloads the file. Keep genuinely sensitive documents restricted through Google's own sharing settings (for example "UW accounts only") as well. Losing the password means the content can only be recovered from git history.
-
+To change the password, decrypt with the old one and encrypt with the new one. Don't lose it — the content can only be recovered from git history. Keep anything genuinely sensitive restricted in Google's own sharing settings too.
 
 ---
 
 ## Design
 
-Two typefaces, nothing else:
+Two typefaces: **Encode Sans** (`font-display`, the logo typeface) for headings and labels, and **Open Sans** (`font-sans`) for body copy. Both load from Google Fonts. The `.ttf` in `src/assets/Encode Sans/` is only used to regenerate the favicons.
 
-- **Encode Sans** (`font-display`) — headings and small uppercase labels. This is the typeface in the Lavin logo.
-- **Open Sans** (`font-sans`) — body copy.
-
-Both load from Google Fonts. `src/assets/Encode Sans/` holds the Black weight as a `.ttf`; it is not used by the site at runtime, only kept so the favicons in `public/` can be regenerated from the real logo typeface.
-
-Colors currently live as hex values in the components:
-
-| | |
+| Color | Use |
 | --- | --- |
-| `#0f0f0f` | near-black, text |
-| `#f8f7f4` | cream page background |
+| `#0f0f0f` | text |
+| `#f8f7f4` | page background |
 | `#a69041` | gold — the DISRUPT full stop and the applications-open chip |
 | `#3b2c5a` | purple accent |
 | `#0d6e5e` | green, recruitment timeline |
 | `#e0ddd8` | hairline rules |
 
-Layout rules worth knowing:
-
-- `App.jsx` already pads `main` to clear the fixed navbar. Do not add your own top padding to a page's first section, or you get a large gap.
-- Check any change at phone width. Real content has broken the layout there before.
+- `App.jsx` already pads the page to clear the fixed navbar. Don't add top padding to a page's first section.
+- Check changes at phone width.
 
 ---
 
 ## Deploying
 
-Push to `main` and it goes live in about two minutes. [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) installs, lints, builds, and publishes to GitHub Pages.
+Push to `main` and it goes live in about two minutes via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). Pull requests are built and checked but not deployed.
 
-Pull requests run the same install, lint, and build, but **do not** deploy.
-
-The custom domain is set by the `CNAME` file. Do not delete it.
+The custom domain is set by the `CNAME` file. Don't delete it.
 
 ---
 
@@ -179,20 +151,19 @@ src/
   App.jsx               Routes and page shell
   index.css             Fonts, Tailwind, shared classes
   pages/                One file per route
-  components/layout/    Navbar, Footer
-  components/ui/        CountUp, InfoCard, LogoMarquee, MapLink
+  components/           Navbar, Footer, and small UI pieces
   hooks/                useScrollToTop
-  lib/                  Event times + calendar export, locations, image resizing, vault
-  content/              Site content: events, leadership, gallery, and their photos
+  lib/                  Event times, calendar files, locations, images, encryption
+  content/              Events, leadership, gallery, and their photos
   data/                 Encrypted member resources
   assets/               Logo, fonts, fixed page images
 scripts/                Member-resources encrypt/decrypt
 ```
 
-Routing uses `HashRouter`, so URLs look like `uwlavin.com/#/events`. Any other path is redirected to the homepage by `public/404.html`.
+Routing uses `HashRouter`, so URLs look like `uwlavin.com/#/events`.
 
 ---
 
 ## Questions
 
-Email [lavin.entrepreneurship@gmail.com](mailto:lavin.entrepreneurship@gmail.com), or the Buerk Center at [uwbuerk@uw.edu](mailto:uwbuerk@uw.edu).
+Rishabh Goenka — [rishabhlgoenka@gmail.com](mailto:rishabhlgoenka@gmail.com) or [rish9@uw.edu](mailto:rish9@uw.edu).
