@@ -105,25 +105,10 @@ export default function ExecutiveBoard() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="text-black font-display font-black leading-[0.9] text-[7vw] sm:text-4xl md:text-5xl tracking-tight mb-3 lowercase whitespace-nowrap"
+            className="text-black font-display font-black leading-[0.9] text-[7vw] sm:text-4xl md:text-5xl tracking-tight lowercase whitespace-nowrap"
           >
             26/27 executive board
           </motion.h1>
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            className="text-sm md:text-base text-black/70 font-sans max-w-xl"
-          >
-            Reach any of us directly, or email{' '}
-            <a
-              href="mailto:lavin.entrepreneurship@gmail.com"
-              className="underline decoration-black/30 underline-offset-[3px] hover:decoration-black hover:text-black transition-colors"
-            >
-              lavin.entrepreneurship@gmail.com
-            </a>{' '}
-            with general questions.
-          </motion.p>
         </div>
       </section>
 
