@@ -70,7 +70,11 @@ An unregistered venue still renders fine, just as plain text with no link — so
 
 ### Executive board
 
-The `executiveBoard` array in [`src/pages/ExecutiveBoard.jsx`](src/pages/ExecutiveBoard.jsx). Put the photo in `src/assets/profilePics/` and import it at the top of the file. Portraits are cropped to 4:5, so upload something roughly that shape.
+The `executiveBoard` array in [`src/pages/ExecutiveBoard.jsx`](src/pages/ExecutiveBoard.jsx). Each entry is a name, role, cohort, email, and LinkedIn URL. **Order does not matter** — the page sorts by last name automatically.
+
+Photos are optional. Without one, the card shows the person's initials. To add one, put the image in `src/assets/profilePics/`, import it at the top of the file, and set `photo` on that person's entry. It displays as a small square, so a centred head-and-shoulders crop works best. (Ananya Tripathi's and Sreshta's photos from last year are already in that folder.)
+
+Update the year in the page heading each fall.
 
 ### Alumni startups
 
