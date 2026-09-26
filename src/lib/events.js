@@ -1,11 +1,8 @@
 // Event time handling, display formatting, and calendar exports.
-// Shared by the Events page and the calendar plugin in vite.config.js, so imports use
-// explicit .js extensions that plain Node can resolve.
+// Shared by the Events page, the calendar plugin in vite.config.js, and
+// scripts/sync-calendar.mjs, so imports use explicit .js extensions that plain
+// Node can resolve.
 import { resolveLocation } from './locations.js';
-
-// The admin's location dropdown has one non-room choice. Picking it means the
-// real location is typed into `otherLocation` instead.
-export const OTHER_LOCATION = 'Other';
 
 const TZ = 'America/Los_Angeles';
 const SITE_EVENTS_URL = 'https://uwlavin.com/#/events';
@@ -56,7 +53,8 @@ export function eventTimes(event) {
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
-const REQUIRED = ['title', 'date', 'start', 'end', 'location', 'desc'];
+// Location and description are optional: plenty of calendar events have neither.
+const REQUIRED = ['title', 'date', 'start', 'end'];
 
 /** Everything wrong with one entry, as readable sentences. Empty = valid. */
 export function eventProblems(e) {
@@ -81,15 +79,7 @@ export function eventProblems(e) {
   if (!problems.length && e.end <= e.start) {
     problems.push(`end (${e.end}) must be after start (${e.start})`);
   }
-  if (e.location === OTHER_LOCATION && !(typeof e.otherLocation === 'string' && e.otherLocation.trim())) {
-    problems.push(`location is "somewhere else" but no location was typed in`);
-  }
   return problems;
-}
-
-/** Resolve the "somewhere else" choice to the typed-in location. Idempotent. */
-export function normalizeEvent(e) {
-  return e.location === OTHER_LOCATION ? { ...e, location: e.otherLocation.trim() } : e;
 }
 
 /** Problems across the whole list, labelled by event. Empty = all good. */
@@ -116,7 +106,6 @@ export function validateEvents(events) {
 export function splitEvents(events, now = Date.now()) {
   const timed = events
     .filter((e) => eventProblems(e).length === 0)
-    .map((e) => normalizeEvent(e))
     .map((e) => ({ ...e, ...eventTimes(e) }));
   return {
     upcoming: timed.filter((e) => e.endAt > now).sort((a, b) => a.startAt - b.startAt),
@@ -157,11 +146,13 @@ export const icsHref = (event) => `calendar/${eventSlug(event)}.ics`;
 // Room + building + campus, so map apps can find it. Unknown venues are left
 // alone -- they may be off campus.
 function calendarLocation(event) {
-  const { label, href } = resolveLocation(normalizeEvent(event).location);
-  return href ? `${label}, University of Washington, Seattle, WA` : label;
+  const { label, href } = resolveLocation(event.location);
+  if (!href || /seattle/i.test(label)) return label;
+  return `${label}, University of Washington, Seattle, WA`;
 }
 
-const calendarDetails = (event) => `${event.desc}\n\nDetails: ${SITE_EVENTS_URL}`;
+const calendarDetails = (event) =>
+  event.desc ? `${event.desc}\n\nDetails: ${SITE_EVENTS_URL}` : `Details: ${SITE_EVENTS_URL}`;
 
 // 20260926T000000Z
 const utcStamp = (d) => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
@@ -176,8 +167,9 @@ export function googleCalendarUrl(event) {
     action: 'TEMPLATE',
     text: event.title,
     details: calendarDetails(event),
-    location: calendarLocation(event),
   });
+  const where = calendarLocation(event);
+  if (where) params.set('location', where);
   // `dates` goes in with a literal slash, the form Google documents.
   return `https://calendar.google.com/calendar/render?${params}&dates=${utcStamp(startAt)}/${utcStamp(endAt)}`;
 }
@@ -237,7 +229,7 @@ export function buildIcs(event, now = new Date()) {
     `DTEND:${utcStamp(endAt)}`,
     `SUMMARY:${icsText(event.title)}`,
     `DESCRIPTION:${icsText(calendarDetails(event))}`,
-    `LOCATION:${icsText(calendarLocation(event))}`,
+    ...(calendarLocation(event) ? [`LOCATION:${icsText(calendarLocation(event))}`] : []),
     `URL:${SITE_EVENTS_URL}`,
     ...alarm('-P1D', `${event.title} is tomorrow`),
     ...alarm('-PT1H', `${event.title} starts in 1 hour`),

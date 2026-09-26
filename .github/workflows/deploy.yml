@@ -1,15 +1,20 @@
 name: Build and Deploy
 
 on:
-  # Pushes to main build AND deploy.
+  # Pushes to main build and deploy.
   push:
     branches: [main]
-  # Pull requests only build, so a broken PR is caught without
-  # publishing it to the live site.
+  # Pull requests only build, so a broken PR is caught without publishing it.
   pull_request:
     branches: [main]
+  # Every 15 minutes: pull new and changed events from the public "Lavin
+  # Events" Google Calendar, and make sure the live site is current. Off the
+  # hour on purpose -- GitHub delays scheduled runs most at :00.
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  # "Run workflow" in the Actions tab: sync the calendar and redeploy now.
+  workflow_dispatch:
 
-# Never let two deploys race; let a newer push cancel an in-flight PR build.
 concurrency:
   group: pages-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
@@ -18,7 +23,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write # the calendar sync commits updated event files
+    outputs:
+      publish: ${{ steps.decide.outputs.publish }}
     steps:
       - uses: actions/checkout@v4
 
@@ -29,22 +36,69 @@ jobs:
 
       - run: npm ci
 
+      - name: Sync events from Google Calendar
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git pull --rebase --quiet origin main
+          npm run calendar:sync
+          if [ -n "$(git status --porcelain -- src/content/events)" ]; then
+            git add -A src/content/events
+            git commit -m 'Sync events from Google Calendar'
+            git push origin HEAD:main
+          fi
+
+      # GitHub switches off scheduled workflows in a public repository after 60
+      # days without a commit. A quiet summer would do that and silently stop
+      # the calendar sync, so commit (empty) every ~45 days of quiet.
+      - name: Keep the schedule alive
+        if: github.event_name == 'schedule'
+        run: |
+          idle=$(( $(date +%s) - $(git log -1 --format=%ct) ))
+          if [ "$idle" -gt $(( 45 * 24 * 3600 )) ]; then
+            git commit --allow-empty -m 'Keep the calendar sync schedule active'
+            git push origin HEAD:main
+          fi
+
+      # A scheduled run publishes whenever the live site isn't built from the
+      # current main. That covers new calendar events, and also any push whose
+      # own deploy was superseded in the queue or failed.
+      - name: Decide whether to publish
+        id: decide
+        run: |
+          case "${{ github.event_name }}" in
+            push|workflow_dispatch) publish=true ;;
+            schedule)
+              live=$(curl -fsS "https://uwlavin.com/version.txt?t=$(date +%s)" 2>/dev/null || echo none)
+              if [ "$live" = "$(git rev-parse HEAD)" ]; then publish=false; else publish=true; fi ;;
+            *) publish=false ;;
+          esac
+          echo "publish=$publish" >> "$GITHUB_OUTPUT"
+          echo "Publish: $publish"
+
       - run: npm run lint
+        if: github.event_name == 'pull_request' || steps.decide.outputs.publish == 'true'
 
       - run: npm run build
+        if: github.event_name == 'pull_request' || steps.decide.outputs.publish == 'true'
 
-      # Tells GitHub Pages not to run the output through Jekyll.
-      - run: touch dist/.nojekyll
+      # Stamp the build with its commit, which the scheduled check reads back.
+      # .nojekyll tells GitHub Pages not to run the output through Jekyll.
+      - name: Stamp the build
+        if: steps.decide.outputs.publish == 'true'
+        run: |
+          git rev-parse HEAD > dist/version.txt
+          touch dist/.nojekyll
 
       - name: Upload Pages artifact
-        if: github.event_name == 'push'
+        if: steps.decide.outputs.publish == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
   deploy:
-    # Only ever runs for pushes to main, never for pull requests.
-    if: github.event_name == 'push'
+    if: needs.build.outputs.publish == 'true'
     needs: build
     runs-on: ubuntu-latest
     environment:

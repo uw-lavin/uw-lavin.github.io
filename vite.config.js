@@ -6,23 +6,18 @@ import { join, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
 const EVENTS_DIR = 'src/content/events'
-const ADMIN_CONFIG = '.pages.yml'
 
 /**
  * Serves and builds one "Add to calendar" .ics file per event, straight from
- * the event files the admin edits (src/content/events/*.json). Nothing to run
- * and nothing on disk: add an event and its file exists, in the local preview
- * and on the live site alike.
+ * src/content/events/*.json -- which scripts/sync-calendar.mjs keeps in step
+ * with the public Google Calendar. Nothing to run and nothing on disk: an
+ * event's file exists in the local preview and on the live site alike.
  *
  * Real files matter because iPhones only reliably open "Add to Calendar" for
  * a served calendar file; in-page downloads tend to land in Files instead.
  *
- * Checks, and what each does when it trips:
- * - A malformed event (entered through the admin) is skipped and reported.
- *   The rest of the site still deploys -- one editor's mistake must never
- *   block everyone else's updates.
- * - The admin's location dropdown drifting out of sync with the room registry
- *   is a developer mistake, so that one fails the build.
+ * A malformed event is skipped and reported; the rest of the site still
+ * deploys, so one bad entry never blocks everyone else's updates.
  */
 function calendarFiles() {
   let command
@@ -36,32 +31,10 @@ function calendarFiles() {
   // In the preview, load through Vite so edits apply without a restart. At
   // build time, plain imports are fine.
   const loadLib = async (server) => {
-    const [events, locations] = server
-      ? await Promise.all([server.ssrLoadModule('/src/lib/events.js'), server.ssrLoadModule('/src/lib/locations.js')])
-      : await Promise.all([
-          import(pathToFileURL(resolve('src/lib/events.js')).href),
-          import(pathToFileURL(resolve('src/lib/locations.js')).href),
-        ])
-    return { lib: events, KNOWN_ROOMS: locations.KNOWN_ROOMS }
-  }
-
-  // Rooms listed in the admin dropdown, between the rooms:start/end markers.
-  const adminRooms = () => {
-    const text = readFileSync(ADMIN_CONFIG, 'utf8')
-    const block = text.match(/# rooms:start[^\n]*\n([\s\S]*?)\n\s*# rooms:end/)
-    if (!block) return null
-    return [...block[1].matchAll(/name:\s*("(?:[^"\\]|\\.)*")/g)].map((m) => JSON.parse(m[1]))
-  }
-
-  const roomSyncProblems = (KNOWN_ROOMS) => {
-    const listed = adminRooms()
-    if (!listed) return [`${ADMIN_CONFIG}: could not find the "# rooms:start" / "# rooms:end" markers`]
-    const inAdminOnly = listed.filter((r) => !KNOWN_ROOMS.includes(r))
-    const inRegistryOnly = KNOWN_ROOMS.filter((r) => !listed.includes(r))
-    return [
-      ...inAdminOnly.map((r) => `"${r}" is in the ${ADMIN_CONFIG} dropdown but not in ROOMS in src/lib/locations.js`),
-      ...inRegistryOnly.map((r) => `"${r}" is in ROOMS in src/lib/locations.js but missing from the ${ADMIN_CONFIG} dropdown`),
-    ]
+    const lib = server
+      ? await server.ssrLoadModule('/src/lib/events.js')
+      : await import(pathToFileURL(resolve('src/lib/events.js')).href)
+    return { lib }
   }
 
   const eventReport = (lib, events) =>
@@ -76,10 +49,9 @@ function calendarFiles() {
 
   const previewCheck = async (file, server) => {
     const touchesEvents = file.includes(`/${EVENTS_DIR}/`) && file.endsWith('.json')
-    const touchesConfig = file.endsWith(`/${ADMIN_CONFIG}`) || file.endsWith('/src/lib/locations.js')
-    if ((!touchesEvents && !touchesConfig) || !existsSync(EVENTS_DIR)) return
-    const { lib, KNOWN_ROOMS } = await loadLib(server)
-    const lines = [...roomSyncProblems(KNOWN_ROOMS), ...eventReport(lib, readEvents())]
+    if (!touchesEvents || !existsSync(EVENTS_DIR)) return
+    const { lib } = await loadLib(server)
+    const lines = eventReport(lib, readEvents())
     if (lines.length) server.config.logger.warn(block('Content problems:', lines), { timestamp: true })
   }
 
@@ -92,11 +64,7 @@ function calendarFiles() {
 
     async buildStart() {
       if (command !== 'build') return
-      const { lib, KNOWN_ROOMS } = await loadLib()
-
-      const sync = roomSyncProblems(KNOWN_ROOMS)
-      if (sync.length) this.error(block('The admin location list and the room registry disagree:', sync))
-
+      const { lib } = await loadLib()
       const events = readEvents()
       const problems = eventReport(lib, events)
       if (problems.length) {
@@ -111,7 +79,7 @@ function calendarFiles() {
         this.emitFile({
           type: 'asset',
           fileName: `calendar/${lib.eventSlug(event)}.ics`,
-          source: lib.buildIcs(lib.normalizeEvent(event)),
+          source: lib.buildIcs(event),
         })
       }
     },
@@ -131,7 +99,7 @@ function calendarFiles() {
             return res.end('No event with that name.')
           }
           res.setHeader('Content-Type', 'text/calendar; charset=utf-8')
-          res.end(lib.buildIcs(lib.normalizeEvent(event)))
+          res.end(lib.buildIcs(event))
         } catch (err) {
           next(err)
         }

@@ -2,7 +2,7 @@
 
 The website for the [Lavin Entrepreneurship Program](https://uwlavin.com) at the University of Washington, run through the UW Buerk Center for Entrepreneurship.
 
-React + Vite + Tailwind, deployed to GitHub Pages on every push to `main`. **Events are edited through a no-code admin** — see [Events](#events) below.
+React + Vite + Tailwind, deployed to GitHub Pages on every push to `main`. **Events come from a shared Google Calendar** — see [Events](#events) below.
 
 ---
 
@@ -27,6 +27,7 @@ That serves the site at **http://localhost:5173**.
 | `npm run lint` | ESLint. Must pass — CI runs it |
 | `npm run resources:decrypt` | Decrypt member resources for editing |
 | `npm run resources:encrypt` | Re-encrypt them after editing |
+| `npm run calendar:sync` | Pull events from Google Calendar now |
 
 ---
 
@@ -34,33 +35,29 @@ That serves the site at **http://localhost:5173**.
 
 ### Events
 
-Anyone on the board can add or change events at **[app.pagescms.org](https://app.pagescms.org)**:
+Events live in the **Lavin Events** Google Calendar, owned by the Lavin Gmail. Add, edit, or delete an event there — from Google Calendar or Apple Calendar — and the website follows within about 15 minutes.
 
-1. Go to app.pagescms.org, enter your email, and click the sign-in link it emails you.
-2. Open **Events** and add a new one (or click an existing event to change it).
-3. Fill in the title, date, times, location, and description.
-4. Click **Save**. The site updates in about 2 minutes.
+- The title, time, location, and description come straight from the calendar event. A known room like "Peek Forum" gets its building and a campus-map link; any other location shows as typed.
+- Only timed, single-day events appear. All-day and multi-day events, and events marked private, are left off the site.
+- Past events move to a "Past events" log on their own — don't delete them.
+- Publish the time an event actually runs. Setup times and room bookings go on the **Lavin Exec** calendar, which never appears on the site.
 
-The building, a campus-map link, and add-to-calendar buttons are added automatically. For a location not in the list, choose **"Somewhere else"** and type it in. Past events move to a "Past events" log on their own — don't delete them.
-
-Publish the time an event actually runs, not the room booking or setup window.
-
-**If a change hasn't appeared after five minutes,** that event had a problem and was skipped. Check that the end time is after the start, and that a location is typed in if you chose "Somewhere else".
+Visitors can subscribe from the Events page to get every event on their own calendar.
 
 #### Giving people access (once a year)
 
-When the new board starts each fall:
+When the new board starts each fall, sign in to the Lavin Gmail and, for **both** Lavin Events and Lavin Exec, open the calendar's settings → **Share with specific people** → add each new board member with **Make changes to events**, and remove anyone who has left.
 
-1. Sign in at app.pagescms.org with a GitHub account that has access to this repository. Only those accounts can manage editors.
-2. Open the repository's **Collaborators** settings, add each new board member's email, and remove anyone who has left.
-
-Each person only needs inviting once. Keep at least two people with GitHub access to the repo so this never depends on one person.
+On an iPhone, shared calendars only appear after you add your Google account to Apple Calendar (Settings → Calendar → Accounts) and tick them at [calendar.google.com/calendar/syncselect](https://calendar.google.com/calendar/syncselect).
 
 #### For developers
 
-Each event is a JSON file in [`src/content/events/`](src/content/events/), and the admin form is defined in [`.pages.yml`](.pages.yml). Pages CMS drops any key that isn't declared there when it saves, so add a field to `.pages.yml` before the site reads it.
+A scheduled job in [`deploy.yml`](.github/workflows/deploy.yml) runs [`scripts/sync-calendar.mjs`](scripts/sync-calendar.mjs) every 15 minutes. It reads the calendar's public iCal address from [`src/content/calendar.json`](src/content/calendar.json), rewrites [`src/content/events/`](src/content/events/) to match, and commits and deploys only when something changed. To sync right away, use **Run workflow** in the repo's Actions tab.
 
-**Adding a venue** takes two edits: the room in `ROOMS` in [`src/lib/locations.js`](src/lib/locations.js), and the same room in the location dropdown in `.pages.yml` (between the `rooms:start` and `rooms:end` markers). A new building also goes in `BUILDINGS` with its facility code from [the UW map](https://www.washington.edu/maps/). The build fails if the two room lists disagree.
+- `src/content/events/` is generated — edit the calendar, not these files.
+- The sync never wipes the site: if the calendar can't be fetched, or comes back empty while the site has events, it changes nothing and the job fails.
+- Only ever put the calendar's **public** address in `calendar.json`, never the secret one — this repository is public. The sync refuses a secret address.
+- To add a venue, add the room to `ROOMS` in [`src/lib/locations.js`](src/lib/locations.js), and a new building to `BUILDINGS` with its facility code from [the UW map](https://www.washington.edu/maps/).
 
 ### Executive board
 
@@ -144,7 +141,6 @@ The custom domain is set by the `CNAME` file. Don't delete it.
 
 ```
 index.html              Page shell, favicons, social preview tags
-.pages.yml              The events admin form (Pages CMS)
 public/                 Copied to the site root as-is (icons, 404 page)
 src/
   main.jsx              Entry point
@@ -157,7 +153,7 @@ src/
   content/              Events, leadership, gallery, and their photos
   data/                 Encrypted member resources
   assets/               Logo, fonts, fixed page images
-scripts/                Member-resources encrypt/decrypt
+scripts/                Calendar sync, member-resources encrypt/decrypt
 ```
 
 Routing uses `HashRouter`, so URLs look like `uwlavin.com/#/events`.

@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "resources:encrypt": "node scripts/resources.mjs encrypt",
-    "resources:decrypt": "node scripts/resources.mjs decrypt"
+    "resources:decrypt": "node scripts/resources.mjs decrypt",
+    "calendar:sync": "node scripts/sync-calendar.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.12",
@@ -29,6 +30,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
+    "ical.js": "^2.2.1",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
     "vite": "^7.0.4",

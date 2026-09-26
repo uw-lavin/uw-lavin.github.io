@@ -2,10 +2,11 @@ import { motion } from 'framer-motion';
 import MapLink from '../components/ui/MapLink';
 import { formatEvent, googleCalendarUrl, icsHref, splitEvents, eventSlug } from '../lib/events';
 import { resolveLocation } from '../lib/locations';
+import { appleSubscribeUrl, googleSubscribeUrl } from '../lib/calendarFeed';
 
-// One JSON file per event, created and edited through the admin (Pages CMS).
-// Events move from "upcoming" to the past-events log on their own once they
-// end, so nothing ever needs deleting.
+// Events live in the public "Lavin Events" Google Calendar. A scheduled job
+// (scripts/sync-calendar.mjs) copies them into one JSON file each here. They
+// move from "upcoming" to the past-events log on their own once they end.
 const events = Object.values(
   import.meta.glob('/src/content/events/*.json', { eager: true, import: 'default' }),
 );
@@ -45,12 +46,19 @@ function UpcomingEvent({ event }) {
         </h2>
 
         <div className="text-[11px] md:text-xs font-display font-bold tracking-wider uppercase text-black/70 mb-2.5">
-          {f.weekday} &nbsp;&middot;&nbsp; {f.timeRange} &nbsp;&middot;&nbsp; <MapLink name={event.location} />
+          {f.weekday} &nbsp;&middot;&nbsp; {f.timeRange}
+          {event.location && (
+            <>
+              &nbsp;&middot;&nbsp; <MapLink name={event.location} />
+            </>
+          )}
         </div>
 
-        <p className="text-sm md:text-base text-black/70 leading-relaxed max-w-2xl font-sans w-full">
-          {event.desc}
-        </p>
+        {event.desc && (
+          <p className="text-sm md:text-base text-black/70 leading-relaxed max-w-2xl font-sans w-full">
+            {event.desc}
+          </p>
+        )}
 
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <a
@@ -113,6 +121,27 @@ export default function Events() {
               mixers.<br className="hidden md:block" /> panels.<br className="hidden md:block" /> workshops.
             </motion.div>
           </div>
+
+          {/* Subscribing puts every event -- including future ones -- on your
+              calendar. Hidden until the public calendar is configured. */}
+          {googleSubscribeUrl && (
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <span className="mr-1 text-[10px] md:text-[11px] font-display font-bold uppercase tracking-[0.12em] text-black/55">
+                Get every event:
+              </span>
+              <a
+                href={googleSubscribeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={calButton}
+              >
+                + Subscribe in Google Calendar
+              </a>
+              <a href={appleSubscribeUrl} className={calButton}>
+                + Subscribe in Apple / Outlook
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
