@@ -35,7 +35,7 @@ That serves the site at **http://localhost:5173**.
 
 ### Events
 
-Events live in the **Lavin Events** Google Calendar, owned by the Lavin Gmail. Add, edit, or delete an event there — from Google Calendar or Apple Calendar — and the website follows within about 15 minutes.
+Events live in the **Lavin Events** Google Calendar, owned by the Lavin Gmail. Add, edit, or delete an event there — from Google Calendar or Apple Calendar — and the website usually follows within 15 to 60 minutes. (GitHub runs the check on a best-effort schedule, so it's occasionally slower. Anyone with GitHub access can update the site immediately: repo → **Actions** → **Build and Deploy** → **Run workflow**.)
 
 - The title, time, location, and description come straight from the calendar event. A known room like "Peek Forum" gets its building and a campus-map link; any other location shows as typed.
 - Only timed, single-day events appear. All-day and multi-day events, and events marked private, are left off the site.
@@ -52,8 +52,7 @@ On an iPhone, shared calendars only appear after you add your Google account to 
 
 #### For developers
 
-A scheduled job in [`deploy.yml`](.github/workflows/deploy.yml) runs [`scripts/sync-calendar.mjs`](scripts/sync-calendar.mjs) every 15 minutes. It reads the calendar's public iCal address from [`src/content/calendar.json`](src/content/calendar.json), rewrites [`src/content/events/`](src/content/events/) to match, and commits and deploys only when something changed. To sync right away, use **Run workflow** in the repo's Actions tab.
-
+A scheduled job in [`deploy.yml`](.github/workflows/deploy.yml) runs [`scripts/sync-calendar.mjs`](scripts/sync-calendar.mjs), asking for every 15 minutes; GitHub treats schedules as best effort and often runs them less often. It reads the calendar's public iCal address from [`src/content/calendar.json`](src/content/calendar.json), rewrites [`src/content/events/`](src/content/events/) to match, and commits and deploys only when something changed. 
 - `src/content/events/` is generated — edit the calendar, not these files.
 - The sync never wipes the site: if the calendar can't be fetched, or comes back empty while the site has events, it changes nothing and the job fails.
 - Only ever put the calendar's **public** address in `calendar.json`, never the secret one — this repository is public. The sync refuses a secret address.
