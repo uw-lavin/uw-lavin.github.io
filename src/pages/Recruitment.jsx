@@ -3,8 +3,61 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import boat24Image from '../assets/boat24new.jpg';
 import { fadeUp } from '../lib/animations';
 
+// While the official application portal is down, a notice above the questions
+// tells applicants to draft here and submit once it's back. Set to false when
+// the portal works again; the questions themselves can stay as a reference.
+const PORTAL_DOWN = true;
+
+// From the official Fall 2026 application. Keep the wording exact -- people
+// draft their answers against it.
+const WRITTEN_QUESTIONS = [
+  {
+    q: "What's one project, idea, or problem you've taken action on? What did you do and what happened?",
+    note: "You can tell a concise story, or use another situational writing strategy like the STAR method. We're challenging you to write concisely — word limits are a maximum, not the goal.",
+    limit: '~125 words · 750 characters max',
+  },
+  {
+    q: "If you have already created a company and would like to share it with us, please provide the URL.",
+    note: "If you haven't, that's okay — leave it blank.",
+    limit: 'Optional',
+  },
+  {
+    q: 'What technical or creative skills do you have? In bullet points, showcase how you\'ve applied these outside the classroom.',
+    note: 'e.g. Figma, Python, Notion, Adobe Illustrator, Fusion CAD, public speaking, design, video editing.',
+    limit: '~150 words · 750 characters max',
+  },
+  {
+    q: 'In the last year, what communities (geographic, interest-based, professional, etc.) have you been involved with, and what specifically have you contributed?',
+    limit: '~150 words · 750 characters max',
+  },
+  {
+    q: 'Choose one prompt:',
+    options: [
+      'What startup or small business are you excited about right now? Why?',
+      "What's an industry or trend you're obsessed with and think has a lot of opportunity?",
+    ],
+    note: 'Avoid broad generalizations like AI, technology, or robotics. The more specific the better — e.g. the Hispanic food market in Seattle, observability for reasoning models, smart home technology.',
+    limit: '~140 words · 750 characters max',
+  },
+];
+
+const VIDEO_PROMPTS = [
+  "What's a problem you can't stop thinking about?",
+  'What are you good at, and how do you know?',
+  'If you had $100 and one weekend to start something, what would you do?',
+  'What do you want to be doing in 10 years?',
+];
+
+const IF_ACCEPTED = [
+  'A 2-credit winter-quarter class, Thursdays 5:30–7:20 PM',
+  'Welcome Reception — evening of Wednesday, Nov 4',
+  'Overnight retreat — Friday, Nov 13 (afternoon) to Saturday, Nov 14 (evening)',
+  'All Lavin Program Meeting — evening of Thursday, Nov 19',
+];
+
 export default function Recruitment() {
   const timelineRef = useRef(null);
+  const questionsRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: timelineRef,
     offset: ["start center", "end center"]
@@ -69,12 +122,97 @@ export default function Recruitment() {
               <p className="text-[11px] md:text-xs font-display font-bold tracking-[0.12em] uppercase text-[#0f0f0f]/70">
                 Closes Sun, Oct 11 &middot; 11:59 PM
               </p>
+              <button
+                type="button"
+                onClick={() => questionsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                className="text-[11px] md:text-xs font-display font-bold tracking-[0.12em] uppercase text-[#0f0f0f] underline decoration-black/30 underline-offset-[3px] hover:decoration-black transition-colors"
+              >
+                Preview the questions &darr;
+              </button>
             </div>
             <p className="text-[14px] text-[#0f0f0f] italic font-sans md:text-right max-w-sm">
-              Open to all UW undergrads with 3+ years remaining. No business experience required.
+              Open to UW first-years and sophomores. No business experience required.
             </p>
           </div>
 
+        </div>
+      </section>
+
+      {/* ---------- APPLICATION QUESTIONS (reference only) ---------- */}
+      <section
+        ref={questionsRef}
+        className="scroll-mt-24 px-6 md:px-12 py-12 md:py-16 w-full border-b border-black/10 bg-white"
+      >
+        <div className="max-w-3xl mx-auto w-full">
+          <div className="text-[11px] font-display tracking-[0.3em] uppercase text-black/40 mb-3">
+            APPLICATION QUESTIONS — FALL 2026
+          </div>
+          <h2 className="text-3xl md:text-4xl font-display font-black tracking-tight text-[#0f0f0f] leading-[0.95] lowercase mb-5">
+            prepare your application
+          </h2>
+
+          {PORTAL_DOWN && (
+            <p className="mb-3 border-l-[3px] border-[#a69041] bg-[#f8f7f4] px-4 py-3 text-sm md:text-[15px] text-[#0f0f0f] font-sans leading-relaxed">
+              The application portal is temporarily unavailable. Everything you need is below, so you can draft your answers and record your video now, then submit once the portal is back.
+            </p>
+          )}
+          <p className="mb-8 text-sm text-black/70 font-sans leading-relaxed">
+            <strong className="font-semibold text-[#0f0f0f]">This page is for reference only.</strong>{' '}
+            Submit everything through the official application portal. Please don&apos;t email or send your answers to Lavin members — we can&apos;t accept them, and only portal submissions are reviewed.
+          </p>
+
+          <p className="mb-6 text-[11px] md:text-xs font-display font-bold tracking-[0.12em] uppercase text-black/60">
+            Eligibility: first-year or sophomore undergraduate at UW
+          </p>
+
+          {/* Written questions */}
+          <h3 className="mb-3 text-lg md:text-xl font-display font-bold tracking-tight text-[#0f0f0f] lowercase">written questions</h3>
+          <ol className="mb-10 border-t border-black/10">
+            {WRITTEN_QUESTIONS.map((item, i) => (
+              <li key={i} className="flex gap-4 border-b border-black/10 py-4">
+                <span className="shrink-0 w-5 text-sm font-display font-black text-[#a69041]">{i + 1}</span>
+                <div className="min-w-0">
+                  <p className="text-[15px] md:text-base font-display font-semibold text-[#0f0f0f] leading-snug">{item.q}</p>
+                  {item.options && (
+                    <ul className="mt-2 space-y-1 list-disc pl-5 text-[15px] text-[#0f0f0f] font-sans">
+                      {item.options.map((o) => <li key={o}>{o}</li>)}
+                    </ul>
+                  )}
+                  {item.note && <p className="mt-1.5 text-sm text-black/60 font-sans leading-relaxed">{item.note}</p>}
+                  {item.limit && (
+                    <p className="mt-2 text-[10px] md:text-[11px] font-display font-bold tracking-[0.12em] uppercase text-black/50">{item.limit}</p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          {/* Video */}
+          <h3 className="mb-1 text-lg md:text-xl font-display font-bold tracking-tight text-[#0f0f0f] lowercase">video response</h3>
+          <p className="mb-3 text-sm text-black/60 font-sans">Required. Choose one prompt:</p>
+          <ol className="mb-4 list-decimal pl-5 space-y-1.5 text-[15px] text-[#0f0f0f] font-sans">
+            {VIDEO_PROMPTS.map((v) => <li key={v}>{v}</li>)}
+          </ol>
+          <p className="mb-10 text-[10px] md:text-[11px] font-display font-bold tracking-[0.12em] uppercase text-black/50 leading-relaxed">
+            1 minute max &middot; MP4 &middot; you must appear on camera &middot; no editing required — creativity welcome
+          </p>
+
+          {/* Dates + commitments */}
+          <div className="grid gap-8 md:grid-cols-2">
+            <div>
+              <h3 className="mb-2 text-lg md:text-xl font-display font-bold tracking-tight text-[#0f0f0f] lowercase">key dates</h3>
+              <ul className="space-y-1.5 text-[15px] text-[#0f0f0f] font-sans">
+                <li><strong className="font-semibold">Oct 19–23:</strong> interviews for selected candidates. An interview isn&apos;t required for admission.</li>
+                <li><strong className="font-semibold">Wed, Oct 28:</strong> final decisions released.</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="mb-2 text-lg md:text-xl font-display font-bold tracking-tight text-[#0f0f0f] lowercase">if accepted, be free for</h3>
+              <ul className="space-y-1.5 list-disc pl-5 text-[15px] text-[#0f0f0f] font-sans">
+                {IF_ACCEPTED.map((c) => <li key={c}>{c}</li>)}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -121,13 +259,13 @@ export default function Recruitment() {
                 align="left"
               />
               <TimelineNode
-                date="OCTOBER 2026"
+                date="OCTOBER 19–23"
                 title="interviews"
-                desc="Select candidates are invited to interview."
+                desc="Select candidates are invited to interview. An interview isn't required for admission."
                 align="right"
               />
               <TimelineNode
-                date="LATE OCTOBER 2026"
+                date="WEDNESDAY, OCTOBER 28"
                 title="decisions released"
                 desc="Final decisions announced."
                 align="left"
