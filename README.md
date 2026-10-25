@@ -35,7 +35,7 @@ That serves the site at **http://localhost:5173**.
 
 ### Events
 
-Events live in the **Lavin Events** Google Calendar, owned by the Lavin Gmail. Add, edit, or delete an event there — from Google Calendar or Apple Calendar — and the website usually follows within 15 to 60 minutes. (GitHub runs the check on a best-effort schedule, so it's occasionally slower. Anyone with GitHub access can update the site immediately: repo → **Actions** → **Build and Deploy** → **Run workflow**.)
+Events live in the **Lavin Events** Google Calendar, owned by the Lavin Gmail. Add, edit, or delete an event there — from Google Calendar or Apple Calendar — and the website follows on its own, usually within a few hours. (GitHub runs the check on a best-effort schedule. Anyone with GitHub access can update the site immediately: repo → **Actions** → **Build and Deploy** → **Run workflow**.)
 
 - The title, time, location, and description come straight from the calendar event. A known room like "Peek Forum" gets its building and a campus-map link; any other location shows as typed.
 - Only timed, single-day events appear. All-day and multi-day events, and events marked private, are left off the site.
@@ -52,7 +52,7 @@ On an iPhone, shared calendars only appear after you add your Google account to 
 
 #### For developers
 
-A scheduled job in [`deploy.yml`](.github/workflows/deploy.yml) runs [`scripts/sync-calendar.mjs`](scripts/sync-calendar.mjs), asking for every 15 minutes; GitHub treats schedules as best effort and often runs them less often. It reads the calendar's public iCal address from [`src/content/calendar.json`](src/content/calendar.json), rewrites [`src/content/events/`](src/content/events/) to match, and commits and deploys only when something changed. 
+A scheduled job in [`deploy.yml`](.github/workflows/deploy.yml) runs [`scripts/sync-calendar.mjs`](scripts/sync-calendar.mjs), asking for every 15 minutes; GitHub treats schedules as best effort and in practice runs it every few hours. It reads the calendar's public iCal address from [`src/content/calendar.json`](src/content/calendar.json), rewrites [`src/content/events/`](src/content/events/) to match, and commits and deploys only when something changed. 
 - `src/content/events/` is generated — edit the calendar, not these files.
 - The sync never wipes the site: if the calendar can't be fetched, or comes back empty while the site has events, it changes nothing and the job fails.
 - Only ever put the calendar's **public** address in `calendar.json`, never the secret one — this repository is public. The sync refuses a secret address.
@@ -90,9 +90,19 @@ Upload photos as they are — they're resized automatically. Use JPG, PNG, or We
 
 The `alumniStartups` array in [`src/pages/Home.jsx`](src/pages/Home.jsx). Link to the company's YC profile if it has one, otherwise its own site.
 
-### Recruitment dates and the "applications open" chip
+### Recruitment: open, closed, and next year
 
-[`src/pages/Recruitment.jsx`](src/pages/Recruitment.jsx) holds the timeline and both apply buttons. The gold "Applications open now" chip appears there and on the home page — remove it from both when applications close.
+Everything about the application cycle lives in [`src/content/recruitment.json`](src/content/recruitment.json):
+
+| Setting | What it does |
+| --- | --- |
+| `applicationsOpen` | `true` shows the gold "Applications open now" chip (home and Recruitment), the deadline, and Apply Now buttons. `false` shows "Applications are closed" and a sign-up button for next year instead. |
+| `deadline` | Shown while open, e.g. `"Sun, Oct 11 · 11:59 PM"`. |
+| `applyUrl` | Where Apply Now goes. |
+| `interestFormUrl` | The Google Form people use to get notified when applications open. While it's empty, the sign-up button shows but is inactive. |
+| `cycle`, `timeline` | The cycle name ("Fall 2027") and the timeline steps on the Recruitment page. |
+
+**Each fall when applications open:** set `applicationsOpen` to `true`, fill in `deadline` and the real `timeline` dates. **When they close:** set it back to `false`, and move `cycle` and `timeline` on to the following year.
 
 ### Internal resources
 

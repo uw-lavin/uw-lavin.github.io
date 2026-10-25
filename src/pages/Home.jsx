@@ -5,6 +5,7 @@ import LogoMarquee from '../components/ui/LogoMarquee';
 import CountUp from '../components/ui/CountUp';
 import InfoCard from '../components/ui/InfoCard';
 import { fadeUp } from '../lib/animations';
+import recruitment from '../content/recruitment.json';
 
 // Alumni-founded startups, linked to their YC profiles where they have one.
 const alumniStartups = [
@@ -157,20 +158,25 @@ export default function Home() {
               }}
               className="flex flex-col gap-3 md:gap-4 w-full md:w-auto"
             >
-              {/* Chip stays short so it fits on a phone; the deadline sits
+              {/* Only while applications are open (src/content/recruitment.json).
+                  The chip stays short so it fits on a phone; the deadline sits
                   under it, matching the recruitment hero. */}
-              <div className="flex flex-col items-start gap-2">
-                <button
-                  onClick={() => navigate('/recruitment')}
-                  className="inline-flex w-fit items-center gap-2.5 bg-[#a69041] px-5 py-3 text-sm md:text-base font-display font-black tracking-[0.18em] uppercase text-[#0f0f0f] hover:bg-[#8f7c37] transition-colors"
-                >
-                  <span className="h-2 w-2 shrink-0 rounded-full bg-[#0f0f0f] animate-status-dot motion-reduce:animate-none" />
-                  Applications open now
-                </button>
-                <p className="text-[11px] md:text-xs font-display font-bold tracking-[0.12em] uppercase text-[#0f0f0f]/70">
-                  Closes Sun, Oct 11 &middot; 11:59 PM
-                </p>
-              </div>
+              {recruitment.applicationsOpen && (
+                <div className="flex flex-col items-start gap-2">
+                  <button
+                    onClick={() => navigate('/recruitment')}
+                    className="inline-flex w-fit items-center gap-2.5 bg-[#a69041] px-5 py-3 text-sm md:text-base font-display font-black tracking-[0.18em] uppercase text-[#0f0f0f] hover:bg-[#8f7c37] transition-colors"
+                  >
+                    <span className="h-2 w-2 shrink-0 rounded-full bg-[#0f0f0f] animate-status-dot motion-reduce:animate-none" />
+                    Applications open now
+                  </button>
+                  {recruitment.deadline && (
+                    <p className="text-[11px] md:text-xs font-display font-bold tracking-[0.12em] uppercase text-[#0f0f0f]/70">
+                      Closes {recruitment.deadline}
+                    </p>
+                  )}
+                </div>
+              )}
 
               <div className="flex flex-row gap-3 md:gap-4 w-full md:w-auto">
                 <button

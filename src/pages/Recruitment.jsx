@@ -2,62 +2,36 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import boat24Image from '../assets/boat24new.jpg';
 import { fadeUp } from '../lib/animations';
+import recruitment from '../content/recruitment.json';
 
-// While the official application portal is down, a notice above the questions
-// tells applicants to draft here and submit once it's back. Set to false when
-// the portal works again; the questions themselves can stay as a reference.
-const PORTAL_DOWN = true;
+// Open/closed state, deadline, links, and timeline all come from
+// src/content/recruitment.json -- reopening next year is an edit there, not
+// here. See the README.
+const { applicationsOpen, cycle, deadline, applyUrl, interestFormUrl, timeline } = recruitment;
+const nextOpens = timeline[0]?.when;
 
-// From the official Fall 2026 application. Keep the wording exact -- people
-// draft their answers against it.
-const WRITTEN_QUESTIONS = [
-  {
-    q: "What's one project, idea, or problem you've taken action on? What did you do and what happened?",
-    note: "You can tell a concise story, or use another situational writing strategy like the STAR method. We're challenging you to write concisely — word limits are a maximum, not the goal.",
-    limit: '~125 words · 750 characters max',
-  },
-  {
-    q: "If you have already created a company and would like to share it with us, please provide the URL.",
-    note: "If you haven't, that's okay — leave it blank.",
-    limit: 'Optional',
-  },
-  {
-    q: 'What technical or creative skills do you have? In bullet points, showcase how you\'ve applied these outside the classroom.',
-    note: 'e.g. Figma, Python, Notion, Adobe Illustrator, Fusion CAD, public speaking, design, video editing.',
-    limit: '~150 words · 750 characters max',
-  },
-  {
-    q: 'In the last year, what communities (geographic, interest-based, professional, etc.) have you been involved with, and what specifically have you contributed?',
-    limit: '~150 words · 750 characters max',
-  },
-  {
-    q: 'Choose one prompt:',
-    options: [
-      'What startup or small business are you excited about right now? Why?',
-      "What's an industry or trend you're obsessed with and think has a lot of opportunity?",
-    ],
-    note: 'Avoid broad generalizations like AI, technology, or robotics. The more specific the better — e.g. the Hispanic food market in Seattle, observability for reasoning models, smart home technology.',
-    limit: '~140 words · 750 characters max',
-  },
-];
+const blackButton =
+  'inline-block px-7 py-3 bg-[#0f0f0f] text-white font-sans text-sm font-semibold hover:bg-black/80 transition-colors whitespace-nowrap';
 
-const VIDEO_PROMPTS = [
-  "What's a problem you can't stop thinking about?",
-  'What are you good at, and how do you know?',
-  'If you had $100 and one weekend to start something, what would you do?',
-  'What do you want to be doing in 10 years?',
-];
-
-const IF_ACCEPTED = [
-  'A 2-credit winter-quarter class, Thursdays 5:30–7:20 PM',
-  'Welcome Reception — evening of Wednesday, Nov 4',
-  'Overnight retreat — Friday, Nov 13 (afternoon) to Saturday, Nov 14 (evening)',
-  'All Lavin Program Meeting — evening of Thursday, Nov 19',
-];
+// "Get notified" sign-up for the next cycle. Links to the interest form once
+// its URL is set in recruitment.json; until then it shows, but inactive.
+function NotifyButton() {
+  if (interestFormUrl) {
+    return (
+      <a href={interestFormUrl} target="_blank" rel="noopener noreferrer" className={blackButton}>
+        Get notified when applications open
+      </a>
+    );
+  }
+  return (
+    <span aria-disabled="true" className={`${blackButton} opacity-40 cursor-not-allowed hover:bg-[#0f0f0f]`}>
+      Sign-up for next year opening soon
+    </span>
+  );
+}
 
 export default function Recruitment() {
   const timelineRef = useRef(null);
-  const questionsRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: timelineRef,
     offset: ["start center", "end center"]
@@ -101,118 +75,47 @@ export default function Recruitment() {
             </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-10 inline-flex w-fit items-center gap-2.5 bg-[#a69041] px-5 py-3 text-sm md:text-base font-display font-black tracking-[0.18em] uppercase text-[#0f0f0f]"
-          >
-            <span className="h-2 w-2 shrink-0 rounded-full bg-[#0f0f0f] animate-status-dot motion-reduce:animate-none" />
-            Applications open now
-          </motion.div>
+          {applicationsOpen ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="mt-10 inline-flex w-fit items-center gap-2.5 bg-[#a69041] px-5 py-3 text-sm md:text-base font-display font-black tracking-[0.18em] uppercase text-[#0f0f0f]"
+            >
+              <span className="h-2 w-2 shrink-0 rounded-full bg-[#0f0f0f] animate-status-dot motion-reduce:animate-none" />
+              Applications open now
+            </motion.div>
+          ) : (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="mt-10 text-[11px] md:text-xs font-display font-bold tracking-[0.12em] uppercase text-black/60"
+            >
+              Applications are closed{nextOpens && <> &middot; the next cohort opens {nextOpens}</>}
+            </motion.p>
+          )}
 
           <div className="mt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-12 w-full">
-            <div className="flex flex-col items-start gap-2.5">
-              <a
-                href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors"
-                className="px-7 py-3 bg-[#0f0f0f] text-white font-sans text-sm font-semibold hover:bg-black/80 transition-colors whitespace-nowrap"
-              >
-                Apply Now
-              </a>
-              <p className="text-[11px] md:text-xs font-display font-bold tracking-[0.12em] uppercase text-[#0f0f0f]/70">
-                Closes Sun, Oct 11 &middot; 11:59 PM
-              </p>
-              <button
-                type="button"
-                onClick={() => questionsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-                className="text-[11px] md:text-xs font-display font-bold tracking-[0.12em] uppercase text-[#0f0f0f] underline decoration-black/30 underline-offset-[3px] hover:decoration-black transition-colors"
-              >
-                Preview the questions &darr;
-              </button>
-            </div>
+            {applicationsOpen ? (
+              <div className="flex flex-col items-start gap-2.5">
+                <a href={applyUrl} className={blackButton}>
+                  Apply Now
+                </a>
+                {deadline && (
+                  <p className="text-[11px] md:text-xs font-display font-bold tracking-[0.12em] uppercase text-[#0f0f0f]/70">
+                    Closes {deadline}
+                  </p>
+                )}
+              </div>
+            ) : (
+              <NotifyButton />
+            )}
             <p className="text-[14px] text-[#0f0f0f] italic font-sans md:text-right max-w-sm">
               Open to UW first-years and sophomores. No business experience required.
             </p>
           </div>
 
-        </div>
-      </section>
-
-      {/* ---------- APPLICATION QUESTIONS (reference only) ---------- */}
-      <section
-        ref={questionsRef}
-        className="scroll-mt-24 px-6 md:px-12 py-12 md:py-16 w-full border-b border-black/10 bg-white"
-      >
-        <div className="max-w-3xl mx-auto w-full">
-          <div className="text-[11px] font-display tracking-[0.3em] uppercase text-black/40 mb-3">
-            APPLICATION QUESTIONS — FALL 2026
-          </div>
-          <h2 className="text-3xl md:text-4xl font-display font-black tracking-tight text-[#0f0f0f] leading-[0.95] lowercase mb-5">
-            prepare your application
-          </h2>
-
-          {PORTAL_DOWN && (
-            <p className="mb-3 border-l-[3px] border-[#a69041] bg-[#f8f7f4] px-4 py-3 text-sm md:text-[15px] text-[#0f0f0f] font-sans leading-relaxed">
-              The application portal is temporarily unavailable. Everything you need is below, so you can draft your answers and record your video now, then submit once the portal is back.
-            </p>
-          )}
-          <p className="mb-8 text-sm text-black/70 font-sans leading-relaxed">
-            <strong className="font-semibold text-[#0f0f0f]">This page is for reference only.</strong>{' '}
-            Submit everything through the official application portal. Please don&apos;t email or send your answers to Lavin members — we can&apos;t accept them, and only portal submissions are reviewed.
-          </p>
-
-          <p className="mb-6 text-[11px] md:text-xs font-display font-bold tracking-[0.12em] uppercase text-black/60">
-            Eligibility: first-year or sophomore undergraduate at UW
-          </p>
-
-          {/* Written questions */}
-          <h3 className="mb-3 text-lg md:text-xl font-display font-bold tracking-tight text-[#0f0f0f] lowercase">written questions</h3>
-          <ol className="mb-10 border-t border-black/10">
-            {WRITTEN_QUESTIONS.map((item, i) => (
-              <li key={i} className="flex gap-4 border-b border-black/10 py-4">
-                <span className="shrink-0 w-5 text-sm font-display font-black text-[#a69041]">{i + 1}</span>
-                <div className="min-w-0">
-                  <p className="text-[15px] md:text-base font-display font-semibold text-[#0f0f0f] leading-snug">{item.q}</p>
-                  {item.options && (
-                    <ul className="mt-2 space-y-1 list-disc pl-5 text-[15px] text-[#0f0f0f] font-sans">
-                      {item.options.map((o) => <li key={o}>{o}</li>)}
-                    </ul>
-                  )}
-                  {item.note && <p className="mt-1.5 text-sm text-black/60 font-sans leading-relaxed">{item.note}</p>}
-                  {item.limit && (
-                    <p className="mt-2 text-[10px] md:text-[11px] font-display font-bold tracking-[0.12em] uppercase text-black/50">{item.limit}</p>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ol>
-
-          {/* Video */}
-          <h3 className="mb-1 text-lg md:text-xl font-display font-bold tracking-tight text-[#0f0f0f] lowercase">video response</h3>
-          <p className="mb-3 text-sm text-black/60 font-sans">Required. Choose one prompt:</p>
-          <ol className="mb-4 list-decimal pl-5 space-y-1.5 text-[15px] text-[#0f0f0f] font-sans">
-            {VIDEO_PROMPTS.map((v) => <li key={v}>{v}</li>)}
-          </ol>
-          <p className="mb-10 text-[10px] md:text-[11px] font-display font-bold tracking-[0.12em] uppercase text-black/50 leading-relaxed">
-            1 minute max &middot; MP4 &middot; you must appear on camera &middot; no editing required — creativity welcome
-          </p>
-
-          {/* Dates + commitments */}
-          <div className="grid gap-8 md:grid-cols-2">
-            <div>
-              <h3 className="mb-2 text-lg md:text-xl font-display font-bold tracking-tight text-[#0f0f0f] lowercase">key dates</h3>
-              <ul className="space-y-1.5 text-[15px] text-[#0f0f0f] font-sans">
-                <li><strong className="font-semibold">Oct 19–23:</strong> interviews for selected candidates. An interview isn&apos;t required for admission.</li>
-                <li><strong className="font-semibold">Wed, Oct 28:</strong> final decisions released.</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-2 text-lg md:text-xl font-display font-bold tracking-tight text-[#0f0f0f] lowercase">if accepted, be free for</h3>
-              <ul className="space-y-1.5 list-disc pl-5 text-[15px] text-[#0f0f0f] font-sans">
-                {IF_ACCEPTED.map((c) => <li key={c}>{c}</li>)}
-              </ul>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -227,7 +130,7 @@ export default function Recruitment() {
               viewport={{ once: true }}
               className="text-[11px] font-display tracking-[0.3em] uppercase text-black mb-4"
             >
-              APPLICATION PROCESS — FALL 2026
+              APPLICATION PROCESS — {cycle}
             </motion.div>
             <motion.h2
               variants={fadeUp}
@@ -238,6 +141,11 @@ export default function Recruitment() {
             >
               TIMELINE
             </motion.h2>
+            {!applicationsOpen && (
+              <p className="mt-4 text-sm text-black/55 font-sans italic">
+                Expected timeline — exact dates are confirmed when applications open.
+              </p>
+            )}
           </div>
 
           <div className="relative w-full max-w-3xl mx-auto my-16">
@@ -252,24 +160,15 @@ export default function Recruitment() {
 
             {/* Nodes */}
             <div className="relative z-10 w-full flex flex-col gap-24 py-10 pl-12 md:pl-0">
-              <TimelineNode
-                date="SEPTEMBER 2026 — OPEN NOW"
-                title="application open"
-                desc="The application is live. Submissions close Sunday, October 11 at 11:59 PM."
-                align="left"
-              />
-              <TimelineNode
-                date="OCTOBER 19–23"
-                title="interviews"
-                desc="Select candidates are invited to interview. An interview isn't required for admission."
-                align="right"
-              />
-              <TimelineNode
-                date="WEDNESDAY, OCTOBER 28"
-                title="decisions released"
-                desc="Final decisions announced."
-                align="left"
-              />
+              {timeline.map((step, i) => (
+                <TimelineNode
+                  key={step.title}
+                  date={step.when}
+                  title={step.title}
+                  desc={step.desc}
+                  align={i % 2 === 0 ? 'left' : 'right'}
+                />
+              ))}
             </div>
           </div>
 
@@ -331,7 +230,7 @@ export default function Recruitment() {
         </div>
       </section>
 
-      {/* ---------- READY TO APPLY ---------- */}
+      {/* ---------- CLOSING CALL TO ACTION ---------- */}
       <section className="px-6 md:px-12 py-32 relative overflow-hidden bg-white">
         <div className="max-w-7xl mx-auto w-full flex flex-col items-start relative z-10">
           <motion.h2
@@ -341,7 +240,7 @@ export default function Recruitment() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl lg:text-5xl font-display font-black tracking-tight text-[#0f0f0f] leading-[0.9] lowercase mb-6"
           >
-            ready to<br />apply?
+            {applicationsOpen ? <>ready to<br />apply?</> : <>want in<br />next year?</>}
           </motion.h2>
 
           <motion.p
@@ -349,21 +248,22 @@ export default function Recruitment() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-[18px] md:text-[20px] text-[#0f0f0f] italic font-sans mb-12"
+            className="text-[18px] md:text-[20px] text-[#0f0f0f] italic font-sans mb-12 max-w-xl"
           >
-            Applications are open now and close Sunday, October 11 at 11:59 PM.
+            {applicationsOpen
+              ? `Applications are open now${deadline ? ` and close ${deadline}` : ''}.`
+              : `Applications for the next cohort open ${nextOpens || 'next fall'}. Sign up and we'll let you know the moment they're live.`}
           </motion.p>
 
-          <motion.a
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            href="https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors"
-            className="px-8 py-4 bg-[#0f0f0f] text-white font-sans text-sm md:text-base font-semibold hover:bg-black/80 transition-colors"
-          >
-            Apply Now
-          </motion.a>
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            {applicationsOpen ? (
+              <a href={applyUrl} className={blackButton}>
+                Apply Now
+              </a>
+            ) : (
+              <NotifyButton />
+            )}
+          </motion.div>
         </div>
 
         {/* Rotated watermark Right side */}
@@ -374,7 +274,7 @@ export default function Recruitment() {
           className="hidden lg:flex absolute right-12 top-0 bottom-0 items-center justify-center pointer-events-none"
         >
           <div className="text-[12vw] xl:text-[15vw] leading-none font-display font-thin text-[#0f0f0f] opacity-[0.03] tracking-tighter whitespace-nowrap rotate-90 origin-center select-none uppercase pointer-events-none">
-            FALL 2026 APPLICATIONS
+            {cycle} APPLICATIONS
           </div>
         </motion.div>
       </section>

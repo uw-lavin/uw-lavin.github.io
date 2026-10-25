@@ -1,0 +1,24 @@
+{
+  "applicationsOpen": false,
+  "cycle": "Fall 2027",
+  "deadline": "",
+  "applyUrl": "https://uwfoster.my.site.com/Foster/s/undergraduate/certs-and-minors",
+  "interestFormUrl": "",
+  "timeline": [
+    {
+      "when": "September 2027",
+      "title": "applications open",
+      "desc": "Applications usually open in mid-September."
+    },
+    {
+      "when": "October 2027",
+      "title": "interviews",
+      "desc": "Select candidates are invited to interview. An interview isn't required for admission."
+    },
+    {
+      "when": "Late October 2027",
+      "title": "decisions released",
+      "desc": "Final decisions announced."
+    }
+  ]
+}
